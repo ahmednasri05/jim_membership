@@ -7,7 +7,16 @@
         private System.Windows.Forms.TextBox txtNationalID;
         private System.Windows.Forms.TextBox txtFName;
         private System.Windows.Forms.TextBox txtLName;
+        private System.Windows.Forms.TextBox txtUsername;
+        private System.Windows.Forms.TextBox txtPassword;
+        private System.Windows.Forms.TextBox txtPhoneNumber;
+        private System.Windows.Forms.TextBox txtAddress;
+        private System.Windows.Forms.RadioButton rbMale;
+        private System.Windows.Forms.RadioButton rbFemale;
+        private System.Windows.Forms.TextBox txtAge;
         private System.Windows.Forms.TextBox txtEmail;
+        private System.Windows.Forms.TextBox txtECName;
+        private System.Windows.Forms.TextBox txtECPhoneNumber;
         private System.Windows.Forms.Button btnOK;
         private System.Windows.Forms.Button btnCancel;
 
@@ -19,63 +28,99 @@
 
         private void InitializeComponent()
         {
-            this.txtNationalID = new System.Windows.Forms.TextBox();
-            this.txtFName = new System.Windows.Forms.TextBox();
-            this.txtLName = new System.Windows.Forms.TextBox();
-            this.txtEmail = new System.Windows.Forms.TextBox();
-            this.btnOK = new System.Windows.Forms.Button();
-            this.btnCancel = new System.Windows.Forms.Button();
+            txtNationalID = new TextBox();
+            txtFName = new TextBox();
+            txtLName = new TextBox();
+            txtUsername = new TextBox();
+            txtPassword = new TextBox();
+            txtPhoneNumber = new TextBox();
+            txtAddress = new TextBox();
+            rbMale = new RadioButton();
+            rbFemale = new RadioButton();
+            txtAge = new TextBox();
+            txtEmail = new TextBox();
+            txtECName = new TextBox();
+            txtECPhoneNumber = new TextBox();
+            btnOK = new Button();
+            btnCancel = new Button();
+            SuspendLayout();
 
-            this.SuspendLayout();
+            txtNationalID.Location = new Point(30, 20);
+            txtNationalID.PlaceholderText = "National ID";
+            txtNationalID.Size = new Size(200, 23);
 
-            // txtNationalID
-            this.txtNationalID.Location = new System.Drawing.Point(30, 20);
-            this.txtNationalID.Name = "txtNationalID";
-            this.txtNationalID.PlaceholderText = "National ID";
-            this.txtNationalID.Size = new System.Drawing.Size(200, 23);
+            txtFName.Location = new Point(30, 50);
+            txtFName.PlaceholderText = "First Name";
+            txtFName.Size = new Size(200, 23);
 
-            // txtFName
-            this.txtFName.Location = new System.Drawing.Point(30, 60);
-            this.txtFName.Name = "txtFName";
-            this.txtFName.PlaceholderText = "First Name";
-            this.txtFName.Size = new System.Drawing.Size(200, 23);
+            txtLName.Location = new Point(30, 80);
+            txtLName.PlaceholderText = "Last Name";
+            txtLName.Size = new Size(200, 23);
 
-            // txtLName
-            this.txtLName.Location = new System.Drawing.Point(30, 100);
-            this.txtLName.Name = "txtLName";
-            this.txtLName.PlaceholderText = "Last Name";
-            this.txtLName.Size = new System.Drawing.Size(200, 23);
+            txtUsername.Location = new Point(30, 110);
+            txtUsername.PlaceholderText = "Username";
+            txtUsername.Size = new Size(200, 23);
 
-            // txtEmail
-            this.txtEmail.Location = new System.Drawing.Point(30, 140);
-            this.txtEmail.Name = "txtEmail";
-            this.txtEmail.PlaceholderText = "Email";
-            this.txtEmail.Size = new System.Drawing.Size(200, 23);
+            txtPassword.Location = new Point(30, 140);
+            txtPassword.PlaceholderText = "Password";
+            txtPassword.PasswordChar = '*';
+            txtPassword.Size = new Size(200, 23);
 
-            // btnOK
-            this.btnOK.Location = new System.Drawing.Point(30, 180);
-            this.btnOK.Name = "btnOK";
-            this.btnOK.Text = "OK";
-            this.btnOK.DialogResult = DialogResult.OK;
+            txtPhoneNumber.Location = new Point(30, 170);
+            txtPhoneNumber.PlaceholderText = "Phone Number";
+            txtPhoneNumber.Size = new Size(200, 23);
 
-            // btnCancel
-            this.btnCancel.Location = new System.Drawing.Point(130, 180);
-            this.btnCancel.Name = "btnCancel";
-            this.btnCancel.Text = "Cancel";
-            this.btnCancel.DialogResult = DialogResult.Cancel;
+            txtAddress.Location = new Point(30, 200);
+            txtAddress.PlaceholderText = "Address";
+            txtAddress.Size = new Size(200, 23);
 
-            // UserForm
-            this.ClientSize = new System.Drawing.Size(260, 230);
-            this.Controls.Add(txtNationalID);
-            this.Controls.Add(txtFName);
-            this.Controls.Add(txtLName);
-            this.Controls.Add(txtEmail);
-            this.Controls.Add(btnOK);
-            this.Controls.Add(btnCancel);
-            this.Name = "UserForm";
-            this.Text = "User Form";
-            this.ResumeLayout(false);
-            this.PerformLayout();
+            rbMale.Location = new Point(30, 230);
+            rbMale.Text = "Male";
+            rbMale.Size = new Size(50, 20);
+
+            rbFemale.Location = new Point(100, 230);
+            rbFemale.Text = "Female";
+            rbFemale.Size = new Size(60, 20);
+
+            txtAge.Location = new Point(30, 260);
+            txtAge.PlaceholderText = "Age";
+            txtAge.Size = new Size(200, 23);
+
+            txtEmail.Location = new Point(30, 290);
+            txtEmail.PlaceholderText = "Email";
+            txtEmail.Size = new Size(200, 23);
+
+            txtECName.Location = new Point(30, 320);
+            txtECName.PlaceholderText = "Emergency Contact Name";
+            txtECName.Size = new Size(200, 23);
+
+            txtECPhoneNumber.Location = new Point(30, 350);
+            txtECPhoneNumber.PlaceholderText = "Emergency Contact Phone";
+            txtECPhoneNumber.Size = new Size(200, 23);
+
+            btnOK.Location = new Point(30, 380);
+            btnOK.Text = "OK";
+            btnOK.DialogResult = DialogResult.OK;
+            btnOK.Size = new Size(75, 23);
+
+            btnCancel.Location = new Point(130, 380);
+            btnCancel.Text = "Cancel";
+            btnCancel.DialogResult = DialogResult.Cancel;
+            btnCancel.Size = new Size(75, 23);
+
+            ClientSize = new Size(270, 430);
+            Controls.AddRange(new Control[]
+            {
+        txtNationalID, txtFName, txtLName, txtUsername, txtPassword,
+        txtPhoneNumber, txtAddress, rbMale, rbFemale, txtAge,
+        txtEmail, txtECName, txtECPhoneNumber, btnOK, btnCancel
+            });
+
+            Name = "EditUser";
+            Text = "Edit User";
+            Load += EditUser_Load;
+            ResumeLayout(false);
+            PerformLayout();
         }
     }
 }

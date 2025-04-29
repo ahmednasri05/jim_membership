@@ -24,11 +24,16 @@ namespace jim_membership.Admin
 
             // Pre-fill the fields
             txtNationalID.Text = User.NationalID.ToString();
-            txtFName.Text = User.FName;
-            txtLName.Text = User.LName;
-            txtEmail.Text = User.Email;
+            txtUsername.Text = User.Username;
+            txtPassword.Text = User.Password;
+            txtPhoneNumber.Text = User.PhoneNumber.ToString();
+            txtAddress.Text = User.Address;
+            rbMale.Checked = User.Gender == 0;
+            rbFemale.Checked = User.Gender == 1;
+            txtAge.Text = User.Age.ToString();
+            txtECName.Text = User.ECName;
+            txtECPhoneNumber.Text = User.ECPhoneNumber.ToString();
 
-            // Prevent editing ID in edit mode
             txtNationalID.ReadOnly = true;
         }
 
@@ -52,9 +57,32 @@ namespace jim_membership.Admin
             {
                 MessageBox.Show("Please enter a valid National ID.");
             }
+            // Assign values to User object
             User.FName = txtFName.Text;
             User.LName = txtLName.Text;
+            User.Username = txtUsername.Text;
+            User.Password = txtPassword.Text;
+            if (int.TryParse(txtPhoneNumber.Text, out int phoneNumber))
+            {
+                User.PhoneNumber = int.Parse(txtPhoneNumber.Text);
+            }
+            else
+            {
+                MessageBox.Show("Please enter a valid National ID.");
+            }
+            User.Address = txtAddress.Text;
+            User.Gender = (byte)(rbMale.Checked ? 0 : 1);
+            User.Age = int.TryParse(txtAge.Text, out int age) ? age : 0;
             User.Email = txtEmail.Text;
+            User.ECName = txtECName.Text;
+            if (int.TryParse(txtECPhoneNumber.Text, out int ECPhoneNumber))
+            {
+                User.ECPhoneNumber = int.Parse(txtECPhoneNumber.Text);
+            }
+            else
+            {
+                MessageBox.Show("Please enter a valid National ID.");
+            }
 
             try
             {
@@ -73,6 +101,11 @@ namespace jim_membership.Admin
                     MessageBoxButtons.OK, MessageBoxIcon.Error);
                 this.DialogResult = DialogResult.None;
             }
+        }
+
+        private void EditUser_Load(object sender, EventArgs e)
+        {
+
         }
     }
 }

@@ -52,7 +52,7 @@ namespace jim_membership
                     Password = txtPassword.Text,
                     PhoneNumber = int.Parse(txtPhoneNumber.Text),
                     Address = txtAddress.Text,
-                    Gender = (byte)(rbMale.Checked ? 1 : 0),
+                    Gender = (byte)(rbMale.Checked ? 0 : 1),
                     Age = int.Parse(txtAge.Text),
                     Email = txtEmail.Text,
                     ECName = txtECName.Text,
