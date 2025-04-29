@@ -40,7 +40,6 @@ namespace jim_membership.Admin
             var form = new EditUser();
             if (form.ShowDialog() == DialogResult.OK)
             {
-                form.User.Create();
                 LoadUsers();
             }
         }
@@ -58,7 +57,6 @@ namespace jim_membership.Admin
             var form = new EditUser(selected);
             if (form.ShowDialog() == DialogResult.OK)
             {
-                form.User.Update();
                 LoadUsers();
             }
         }
