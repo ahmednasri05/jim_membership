@@ -24,7 +24,7 @@ namespace jim_membership.models
         public string ECName { get; set; }
         public int ECPhoneNumber { get; set; }
 
-        private static readonly string _connectionString = "";
+        private static readonly string _connectionString = "Server=localhost;Database=JimMemberShip;Trusted_Connection=True;";
 
         public void Create()
         {
@@ -44,7 +44,14 @@ namespace jim_membership.models
                 return connection.QueryFirstOrDefault<User>(sql, new { NationalID = nationalId });
             }
         }
-
+        public static User GetByEmail(string email)
+        {
+            using (var connection = new SqlConnection(_connectionString))
+            {
+                string sql = "SELECT * FROM Users WHERE email = @Email";
+                return connection.QueryFirstOrDefault<User>(sql, new { Email = email });
+            }
+        }
         public static List<User> GetAll()
         {
             using (var connection = new SqlConnection(_connectionString))
