@@ -28,3 +28,5 @@ C:\Users\h\jim_membership\obj\Debug\net7.0-windows\ref\jim_membership.dll
 C:\Users\h\jim_membership\obj\Debug\net7.0-windows\jim_membership.Signup.resources
 C:\Users\h\jim_membership\obj\Debug\net7.0-windows\jim_membership.Properties.Resources.resources
 C:\Users\h\jim_membership\obj\Debug\net7.0-windows\jim_membership.Login.resources
+C:\Users\h\jim_membership\obj\Debug\net7.0-windows\jim_membership.Admin.UserCrud.resources
+C:\Users\h\jim_membership\obj\Debug\net7.0-windows\jim_membership.Admin.EditUser.resources
