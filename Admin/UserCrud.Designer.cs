@@ -20,59 +20,65 @@
 
         private void InitializeComponent()
         {
-            dgvUsers = new System.Windows.Forms.DataGridView();
-            btnAddClient = new System.Windows.Forms.Button();
-            btnEditClient = new System.Windows.Forms.Button();
-            btnDeleteClient = new System.Windows.Forms.Button();
-            ((System.ComponentModel.ISupportInitialize)(dgvUsers)).BeginInit();
+            dgvUsers = new DataGridView();
+            btnAddClient = new Button();
+            btnEditClient = new Button();
+            btnDeleteClient = new Button();
+            ((System.ComponentModel.ISupportInitialize)dgvUsers).BeginInit();
             SuspendLayout();
-
+            // 
             // dgvUsers
+            // 
             dgvUsers.AllowUserToAddRows = false;
             dgvUsers.AllowUserToDeleteRows = false;
-            dgvUsers.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
-            dgvUsers.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            dgvUsers.Location = new System.Drawing.Point(12, 50);
+            dgvUsers.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
+            dgvUsers.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            dgvUsers.Location = new Point(12, 50);
             dgvUsers.MultiSelect = false;
             dgvUsers.Name = "dgvUsers";
             dgvUsers.ReadOnly = true;
-            dgvUsers.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            dgvUsers.Size = new System.Drawing.Size(900, 400);
+            dgvUsers.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
+            dgvUsers.Size = new Size(900, 400);
             dgvUsers.TabIndex = 0;
-
+            dgvUsers.CellContentClick += dgvUsers_CellContentClick;
+            // 
             // btnAddClient
-            btnAddClient.Location = new System.Drawing.Point(12, 12);
+            // 
+            btnAddClient.Location = new Point(12, 12);
             btnAddClient.Name = "btnAddClient";
-            btnAddClient.Size = new System.Drawing.Size(100, 30);
+            btnAddClient.Size = new Size(100, 30);
             btnAddClient.TabIndex = 1;
             btnAddClient.Text = "Add Client";
             btnAddClient.UseVisualStyleBackColor = true;
-
+            // 
             // btnEditClient
-            btnEditClient.Location = new System.Drawing.Point(120, 12);
+            // 
+            btnEditClient.Location = new Point(120, 12);
             btnEditClient.Name = "btnEditClient";
-            btnEditClient.Size = new System.Drawing.Size(100, 30);
+            btnEditClient.Size = new Size(100, 30);
             btnEditClient.TabIndex = 2;
             btnEditClient.Text = "Edit Client";
             btnEditClient.UseVisualStyleBackColor = true;
-
+            // 
             // btnDeleteClient
-            btnDeleteClient.Location = new System.Drawing.Point(230, 12);
+            // 
+            btnDeleteClient.Location = new Point(230, 12);
             btnDeleteClient.Name = "btnDeleteClient";
-            btnDeleteClient.Size = new System.Drawing.Size(100, 30);
+            btnDeleteClient.Size = new Size(100, 30);
             btnDeleteClient.TabIndex = 3;
             btnDeleteClient.Text = "Delete";
             btnDeleteClient.UseVisualStyleBackColor = true;
-
+            // 
             // UserCrud
-            ClientSize = new System.Drawing.Size(924, 461);
+            // 
+            ClientSize = new Size(924, 461);
             Controls.Add(btnDeleteClient);
             Controls.Add(btnEditClient);
             Controls.Add(btnAddClient);
             Controls.Add(dgvUsers);
             Name = "UserCrud";
             Text = "User Management";
-            ((System.ComponentModel.ISupportInitialize)(dgvUsers)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)dgvUsers).EndInit();
             ResumeLayout(false);
         }
     }

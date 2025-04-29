@@ -98,5 +98,10 @@ namespace jim_membership.Admin
         {
             LoadUsers();
         }
+
+        private void dgvUsers_CellContentClick(object sender, DataGridViewCellEventArgs e)
+        {
+
+        }
     }
 }

@@ -24,6 +24,9 @@ namespace jim_membership.Admin
 
             // Pre-fill the fields
             txtNationalID.Text = User.NationalID.ToString();
+
+            txtFName.Text = User.FName;
+            txtLName.Text = User.LName;
             txtUsername.Text = User.Username;
             txtPassword.Text = User.Password;
             txtPhoneNumber.Text = User.PhoneNumber.ToString();
@@ -31,6 +34,7 @@ namespace jim_membership.Admin
             rbMale.Checked = User.Gender == 0;
             rbFemale.Checked = User.Gender == 1;
             txtAge.Text = User.Age.ToString();
+            txtEmail.Text = User.Email;
             txtECName.Text = User.ECName;
             txtECPhoneNumber.Text = User.ECPhoneNumber.ToString();
 
