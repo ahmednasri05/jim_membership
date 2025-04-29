@@ -4,7 +4,13 @@
     <Compile Update="Admin\AdminStart.cs">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Update="Admin\EditMember.cs">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Update="Admin\EditUser.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Update="Admin\Members.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Update="Admin\UserCrud.cs">

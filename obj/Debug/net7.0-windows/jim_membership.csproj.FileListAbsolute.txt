@@ -63,3 +63,5 @@ C:\Users\shels\Documents\jim_membership\obj\Debug\net7.0-windows\refint\jim_memb
 C:\Users\shels\Documents\jim_membership\obj\Debug\net7.0-windows\jim_membership.pdb
 C:\Users\shels\Documents\jim_membership\obj\Debug\net7.0-windows\jim_membership.genruntimeconfig.cache
 C:\Users\shels\Documents\jim_membership\obj\Debug\net7.0-windows\ref\jim_membership.dll
+C:\Users\shels\Documents\jim_membership\obj\Debug\net7.0-windows\jim_membership.Admin.Members.resources
+C:\Users\shels\Documents\jim_membership\obj\Debug\net7.0-windows\jim_membership.Admin.EditMember.resources

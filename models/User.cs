@@ -38,18 +38,38 @@ namespace jim_membership.models
 
         public static User GetById(int nationalId)
         {
-            using (var connection = new SqlConnection(_connectionString))
+            try
             {
-                string sql = "SELECT * FROM Users WHERE nationalID = @NationalID";
-                return connection.QueryFirstOrDefault<User>(sql, new { NationalID = nationalId });
+                using (var connection = new SqlConnection(_connectionString))
+                {
+                    string sql = "SELECT * FROM Users WHERE nationalID = @NationalID";
+                    connection.Open();  // Make sure the connection is explicitly opened
+                    return connection.QueryFirstOrDefault<User>(sql, new { NationalID = nationalId });
+                }
+            }
+            catch (Exception ex)
+            {
+                // Log exception (could be to a log file, event log, or logging framework)
+                Console.WriteLine($"Error: {ex.Message}");
+                return null;  // Return null if the query fails
             }
         }
         public static User GetByEmail(string email)
         {
-            using (var connection = new SqlConnection(_connectionString))
+            try
             {
-                string sql = "SELECT * FROM Users WHERE email = @Email";
-                return connection.QueryFirstOrDefault<User>(sql, new { Email = email });
+                using (var connection = new SqlConnection(_connectionString))
+                {
+                    string sql = "SELECT * FROM Users WHERE email = @Email";
+                    connection.Open();  // Make sure the connection is explicitly opened
+                    return connection.QueryFirstOrDefault<User>(sql, new { Email = email });
+                }
+            }
+            catch (Exception ex)
+            {
+                // Log exception (could be to a log file, event log, or logging framework)
+                Console.WriteLine($"Error: {ex.Message}");
+                return null;  // Return null if the query fails
             }
         }
         public static List<User> GetAll()
