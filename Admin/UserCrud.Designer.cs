@@ -4,10 +4,10 @@
     {
         private System.ComponentModel.IContainer components = null;
 
-        private System.Windows.Forms.DataGridView dgvUsers;
-        private System.Windows.Forms.Button btnAddClient;
-        private System.Windows.Forms.Button btnEditClient;
-        private System.Windows.Forms.Button btnDeleteClient;
+        private DataGridView dgvUsers;
+        private Button btnAddClient;
+        private Button btnEditClient;
+        private Button btnDeleteClient;
 
         protected override void Dispose(bool disposing)
         {
@@ -31,6 +31,7 @@
             // 
             dgvUsers.AllowUserToAddRows = false;
             dgvUsers.AllowUserToDeleteRows = false;
+            dgvUsers.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Left | AnchorStyles.Right;
             dgvUsers.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
             dgvUsers.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             dgvUsers.Location = new Point(12, 50);

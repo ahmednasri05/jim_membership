@@ -14,7 +14,7 @@ namespace jim_membership
             // see https://aka.ms/applicationconfiguration.
             ApplicationConfiguration.Initialize();
             //Application.Run(new Signup());
-            Application.Run(new UserCrud());
+            Application.Run(new AdminStart());
         }
     }
 }
