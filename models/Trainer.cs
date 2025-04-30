@@ -8,33 +8,32 @@ using Dapper;
 namespace jim_membership.models
 
 {
-    public class Trainer : User
+    public class Trainer
     {
-        public int InstructorID { get; set; }
-        public int UserId { get; set; }
+        public int NationalID { get; set; }
         public int Salary { get; set; }
-        public DateTime Duration { get; set; }
-        public string Type { get; set; }
         public DateTime StartDate { get; set; }
+        public string ContractType { get; set; }
+        public DateTime EndDate { get; set; }
 
-        private static readonly string _connectionString = "your_connection_string_here";
+        private static readonly string _connectionString = "Server=localhost;Database=JimMemberShip;Trusted_Connection=True;";
 
         public void Create()
         {
             using (var connection = new SqlConnection(_connectionString))
             {
-                string sql = @"INSERT INTO Trainers (instructorID, userid, Salary, Duration, Type, startDate)
-                               VALUES (@InstructorID, @UserId, @Salary, @Duration, @Type, @StartDate)";
+                string sql = @"INSERT INTO Trainers (nationalID, Salary, startDate, ContractType, endDate)
+                               VALUES (@NationalID, @Salary, @StartDate, @ContractType, @EndDate)";
                 connection.Execute(sql, this);
             }
         }
 
-        public static Trainer GetById(int instructorId)
+        public static Trainer GetById(int nationalID)
         {
             using (var connection = new SqlConnection(_connectionString))
             {
-                string sql = "SELECT * FROM Trainers WHERE instructorID = @InstructorID";
-                return connection.QueryFirstOrDefault<Trainer>(sql, new { InstructorID = instructorId });
+                string sql = "SELECT * FROM Trainers WHERE nationalID = @NationalID";
+                return connection.QueryFirstOrDefault<Trainer>(sql, new { NationalID = nationalID });
             }
         }
 
@@ -52,20 +51,20 @@ namespace jim_membership.models
             using (var connection = new SqlConnection(_connectionString))
             {
                 string sql = @"UPDATE Trainers SET 
-                                userid = @UserId, Salary = @Salary, 
-                                Duration = @Duration, Type = @Type, 
-                                startDate = @StartDate
-                               WHERE instructorID = @InstructorID";
+                                Salary = @Salary, 
+                                startDate = @StartDate, ContractType = @ContractType, 
+                                endDate = @EndDate
+                               WHERE nationalID = @NationalID";
                 connection.Execute(sql, this);
             }
         }
 
-        public static void Delete(int instructorId)
+        public static void Delete(int nationalID)
         {
             using (var connection = new SqlConnection(_connectionString))
             {
-                string sql = "DELETE FROM Trainers WHERE instructorID = @InstructorID";
-                connection.Execute(sql, new { InstructorID = instructorId });
+                string sql = "DELETE FROM Trainers WHERE nationalID = @NationalID";
+                connection.Execute(sql, new { NationalID = nationalID });
             }
         }
     }

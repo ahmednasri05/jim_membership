@@ -10,18 +10,20 @@ namespace jim_membership.models
     public class Branch
     {
         public int BranchNo { get; set; }
-        public string Location { get; set; }
-        public int AdminID { get; set; }
+        public int ManagerID { get; set; }
+        public int PhoneNumber { get; set; }
+        public string Address { get; set; }
+        public string BranchName { get; set; }
 
-        private static readonly string _connectionString = "your_connection_string_here";
+        private static readonly string _connectionString = "Server=localhost;Database=JimMemberShip;Trusted_Connection=True;";
 
         // Create
         public void Create()
         {
             using (var connection = new SqlConnection(_connectionString))
             {
-                string sql = @"INSERT INTO Branches (BranchNo, Location, AdminID)
-                               VALUES (@BranchNo, @Location, @AdminID)";
+                string sql = @"INSERT INTO Branches (BranchNo, ManagerID, PhoneNumber, Address, BranchName)
+                           VALUES (@BranchNo, @ManagerID, @PhoneNumber, @Address, @BranchName)";
                 connection.Execute(sql, this);
             }
         }
@@ -52,8 +54,11 @@ namespace jim_membership.models
             using (var connection = new SqlConnection(_connectionString))
             {
                 string sql = @"UPDATE Branches 
-                               SET Location = @Location, AdminID = @AdminID 
-                               WHERE BranchNo = @BranchNo";
+                           SET ManagerID = @ManagerID, 
+                               PhoneNumber = @PhoneNumber, 
+                               Address = @Address, 
+                               BranchName = @BranchName
+                           WHERE BranchNo = @BranchNo";
                 connection.Execute(sql, this);
             }
         }

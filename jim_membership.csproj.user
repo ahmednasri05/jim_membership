@@ -4,19 +4,55 @@
     <Compile Update="Admin\AdminStart.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Update="Admin\EditUser.cs">
+    <Compile Update="Admin\Members\EditMember.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Update="Admin\UserCrud.cs">
+    <Compile Update="Admin\Members\Members.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Update="Admin\Subscribe\EditSubscription.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Update="Admin\Subscribe\SubscriptionCrud.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Update="Admin\Trainer\EditCertificate.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Update="Admin\Trainer\EditTrainer.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Update="Admin\Trainer\TrainerCrud.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Update="Admin\User\EditUser.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Update="Admin\User\UserCrud.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Update="Admin\Branches\Branches.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Update="Admin\Branches\EditBranch.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Update="Form1.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Update="Admin\Guests\EditGuest.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Update="Admin\Guests\Guest.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Update="Login.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Update="models\Form1.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Update="Reservations\Reservations.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Update="Signup.cs">

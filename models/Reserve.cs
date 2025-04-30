@@ -68,5 +68,43 @@ namespace jim_membership.models
                 connection.Execute(sql, new { ReserveID = reserveId });
             }
         }
+
+        public static List<Session> GetAvailableSessions()
+        {
+            using (var connection = new SqlConnection(_connectionString))
+            {
+                string sql = "SELECT * FROM Sessions WHERE IsFull = 0";
+                return connection.Query<Session>(sql).ToList();
+            }
+        }
+
+        public static bool ReserveSession(int traineeId, int sessionId)
+        {
+            using (var connection = new SqlConnection(_connectionString))
+            {
+                // Check if the session is available
+                string checkSql = "SELECT IsFull FROM Sessions WHERE SessionID = @SessionID";
+                bool isFull = connection.QueryFirstOrDefault<bool>(checkSql, new { SessionID = sessionId });
+
+                if (isFull) return false;
+
+                // Reserve the session
+                string reserveSql = @"INSERT INTO Reserves (TraineeID, CourseID, PaymentStatus)
+                              VALUES (@TraineeID, @SessionID, 'Pending')";
+                connection.Execute(reserveSql, new { TraineeID = traineeId, SessionID = sessionId });
+
+                return true;
+            }
+        }
+
+        public static void CompletePayment(int reserveId)
+        {
+            using (var connection = new SqlConnection(_connectionString))
+            {
+                string sql = "UPDATE Reserves SET PaymentStatus = 'Paid' WHERE ReserveID = @ReserveID";
+                connection.Execute(sql, new { ReserveID = reserveId });
+            }
+        }
+
     }
 }

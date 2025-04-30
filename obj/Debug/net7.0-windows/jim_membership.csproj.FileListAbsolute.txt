@@ -63,3 +63,17 @@ C:\Users\shels\Documents\jim_membership\obj\Debug\net7.0-windows\refint\jim_memb
 C:\Users\shels\Documents\jim_membership\obj\Debug\net7.0-windows\jim_membership.pdb
 C:\Users\shels\Documents\jim_membership\obj\Debug\net7.0-windows\jim_membership.genruntimeconfig.cache
 C:\Users\shels\Documents\jim_membership\obj\Debug\net7.0-windows\ref\jim_membership.dll
+C:\Users\h\jim_membership\obj\Debug\net7.0-windows\jim_membership.Admin.AdminStart.resources
+C:\Users\h\jim_membership\obj\Debug\net7.0-windows\jim_membership.models.Form1.resources
+C:\Users\h\jim_membership\obj\Debug\net7.0-windows\jim_membership.Admin.EditTrainer.resources
+C:\Users\h\jim_membership\obj\Debug\net7.0-windows\jim_membership.Admin.TrainerCrud.resources
+C:\Users\h\jim_membership\obj\Debug\net7.0-windows\jim_membership.Admin.EditCertificate.resources
+C:\Users\h\jim_membership\obj\Debug\net7.0-windows\jim_membership.Admin.Branches.resources
+C:\Users\h\jim_membership\obj\Debug\net7.0-windows\jim_membership.Admin.EditBranch.resources
+C:\Users\h\jim_membership\obj\Debug\net7.0-windows\jim_membership.Admin.EditGuest.resources
+C:\Users\h\jim_membership\obj\Debug\net7.0-windows\jim_membership.Admin.Guest.resources
+C:\Users\h\jim_membership\obj\Debug\net7.0-windows\jim_membership.Admin.EditMember.resources
+C:\Users\h\jim_membership\obj\Debug\net7.0-windows\jim_membership.Admin.Members.resources
+C:\Users\h\jim_membership\obj\Debug\net7.0-windows\jim_membership.models.ReservationForm.resources
+C:\Users\h\jim_membership\obj\Debug\net7.0-windows\jim_membership.Admin.EditSubscription.resources
+C:\Users\h\jim_membership\obj\Debug\net7.0-windows\jim_membership.Admin.SubscriptionCrud.resources

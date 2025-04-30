@@ -10,18 +10,18 @@ namespace jim_membership.models
     public class Invite
     {
         public int MemberID { get; set; }
-        public int NationalID { get; set; }
+        public int guestID { get; set; }
         public DateTime InvitationDate { get; set; }
 
-        private static readonly string _connectionString = "your_connection_string_here";
+        private static readonly string _connectionString = "Server=localhost;Database=JimMemberShip;Trusted_Connection=True;";
 
         // Create
         public void Create()
         {
             using (var connection = new SqlConnection(_connectionString))
             {
-                string sql = @"INSERT INTO Invites (MemberID, NationalID, InvitationDate)
-                               VALUES (@MemberID, @NationalID, @InvitationDate)";
+                string sql = @"INSERT INTO Invites (MemberID, guestID, InvitationDate)
+                               VALUES (@MemberID, @guestID, @InvitationDate)";
                 connection.Execute(sql, this);
             }
         }
@@ -52,20 +52,22 @@ namespace jim_membership.models
             using (var connection = new SqlConnection(_connectionString))
             {
                 string sql = @"UPDATE Invites 
-                               SET NationalID = @NationalID, InvitationDate = @InvitationDate
+                               SET NationalID = @guestID, InvitationDate = @InvitationDate
                                WHERE MemberID = @MemberID";
                 connection.Execute(sql, this);
             }
         }
 
         // Delete
-        public static void Delete(int memberId)
+        public static void Delete(int memberId, int gestID)
         {
             using (var connection = new SqlConnection(_connectionString))
             {
-                string sql = "DELETE FROM Invites WHERE MemberID = @MemberID";
-                connection.Execute(sql, new { MemberID = memberId });
+                string sql = "DELETE FROM Invites WHERE MemberID = @MemberID AND guestID = @GuestID";
+                connection.Open();
+                connection.Execute(sql, new { MemberID = memberId, GuestID = gestID });
             }
+
         }
     }
 }

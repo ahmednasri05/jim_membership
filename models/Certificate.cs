@@ -9,29 +9,29 @@ namespace jim_membership.models
 {
     public class Certificate
     {
-        public int CertificateID { get; set; }
+        public int TrainerID { get; set; }
         public string CertificateName { get; set; }
 
-        private static readonly string _connectionString = "your_connection_string_here";
+        private static readonly string _connectionString = "Server=localhost;Database=JimMemberShip;Trusted_Connection=True;";
 
         // Create
         public void Create()
         {
             using (var connection = new SqlConnection(_connectionString))
             {
-                string sql = @"INSERT INTO Certificates (CertificateID, CertificateName)
-                               VALUES (@CertificateID, @CertificateName)";
+                string sql = @"INSERT INTO Certificates (trainerID, CertificateName)
+                               VALUES (@TrainerID, @CertificateName)";
                 connection.Execute(sql, this);
             }
         }
 
         // Read by ID
-        public static Certificate GetById(int certificateId)
+        public static Certificate GetById(int trainerID)
         {
             using (var connection = new SqlConnection(_connectionString))
             {
-                string sql = "SELECT * FROM Certificates WHERE CertificateID = @CertificateID";
-                return connection.QueryFirstOrDefault<Certificate>(sql, new { CertificateID = certificateId });
+                string sql = "SELECT * FROM Certificates WHERE TrainerID = @trainerID";
+                return connection.QueryFirstOrDefault<Certificate>(sql, new { TrainerID = trainerID });
             }
         }
 
@@ -52,7 +52,7 @@ namespace jim_membership.models
             {
                 string sql = @"UPDATE Certificates 
                                SET CertificateName = @CertificateName 
-                               WHERE CertificateID = @CertificateID";
+                               WHERE trainerID = @TrainerID";
                 connection.Execute(sql, this);
             }
         }
@@ -62,7 +62,7 @@ namespace jim_membership.models
         {
             using (var connection = new SqlConnection(_connectionString))
             {
-                string sql = "DELETE FROM Certificates WHERE CertificateID = @CertificateID";
+                string sql = "DELETE FROM Certificates WHERE trainerID = @TrainerID";
                 connection.Execute(sql, new { CertificateID = certificateId });
             }
         }

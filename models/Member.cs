@@ -8,32 +8,32 @@ using System.Threading.Tasks;
 
 namespace jim_membership.models
 {
-    public class Member : User
+    public class Member
     {
-        public int MemberID { get; set; }
+        public int NationalID { get; set; }
         public DateTime FirstJoinDate { get; set; }
-        public DateTime InBodyUsed { get; set; }
-        public DateTime FreezeDurationUsed { get; set; }
+        public int InBodyUsed { get; set; }
+        public int FreezeDurationUsed { get; set; }
         public bool ActiveSubscription { get; set; }
 
-        private static readonly string _connectionString = "your_connection_string_here";
+        private static readonly string _connectionString = "Server=localhost;Database=JimMemberShip;Trusted_Connection=True;";
 
         public void Create()
         {
             using (var connection = new SqlConnection(_connectionString))
             {
-                string sql = @"INSERT INTO Members (memberID, nationalID, firstJoinDate, InBodyUsed, freezDurationUsed, ActiveSubscription)
-                               VALUES (@MemberID, @NationalID, @FirstJoinDate, @InBodyUsed, @FreezeDurationUsed, @ActiveSubscription)";
+                string sql = @"INSERT INTO Members (NationalID, FirstJoinDate, InBodyUsed, FreezeDurationUsed, ActiveSubscription)
+                           VALUES (@NationalID, @FirstJoinDate, @InBodyUsed, @FreezeDurationUsed, @ActiveSubscription)";
                 connection.Execute(sql, this);
             }
         }
 
-        public static Member GetById(int memberId)
+        public static Member GetById(int nationalID)
         {
             using (var connection = new SqlConnection(_connectionString))
             {
-                string sql = "SELECT * FROM Members WHERE memberID = @MemberID";
-                return connection.QueryFirstOrDefault<Member>(sql, new { MemberID = memberId });
+                string sql = "SELECT * FROM Members WHERE NationalID = @NationalID";
+                return connection.QueryFirstOrDefault<Member>(sql, new { NationalID = nationalID });
             }
         }
 
@@ -50,23 +50,22 @@ namespace jim_membership.models
         {
             using (var connection = new SqlConnection(_connectionString))
             {
-                string sql = @"UPDATE Members SET 
-                                nationalID = @NationalID, 
-                                firstJoinDate = @FirstJoinDate, 
-                                InBodyUsed = @InBodyUsed, 
-                                freezDurationUsed = @FreezeDurationUsed, 
-                                ActiveSubscription = @ActiveSubscription
-                               WHERE memberID = @MemberID";
+                string sql = @"UPDATE Members SET  
+                            FirstJoinDate = @FirstJoinDate, 
+                            InBodyUsed = @InBodyUsed, 
+                            FreezeDurationUsed = @FreezeDurationUsed, 
+                            ActiveSubscription = @ActiveSubscription
+                           WHERE NationalID = @NationalID";
                 connection.Execute(sql, this);
             }
         }
 
-        public static void Delete(int memberId)
+        public static void Delete(int nationalID)
         {
             using (var connection = new SqlConnection(_connectionString))
             {
-                string sql = "DELETE FROM Members WHERE memberID = @MemberID";
-                connection.Execute(sql, new { MemberID = memberId });
+                string sql = "DELETE FROM Members WHERE NationalID = @NationalID";
+                connection.Execute(sql, new { NationalID = nationalID });
             }
         }
     }
