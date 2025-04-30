@@ -1,39 +1,26 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Data.SqlClient;
 using Dapper;
+
 namespace jim_membership.models
 {
     public class Reserve
     {
-        public int ReserveID { get; set; }
-        public int TraineeID { get; set; }
-        public int CourseID { get; set; }
-        public string PaymentStatus { get; set; }
+        public int memberID { get; set; }
+        public int transactionID { get; set; }
+        public int sessionNo { get; set; }
 
-        private static readonly string _connectionString = "your_connection_string_here";
+        private static readonly string _connectionString = "Server=localhost;Database=JimMemberShip;Trusted_Connection=True;";
 
         // Create
         public void Create()
         {
             using (var connection = new SqlConnection(_connectionString))
             {
-                string sql = @"INSERT INTO Reserves (ReserveID, TraineeID, CourseID, PaymentStatus)
-                               VALUES (@ReserveID, @TraineeID, @CourseID, @PaymentStatus)";
+                string sql = @"INSERT INTO Reserves (memberID, transactionID, sessionNo)
+                               VALUES (@memberID, @transactionID, @sessionNo)";
                 connection.Execute(sql, this);
-            }
-        }
-
-        // Read by ID
-        public static Reserve GetById(int reserveId)
-        {
-            using (var connection = new SqlConnection(_connectionString))
-            {
-                string sql = "SELECT * FROM Reserves WHERE ReserveID = @ReserveID";
-                return connection.QueryFirstOrDefault<Reserve>(sql, new { ReserveID = reserveId });
             }
         }
 
@@ -47,64 +34,56 @@ namespace jim_membership.models
             }
         }
 
-        // Update
-        public void Update()
-        {
-            using (var connection = new SqlConnection(_connectionString))
-            {
-                string sql = @"UPDATE Reserves 
-                               SET TraineeID = @TraineeID, CourseID = @CourseID, PaymentStatus = @PaymentStatus 
-                               WHERE ReserveID = @ReserveID";
-                connection.Execute(sql, this);
-            }
-        }
-
         // Delete
-        public static void Delete(int reserveId)
+        public static void Delete(int memberId, int transactionId, int sessionNo)
         {
             using (var connection = new SqlConnection(_connectionString))
             {
-                string sql = "DELETE FROM Reserves WHERE ReserveID = @ReserveID";
-                connection.Execute(sql, new { ReserveID = reserveId });
+                string sql = "DELETE FROM Reserves WHERE memberID = @memberID AND transactionID = @transactionID AND sessionNo = @sessionNo";
+                connection.Execute(sql, new { memberID = memberId, transactionID = transactionId, sessionNo = sessionNo });
             }
         }
 
-        public static List<Session> GetAvailableSessions()
+        public static bool ReserveSession(int memberId, int sessionNo)
         {
             using (var connection = new SqlConnection(_connectionString))
             {
-                string sql = "SELECT * FROM Sessions WHERE IsFull = 0";
-                return connection.Query<Session>(sql).ToList();
-            }
-        }
+                // Check the number of private sessions available for the member
+                string checkSql = "SELECT private_sessions_used FROM Subscribes WHERE memberID = @memberID";
+                int privateSessionsUsed = connection.QueryFirstOrDefault<int>(checkSql, new { memberID = memberId });
 
-        public static bool ReserveSession(int traineeId, int sessionId)
-        {
-            using (var connection = new SqlConnection(_connectionString))
-            {
-                // Check if the session is available
-                string checkSql = "SELECT IsFull FROM Sessions WHERE SessionID = @SessionID";
-                bool isFull = connection.QueryFirstOrDefault<bool>(checkSql, new { SessionID = sessionId });
+                if (privateSessionsUsed <= 1)
+                {
+                    // Not enough private sessions available
+                    return false;
+                }
 
-                if (isFull) return false;
+                // Get the transactionID from the Payments table
+                string transactionSql = "SELECT TOP 1 transactionID FROM Payments WHERE memberID = @memberID ORDER BY Start_date DESC";
+                int transactionId = connection.QueryFirstOrDefault<int>(transactionSql, new { memberID = memberId });
+
+                if (transactionId == 0)
+                {
+                    // No valid transaction found
+                    return false;
+                }
 
                 // Reserve the session
-                string reserveSql = @"INSERT INTO Reserves (TraineeID, CourseID, PaymentStatus)
-                              VALUES (@TraineeID, @SessionID, 'Pending')";
-                connection.Execute(reserveSql, new { TraineeID = traineeId, SessionID = sessionId });
+                var reserve = new Reserve
+                {
+                    memberID = memberId,
+                    transactionID = transactionId,
+                    sessionNo = sessionNo
+                };
+
+                reserve.Create();
+
+                // Update the private sessions count
+                string updateSql = "UPDATE Subscribes SET private_sessions_used = private_sessions_used - 1 WHERE memberID = @memberID";
+                connection.Execute(updateSql, new { memberID = memberId });
 
                 return true;
             }
         }
-
-        public static void CompletePayment(int reserveId)
-        {
-            using (var connection = new SqlConnection(_connectionString))
-            {
-                string sql = "UPDATE Reserves SET PaymentStatus = 'Paid' WHERE ReserveID = @ReserveID";
-                connection.Execute(sql, new { ReserveID = reserveId });
-            }
-        }
-
     }
 }

@@ -1,23 +1,23 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\h\\jim_membership\\jim_membership.csproj": {}
+    "C:\\Users\\dell\\Documents\\DBProject\\jim_membership\\jim_membership.csproj": {}
   },
   "projects": {
-    "C:\\Users\\h\\jim_membership\\jim_membership.csproj": {
+    "C:\\Users\\dell\\Documents\\DBProject\\jim_membership\\jim_membership.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\h\\jim_membership\\jim_membership.csproj",
+        "projectUniqueName": "C:\\Users\\dell\\Documents\\DBProject\\jim_membership\\jim_membership.csproj",
         "projectName": "jim_membership",
-        "projectPath": "C:\\Users\\h\\jim_membership\\jim_membership.csproj",
-        "packagesPath": "C:\\Users\\h\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\h\\jim_membership\\obj\\",
+        "projectPath": "C:\\Users\\dell\\Documents\\DBProject\\jim_membership\\jim_membership.csproj",
+        "packagesPath": "C:\\Users\\dell\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\dell\\Documents\\DBProject\\jim_membership\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
         ],
         "configFilePaths": [
-          "C:\\Users\\h\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Users\\dell\\AppData\\Roaming\\NuGet\\NuGet.Config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
@@ -78,7 +78,7 @@
               "privateAssets": "none"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\9.0.200\\RuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\9.0.203\\RuntimeIdentifierGraph.json"
         }
       }
     }

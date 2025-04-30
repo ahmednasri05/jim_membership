@@ -71,7 +71,7 @@ namespace jim_membership.models
         private void LoadAvailableSessions()
         {
             // Fetch available sessions
-            List<Session> sessions = Reserve.GetAvailableSessions();
+            List<Session> sessions = Session.GetAll(); // Corrected the class name to 'Session'
 
             // Bind sessions to the dropdown
             comboBoxSessions.DataSource = sessions;
