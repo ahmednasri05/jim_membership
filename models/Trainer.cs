@@ -3,10 +3,9 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using System.Data.SqlClient;
 using Dapper;
-namespace jim_membership.models
 
+namespace jim_membership.models
 {
     public class Trainer : User
     {
@@ -17,57 +16,101 @@ namespace jim_membership.models
         public string Type { get; set; }
         public DateTime StartDate { get; set; }
 
-        private static readonly string _connectionString = "your_connection_string_here";
-
         public void Create()
         {
-            using (var connection = new SqlConnection(_connectionString))
+            try
             {
+                ProgramSession.Instance.OpenConnection();
                 string sql = @"INSERT INTO Trainers (instructorID, userid, Salary, Duration, Type, startDate)
                                VALUES (@InstructorID, @UserId, @Salary, @Duration, @Type, @StartDate)";
-                connection.Execute(sql, this);
+                ProgramSession.Instance.dbConnection.Execute(sql, this);
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine($"Error creating trainer: {ex.Message}");
+            }
+            finally
+            {
+                ProgramSession.Instance.CloseConnection();
             }
         }
 
         public static Trainer GetById(int instructorId)
         {
-            using (var connection = new SqlConnection(_connectionString))
+            try
             {
+                ProgramSession.Instance.OpenConnection();
                 string sql = "SELECT * FROM Trainers WHERE instructorID = @InstructorID";
-                return connection.QueryFirstOrDefault<Trainer>(sql, new { InstructorID = instructorId });
+                return ProgramSession.Instance.dbConnection.QueryFirstOrDefault<Trainer>(sql, new { InstructorID = instructorId });
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine($"Error fetching trainer by ID: {ex.Message}");
+                return null;
+            }
+            finally
+            {
+                ProgramSession.Instance.CloseConnection();
             }
         }
 
         public static List<Trainer> GetAll()
         {
-            using (var connection = new SqlConnection(_connectionString))
+            try
             {
+                ProgramSession.Instance.OpenConnection();
                 string sql = "SELECT * FROM Trainers";
-                return connection.Query<Trainer>(sql).ToList();
+                return ProgramSession.Instance.dbConnection.Query<Trainer>(sql).ToList();
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine($"Error fetching all trainers: {ex.Message}");
+                return new List<Trainer>();
+            }
+            finally
+            {
+                ProgramSession.Instance.CloseConnection();
             }
         }
 
         public void Update()
         {
-            using (var connection = new SqlConnection(_connectionString))
+            try
             {
+                ProgramSession.Instance.OpenConnection();
                 string sql = @"UPDATE Trainers SET 
-                                userid = @UserId, Salary = @Salary, 
-                                Duration = @Duration, Type = @Type, 
-                                startDate = @StartDate
+                               userid = @UserId, Salary = @Salary, 
+                               Duration = @Duration, Type = @Type, 
+                               startDate = @StartDate
                                WHERE instructorID = @InstructorID";
-                connection.Execute(sql, this);
+                ProgramSession.Instance.dbConnection.Execute(sql, this);
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine($"Error updating trainer: {ex.Message}");
+            }
+            finally
+            {
+                ProgramSession.Instance.CloseConnection();
             }
         }
 
         public static void Delete(int instructorId)
         {
-            using (var connection = new SqlConnection(_connectionString))
+            try
             {
+                ProgramSession.Instance.OpenConnection();
                 string sql = "DELETE FROM Trainers WHERE instructorID = @InstructorID";
-                connection.Execute(sql, new { InstructorID = instructorId });
+                ProgramSession.Instance.dbConnection.Execute(sql, new { InstructorID = instructorId });
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine($"Error deleting trainer: {ex.Message}");
+            }
+            finally
+            {
+                ProgramSession.Instance.CloseConnection();
             }
         }
     }
 }
-

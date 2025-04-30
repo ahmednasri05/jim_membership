@@ -22,10 +22,10 @@
     <Compile Update="Login.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Update="models\Form1.cs">
+    <Compile Update="Signup.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Update="Signup.cs">
+    <Compile Update="Trainer\HomePage.cs">
       <SubType>Form</SubType>
     </Compile>
   </ItemGroup>

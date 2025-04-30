@@ -318,19 +318,24 @@
     ]
   },
   "packageFolders": {
-    "C:\\Users\\shels\\.nuget\\packages\\": {}
+    "C:\\Users\\himoa\\.nuget\\packages\\": {},
+    "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages": {}
   },
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\shels\\Documents\\jim_membership\\jim_membership.csproj",
+      "projectUniqueName": "C:\\Users\\himoa\\OneDrive\\Documents\\ASU\\Sophomore - Spring 2025\\CSE244 - Database Systems Design\\Project\\code\\jim_membership.csproj",
       "projectName": "jim_membership",
-      "projectPath": "C:\\Users\\shels\\Documents\\jim_membership\\jim_membership.csproj",
-      "packagesPath": "C:\\Users\\shels\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\shels\\Documents\\jim_membership\\obj\\",
+      "projectPath": "C:\\Users\\himoa\\OneDrive\\Documents\\ASU\\Sophomore - Spring 2025\\CSE244 - Database Systems Design\\Project\\code\\jim_membership.csproj",
+      "packagesPath": "C:\\Users\\himoa\\.nuget\\packages\\",
+      "outputPath": "C:\\Users\\himoa\\OneDrive\\Documents\\ASU\\Sophomore - Spring 2025\\CSE244 - Database Systems Design\\Project\\code\\obj\\",
       "projectStyle": "PackageReference",
+      "fallbackFolders": [
+        "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
+      ],
       "configFilePaths": [
-        "C:\\Users\\shels\\AppData\\Roaming\\NuGet\\NuGet.Config",
+        "C:\\Users\\himoa\\AppData\\Roaming\\NuGet\\NuGet.Config",
+        "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
         "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
       ],
       "originalTargetFrameworks": [
@@ -350,7 +355,13 @@
         "warnAsError": [
           "NU1605"
         ]
-      }
+      },
+      "restoreAuditProperties": {
+        "enableAudit": "true",
+        "auditLevel": "low",
+        "auditMode": "direct"
+      },
+      "SdkAnalysisLevel": "9.0.200"
     },
     "frameworks": {
       "net7.0-windows7.0": {
@@ -384,7 +395,7 @@
             "privateAssets": "none"
           }
         },
-        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\7.0.402\\RuntimeIdentifierGraph.json"
+        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\9.0.203\\RuntimeIdentifierGraph.json"
       }
     }
   }

@@ -12,10 +12,12 @@
       }
     ],
     "additionalProbingPaths": [
-      "C:\\Users\\shels\\.dotnet\\store\\|arch|\\|tfm|",
-      "C:\\Users\\shels\\.nuget\\packages"
+      "C:\\Users\\himoa\\.dotnet\\store\\|arch|\\|tfm|",
+      "C:\\Users\\himoa\\.nuget\\packages",
+      "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
     ],
     "configProperties": {
+      "System.Runtime.Serialization.EnableUnsafeBinaryFormatterSerialization": true,
       "Microsoft.NETCore.DotNetHostPolicy.SetAppPaths": true
     }
   }

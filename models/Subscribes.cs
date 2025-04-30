@@ -3,8 +3,8 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using System.Data.SqlClient;
 using Dapper;
+
 namespace jim_membership.models
 {
     public class Subscribe
@@ -17,48 +17,76 @@ namespace jim_membership.models
         public DateTime StartDate { get; set; }
         public DateTime EndDate { get; set; }
 
-        private static readonly string _connectionString = "your_connection_string_here";
-
         // Create
         public void Create()
         {
-            using (var connection = new SqlConnection(_connectionString))
+            try
             {
+                ProgramSession.Instance.OpenConnection();
                 string sql = @"INSERT INTO Subscribes (MemberID, SubscriptionID, TransactionID, 
                                                        Session_Used, private_session_used, 
                                                        Start_date, End_date)
                                VALUES (@MemberID, @SubscriptionID, @TransactionID, 
                                        @SessionUsed, @PrivateSessionUsed, 
                                        @StartDate, @EndDate)";
-                connection.Execute(sql, this);
+                ProgramSession.Instance.dbConnection.Execute(sql, this);
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine($"Error creating subscription: {ex.Message}");
+            }
+            finally
+            {
+                ProgramSession.Instance.CloseConnection();
             }
         }
 
         // Read by ID
         public static Subscribe GetById(int memberId)
         {
-            using (var connection = new SqlConnection(_connectionString))
+            try
             {
+                ProgramSession.Instance.OpenConnection();
                 string sql = "SELECT * FROM Subscribes WHERE MemberID = @MemberID";
-                return connection.QueryFirstOrDefault<Subscribe>(sql, new { MemberID = memberId });
+                return ProgramSession.Instance.dbConnection.QueryFirstOrDefault<Subscribe>(sql, new { MemberID = memberId });
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine($"Error fetching subscription by ID: {ex.Message}");
+                return null;
+            }
+            finally
+            {
+                ProgramSession.Instance.CloseConnection();
             }
         }
 
         // Read all
         public static List<Subscribe> GetAll()
         {
-            using (var connection = new SqlConnection(_connectionString))
+            try
             {
+                ProgramSession.Instance.OpenConnection();
                 string sql = "SELECT * FROM Subscribes";
-                return connection.Query<Subscribe>(sql).ToList();
+                return ProgramSession.Instance.dbConnection.Query<Subscribe>(sql).ToList();
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine($"Error fetching all subscriptions: {ex.Message}");
+                return new List<Subscribe>();
+            }
+            finally
+            {
+                ProgramSession.Instance.CloseConnection();
             }
         }
 
         // Update
         public void Update()
         {
-            using (var connection = new SqlConnection(_connectionString))
+            try
             {
+                ProgramSession.Instance.OpenConnection();
                 string sql = @"UPDATE Subscribes 
                                SET SubscriptionID = @SubscriptionID,
                                    TransactionID = @TransactionID,
@@ -67,17 +95,34 @@ namespace jim_membership.models
                                    Start_date = @StartDate,
                                    End_date = @EndDate
                                WHERE MemberID = @MemberID";
-                connection.Execute(sql, this);
+                ProgramSession.Instance.dbConnection.Execute(sql, this);
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine($"Error updating subscription: {ex.Message}");
+            }
+            finally
+            {
+                ProgramSession.Instance.CloseConnection();
             }
         }
 
         // Delete
         public static void Delete(int memberId)
         {
-            using (var connection = new SqlConnection(_connectionString))
+            try
             {
+                ProgramSession.Instance.OpenConnection();
                 string sql = "DELETE FROM Subscribes WHERE MemberID = @MemberID";
-                connection.Execute(sql, new { MemberID = memberId });
+                ProgramSession.Instance.dbConnection.Execute(sql, new { MemberID = memberId });
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine($"Error deleting subscription: {ex.Message}");
+            }
+            finally
+            {
+                ProgramSession.Instance.CloseConnection();
             }
         }
     }

@@ -3,8 +3,8 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using System.Data.SqlClient;
 using Dapper;
+
 namespace jim_membership.models
 {
     public class Branch
@@ -13,58 +13,103 @@ namespace jim_membership.models
         public string Location { get; set; }
         public int AdminID { get; set; }
 
-        private static readonly string _connectionString = "your_connection_string_here";
-
         // Create
         public void Create()
         {
-            using (var connection = new SqlConnection(_connectionString))
+            try
             {
+                ProgramSession.Instance.OpenConnection();
                 string sql = @"INSERT INTO Branches (BranchNo, Location, AdminID)
                                VALUES (@BranchNo, @Location, @AdminID)";
-                connection.Execute(sql, this);
+                ProgramSession.Instance.dbConnection.Execute(sql, this);
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine($"Error creating branch: {ex.Message}");
+            }
+            finally
+            {
+                ProgramSession.Instance.CloseConnection();
             }
         }
 
         // Read by ID
         public static Branch GetById(int branchNo)
         {
-            using (var connection = new SqlConnection(_connectionString))
+            try
             {
+                ProgramSession.Instance.OpenConnection();
                 string sql = "SELECT * FROM Branches WHERE BranchNo = @BranchNo";
-                return connection.QueryFirstOrDefault<Branch>(sql, new { BranchNo = branchNo });
+                return ProgramSession.Instance.dbConnection.QueryFirstOrDefault<Branch>(sql, new { BranchNo = branchNo });
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine($"Error fetching branch by ID: {ex.Message}");
+                return null;
+            }
+            finally
+            {
+                ProgramSession.Instance.CloseConnection();
             }
         }
 
         // Read all
         public static List<Branch> GetAll()
         {
-            using (var connection = new SqlConnection(_connectionString))
+            try
             {
+                ProgramSession.Instance.OpenConnection();
                 string sql = "SELECT * FROM Branches";
-                return connection.Query<Branch>(sql).ToList();
+                return ProgramSession.Instance.dbConnection.Query<Branch>(sql).ToList();
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine($"Error fetching all branches: {ex.Message}");
+                return new List<Branch>();
+            }
+            finally
+            {
+                ProgramSession.Instance.CloseConnection();
             }
         }
 
         // Update
         public void Update()
         {
-            using (var connection = new SqlConnection(_connectionString))
+            try
             {
+                ProgramSession.Instance.OpenConnection();
                 string sql = @"UPDATE Branches 
                                SET Location = @Location, AdminID = @AdminID 
                                WHERE BranchNo = @BranchNo";
-                connection.Execute(sql, this);
+                ProgramSession.Instance.dbConnection.Execute(sql, this);
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine($"Error updating branch: {ex.Message}");
+            }
+            finally
+            {
+                ProgramSession.Instance.CloseConnection();
             }
         }
 
         // Delete
         public static void Delete(int branchNo)
         {
-            using (var connection = new SqlConnection(_connectionString))
+            try
             {
+                ProgramSession.Instance.OpenConnection();
                 string sql = "DELETE FROM Branches WHERE BranchNo = @BranchNo";
-                connection.Execute(sql, new { BranchNo = branchNo });
+                ProgramSession.Instance.dbConnection.Execute(sql, new { BranchNo = branchNo });
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine($"Error deleting branch: {ex.Message}");
+            }
+            finally
+            {
+                ProgramSession.Instance.CloseConnection();
             }
         }
     }
