@@ -24,63 +24,92 @@ namespace jim_membership.models
         public string ECName { get; set; }
         public int ECPhoneNumber { get; set; }
 
-        private static readonly string _connectionString = "Server=localhost;Database=JimMemberShip;Trusted_Connection=True;";
 
         public void Create()
         {
-            using (var connection = new SqlConnection(_connectionString))
+            try
             {
+                ProgramSession.Instance.OpenConnection();
                 string sql = @"INSERT INTO Users (nationalID, FName, LName, username, password, phoneNumber, address, gender, age, email, ECName, ECPhoneNumber)
-                               VALUES (@NationalID, @FName, @LName, @Username, @Password, @PhoneNumber, @Address, @Gender, @Age, @Email, @ECName, @ECPhoneNumber)";
-                connection.Execute(sql, this);
+                            VALUES (@NationalID, @FName, @LName, @Username, @Password, @PhoneNumber, @Address, @Gender, @Age, @Email, @ECName, @ECPhoneNumber)";
+                ProgramSession.Instance.dbConnection.Execute(sql, this);
+                ProgramSession.Instance.CloseConnection();
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine($"Unexpected error: {ex.Message}");
             }
         }
 
         public static User GetById(int nationalId)
         {
-            using (var connection = new SqlConnection(_connectionString))
+            try
             {
+
+                ProgramSession.Instance.OpenConnection();
                 string sql = "SELECT * FROM Users WHERE nationalID = @NationalID";
-                return connection.QueryFirstOrDefault<User>(sql, new { NationalID = nationalId });
+                User result = ProgramSession.Instance.dbConnection.QueryFirstOrDefault<User>(sql, new { NationalID = nationalId });
+                ProgramSession.Instance.CloseConnection();
+
+                return result;
+
+            }
+            catch (Exception ex)
+            {
+                // Log exception (could be to a log file, event log, or logging framework)
+                Console.WriteLine($"Error: {ex.Message}");
+                return null;  // Return null if the query fails
             }
         }
+
+        
         public static User GetByEmail(string email)
         {
-            using (var connection = new SqlConnection(_connectionString))
+            try
             {
+                ProgramSession.Instance.OpenConnection();
                 string sql = "SELECT * FROM Users WHERE email = @Email";
-                return connection.QueryFirstOrDefault<User>(sql, new { Email = email });
+                User result = ProgramSession.Instance.dbConnection.QueryFirstOrDefault<User>(sql, new { Email = email });
+                ProgramSession.Instance.CloseConnection();
+
+                return result;
+
+            }
+            catch (Exception ex)
+            {
+                // Log exception (could be to a log file, event log, or logging framework)
+                Console.WriteLine($"Error: {ex.Message}");
+                return null;  // Return null if the query fails
             }
         }
         public static List<User> GetAll()
         {
-            using (var connection = new SqlConnection(_connectionString))
-            {
-                string sql = "SELECT * FROM Users";
-                return connection.Query<User>(sql).ToList();
-            }
+            ProgramSession.Instance.OpenConnection();
+            string sql = "SELECT * FROM Users";
+            List<User> result = ProgramSession.Instance.dbConnection.Query<User>(sql).ToList();
+            ProgramSession.Instance.CloseConnection();
+            return result;
         }
 
         public void Update()
         {
-            using (var connection = new SqlConnection(_connectionString))
-            {
-                string sql = @"UPDATE Users SET 
+            ProgramSession.Instance.OpenConnection();
+            string sql = @"UPDATE Users SET 
                                 FName = @FName, LName = @LName, username = @Username, password = @Password, 
                                 phoneNumber = @PhoneNumber, address = @Address, gender = @Gender, 
                                 age = @Age, email = @Email, ECName = @ECName, ECPhoneNumber = @ECPhoneNumber
                                WHERE nationalID = @NationalID";
-                connection.Execute(sql, this);
-            }
+            ProgramSession.Instance.dbConnection.Execute(sql, this);
+            ProgramSession.Instance.CloseConnection();
+
         }
 
         public static void Delete(int nationalId)
         {
-            using (var connection = new SqlConnection(_connectionString))
-            {
-                string sql = "DELETE FROM Users WHERE nationalID = @NationalID";
-                connection.Execute(sql, new { NationalID = nationalId });
-            }
+            ProgramSession.Instance.OpenConnection();
+            string sql = "DELETE FROM Users WHERE nationalID = @NationalID";
+            ProgramSession.Instance.dbConnection.Execute(sql, new { NationalID = nationalId });
+            ProgramSession.Instance.CloseConnection();
         }
     }
 }

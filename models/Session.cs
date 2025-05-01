@@ -3,8 +3,8 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using System.Data.SqlClient;
 using Dapper;
+
 namespace jim_membership.models
 {
     public class Session
@@ -18,59 +18,104 @@ namespace jim_membership.models
         public TimeSpan Duration { get; set; }
         public string Description { get; set; }
 
-        private static readonly string _connectionString = "your_connection_string_here";
-
         // Create
         public void Create()
         {
-            using (var connection = new SqlConnection(_connectionString))
+            try
             {
+                ProgramSession.Instance.OpenConnection();
                 string sql = @"INSERT INTO Sessions (SessionID, TrainerID, BranchNo, Type, MaxNumber, Date, Duration, Description)
                                VALUES (@SessionID, @TrainerID, @BranchNo, @Type, @MaxNumber, @Date, @Duration, @Description)";
-                connection.Execute(sql, this);
+                ProgramSession.Instance.dbConnection.Execute(sql, this);
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine($"Error creating session: {ex.Message}");
+            }
+            finally
+            {
+                ProgramSession.Instance.CloseConnection();
             }
         }
 
         // Read by ID
         public static Session GetById(int sessionId)
         {
-            using (var connection = new SqlConnection(_connectionString))
+            try
             {
+                ProgramSession.Instance.OpenConnection();
                 string sql = "SELECT * FROM Sessions WHERE SessionID = @SessionID";
-                return connection.QueryFirstOrDefault<Session>(sql, new { SessionID = sessionId });
+                return ProgramSession.Instance.dbConnection.QueryFirstOrDefault<Session>(sql, new { SessionID = sessionId });
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine($"Error fetching session by ID: {ex.Message}");
+                return null;
+            }
+            finally
+            {
+                ProgramSession.Instance.CloseConnection();
             }
         }
 
         // Read all
         public static List<Session> GetAll()
         {
-            using (var connection = new SqlConnection(_connectionString))
+            try
             {
+                ProgramSession.Instance.OpenConnection();
                 string sql = "SELECT * FROM Sessions";
-                return connection.Query<Session>(sql).ToList();
+                return ProgramSession.Instance.dbConnection.Query<Session>(sql).ToList();
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine($"Error fetching all sessions: {ex.Message}");
+                return new List<Session>();
+            }
+            finally
+            {
+                ProgramSession.Instance.CloseConnection();
             }
         }
 
         // Update
         public void Update()
         {
-            using (var connection = new SqlConnection(_connectionString))
+            try
             {
+                ProgramSession.Instance.OpenConnection();
                 string sql = @"UPDATE Sessions 
                                SET TrainerID = @TrainerID, BranchNo = @BranchNo, Type = @Type, 
                                    MaxNumber = @MaxNumber, Date = @Date, Duration = @Duration, Description = @Description
                                WHERE SessionID = @SessionID";
-                connection.Execute(sql, this);
+                ProgramSession.Instance.dbConnection.Execute(sql, this);
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine($"Error updating session: {ex.Message}");
+            }
+            finally
+            {
+                ProgramSession.Instance.CloseConnection();
             }
         }
 
         // Delete
         public static void Delete(int sessionId)
         {
-            using (var connection = new SqlConnection(_connectionString))
+            try
             {
+                ProgramSession.Instance.OpenConnection();
                 string sql = "DELETE FROM Sessions WHERE SessionID = @SessionID";
-                connection.Execute(sql, new { SessionID = sessionId });
+                ProgramSession.Instance.dbConnection.Execute(sql, new { SessionID = sessionId });
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine($"Error deleting session: {ex.Message}");
+            }
+            finally
+            {
+                ProgramSession.Instance.CloseConnection();
             }
         }
     }

@@ -1,5 +1,6 @@
 using jim_membership.Admin;
-
+using jim_membership.models;
+using jim_membership.Trainer;
 namespace jim_membership
 {
     internal static class Program
@@ -13,8 +14,16 @@ namespace jim_membership
             // To customize application configuration such as set high DPI settings or default font,
             // see https://aka.ms/applicationconfiguration.
             ApplicationConfiguration.Initialize();
-            //Application.Run(new Signup());
-            Application.Run(new AdminStart());
+
+            ProgramSession.Instance.SetUserId(1);
+
+            Application.Run(new UserCrud());
+
+
+            
+            
+
+
         }
     }
 }

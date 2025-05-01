@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Data.SqlClient;
 using System.Linq;
 using Dapper;
 using System.Text;
@@ -16,56 +15,106 @@ namespace jim_membership.models
         public int FreezeDurationUsed { get; set; }
         public bool ActiveSubscription { get; set; }
 
-        private static readonly string _connectionString = "Server=localhost;Database=JimMemberShip;Trusted_Connection=True;";
-
+        // Create
         public void Create()
         {
-            using (var connection = new SqlConnection(_connectionString))
+            try
             {
+                ProgramSession.Instance.OpenConnection();
                 string sql = @"INSERT INTO Members (NationalID, FirstJoinDate, InBodyUsed, FreezeDurationUsed, ActiveSubscription)
-                           VALUES (@NationalID, @FirstJoinDate, @InBodyUsed, @FreezeDurationUsed, @ActiveSubscription)";
-                connection.Execute(sql, this);
+                               VALUES (@NationalID, @FirstJoinDate, @InBodyUsed, @FreezeDurationUsed, @ActiveSubscription)";
+                ProgramSession.Instance.dbConnection.Execute(sql, this);
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine($"Error creating member: {ex.Message}");
+            }
+            finally
+            {
+                ProgramSession.Instance.CloseConnection();
             }
         }
 
+        // Read by ID
         public static Member GetById(int nationalID)
         {
-            using (var connection = new SqlConnection(_connectionString))
+            try
             {
+                ProgramSession.Instance.OpenConnection();
                 string sql = "SELECT * FROM Members WHERE NationalID = @NationalID";
-                return connection.QueryFirstOrDefault<Member>(sql, new { NationalID = nationalID });
+                return ProgramSession.Instance.dbConnection.QueryFirstOrDefault<Member>(sql, new { NationalID = nationalID });
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine($"Error fetching member by ID: {ex.Message}");
+                return null;
+            }
+            finally
+            {
+                ProgramSession.Instance.CloseConnection();
             }
         }
 
+        // Read all
         public static List<Member> GetAll()
         {
-            using (var connection = new SqlConnection(_connectionString))
+            try
             {
+                ProgramSession.Instance.OpenConnection();
                 string sql = "SELECT * FROM Members";
-                return connection.Query<Member>(sql).ToList();
+                return ProgramSession.Instance.dbConnection.Query<Member>(sql).ToList();
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine($"Error fetching all members: {ex.Message}");
+                return new List<Member>();
+            }
+            finally
+            {
+                ProgramSession.Instance.CloseConnection();
             }
         }
 
+        // Update
         public void Update()
         {
-            using (var connection = new SqlConnection(_connectionString))
+            try
             {
+                ProgramSession.Instance.OpenConnection();
                 string sql = @"UPDATE Members SET  
-                            FirstJoinDate = @FirstJoinDate, 
-                            InBodyUsed = @InBodyUsed, 
-                            FreezeDurationUsed = @FreezeDurationUsed, 
-                            ActiveSubscription = @ActiveSubscription
-                           WHERE NationalID = @NationalID";
-                connection.Execute(sql, this);
+                               FirstJoinDate = @FirstJoinDate, 
+                               InBodyUsed = @InBodyUsed, 
+                               FreezeDurationUsed = @FreezeDurationUsed, 
+                               ActiveSubscription = @ActiveSubscription
+                               WHERE NationalID = @NationalID";
+                ProgramSession.Instance.dbConnection.Execute(sql, this);
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine($"Error updating member: {ex.Message}");
+            }
+            finally
+            {
+                ProgramSession.Instance.CloseConnection();
             }
         }
 
+        // Delete
         public static void Delete(int nationalID)
         {
-            using (var connection = new SqlConnection(_connectionString))
+            try
             {
+                ProgramSession.Instance.OpenConnection();
                 string sql = "DELETE FROM Members WHERE NationalID = @NationalID";
-                connection.Execute(sql, new { NationalID = nationalID });
+                ProgramSession.Instance.dbConnection.Execute(sql, new { NationalID = nationalID });
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine($"Error deleting member: {ex.Message}");
+            }
+            finally
+            {
+                ProgramSession.Instance.CloseConnection();
             }
         }
     }
