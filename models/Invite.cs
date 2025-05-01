@@ -9,8 +9,8 @@ namespace jim_membership.models
 {
     public class Invite
     {
-        public int MemberID { get; set; }
-        public int guestID { get; set; }
+        public string MemberID { get; set; }
+        public string guestID { get; set; }
         public DateTime InvitationDate { get; set; }
 
         private static readonly string _connectionString = "your_connection_string_here";
@@ -21,13 +21,14 @@ namespace jim_membership.models
             try
             {
                 ProgramSession.Instance.OpenConnection();
-                string sql = @"INSERT INTO Invites (MemberID, NationalID, InvitationDate)
-                               VALUES (@MemberID, @NationalID, @InvitationDate)";
+                string sql = @"INSERT INTO Invites (MemberID, guestID, InvitationDate)
+                               VALUES (@MemberID, @guestID, @InvitationDate)";
                 ProgramSession.Instance.dbConnection.Execute(sql, this);
             }
             catch (Exception ex)
             {
                 Console.WriteLine($"Error creating invite: {ex.Message}");
+                throw;
             }
             finally
             {
@@ -82,7 +83,7 @@ namespace jim_membership.models
             {
                 ProgramSession.Instance.OpenConnection();
                 string sql = @"UPDATE Invites 
-                               SET NationalID = @guestID, InvitationDate = @InvitationDate
+                               SET guestID = @guestID, InvitationDate = @InvitationDate
                                WHERE MemberID = @MemberID";
                 ProgramSession.Instance.dbConnection.Execute(sql, this);
             }
@@ -97,7 +98,7 @@ namespace jim_membership.models
         }
 
         // Delete
-        public static void Delete(int memberId, int gestID)
+        public static void Delete(string memberId, string gestID)
         {
             try
             {

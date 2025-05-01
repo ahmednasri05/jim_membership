@@ -45,12 +45,12 @@ namespace jim_membership
 
                 var newUser = new User
                 {
-                    NationalID = int.Parse(txtNationalID.Text),
+                    NationalID = (txtNationalID.Text),
                     FName = txtFirstName.Text,
                     LName = txtLastName.Text,
                     Username = txtUsername.Text,
                     Password = txtPassword.Text,
-                    PhoneNumber = int.Parse(txtPhoneNumber.Text),
+                    PhoneNumber = (txtPhoneNumber.Text),
                     Address = txtAddress.Text,
                     Gender = (byte)(rbMale.Checked ? 0 : 1),
                     Age = int.Parse(txtAge.Text),

@@ -3,7 +3,7 @@ using System.Windows.Forms;
 using jim_membership.models;
 
 namespace jim_membership.Admin
-{  
+{
     public partial class EditUser : Form
     {
         public User User { get; private set; }
@@ -55,7 +55,7 @@ namespace jim_membership.Admin
 
             if (int.TryParse(txtNationalID.Text, out int nationalId))
             {
-                User.NationalID = int.Parse(txtNationalID.Text);
+                User.NationalID = (txtNationalID.Text);
             }
             else
             {
@@ -68,7 +68,7 @@ namespace jim_membership.Admin
             User.Password = txtPassword.Text;
             if (int.TryParse(txtPhoneNumber.Text, out int phoneNumber))
             {
-                User.PhoneNumber = int.Parse(txtPhoneNumber.Text);
+                User.PhoneNumber = (txtPhoneNumber.Text);
             }
             else
             {
@@ -113,6 +113,11 @@ namespace jim_membership.Admin
         }
 
         private void txtNationalID_TextChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void rbMale_CheckedChanged(object sender, EventArgs e)
         {
 
         }

@@ -10,7 +10,7 @@ namespace jim_membership.models
 {
     public class Trainer
     {
-        public int NationalID { get; set; }
+        public string NationalID { get; set; }
         public int Salary { get; set; }
         public DateTime StartDate { get; set; }
         public string ContractType { get; set; }
@@ -30,6 +30,7 @@ namespace jim_membership.models
             catch (Exception ex)
             {
                 Console.WriteLine($"Error creating trainer: {ex.Message}");
+                throw;
             }
             finally
             {
@@ -37,7 +38,7 @@ namespace jim_membership.models
             }
         }
 
-        public static Trainer GetById(int nationalID)
+        public static Trainer GetById(string nationalID)
         {
             try
             {
@@ -90,6 +91,7 @@ namespace jim_membership.models
             catch (Exception ex)
             {
                 Console.WriteLine($"Error updating trainer: {ex.Message}");
+                throw;
             }
             finally
             {
@@ -97,17 +99,18 @@ namespace jim_membership.models
             }
         }
 
-        public static void Delete(int instructorId)
+        public static void Delete(string instructorId)
         {
             try
             {
                 ProgramSession.Instance.OpenConnection();
                 string sql = "DELETE FROM Trainers WHERE nationalID = @NationalID";
-                ProgramSession.Instance.dbConnection.Execute(sql, new { InstructorID = instructorId });
+                ProgramSession.Instance.dbConnection.Execute(sql, new { NationalID = instructorId });
             }
             catch (Exception ex)
             {
                 Console.WriteLine($"Error deleting trainer: {ex.Message}");
+                throw;
             }
             finally
             {

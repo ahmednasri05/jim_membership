@@ -59,7 +59,7 @@ namespace jim_membership.Admin
 
             try
             {
-                Trainer.NationalID = (int)userComboBox.SelectedValue;
+                Trainer.NationalID = userComboBox.SelectedValue.ToString();
                 Trainer.Salary = int.TryParse(txtSalary.Text, out int salary) ? salary : 0;
                 Trainer.StartDate = dtpStartDate.Value;
                 Trainer.ContractType = txtContractType.Text;

@@ -9,7 +9,7 @@ namespace jim_membership.models
 {
     public class Member
     {
-        public int NationalID { get; set; }
+        public string NationalID { get; set; }
         public DateTime FirstJoinDate { get; set; }
         public int InBodyUsed { get; set; }
         public int FreezeDurationUsed { get; set; }
@@ -36,7 +36,7 @@ namespace jim_membership.models
         }
 
         // Read by ID
-        public static Member GetById(int nationalID)
+        public static Member GetById(string nationalID)
         {
             try
             {
@@ -100,7 +100,7 @@ namespace jim_membership.models
         }
 
         // Delete
-        public static void Delete(int nationalID)
+        public static void Delete(string nationalID)
         {
             try
             {

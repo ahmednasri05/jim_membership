@@ -71,9 +71,9 @@ namespace jim_membership.Admin
             {
                 if (_isEditMode)
                 {
-                    _branch.BranchNo = int.Parse(branchNoTextBox.Text);
+                    _branch.BranchNo = branchNoTextBox.Text;
                     _branch.ManagerID = ((User)managerComboBox.SelectedItem).NationalID;
-                    _branch.PhoneNumber = int.Parse(phoneNumberTextBox.Text);
+                    _branch.PhoneNumber = (phoneNumberTextBox.Text);
                     _branch.Address = addressTextBox.Text;
                     _branch.BranchName = branchNameTextBox.Text;
                     _branch.Update();
@@ -82,9 +82,9 @@ namespace jim_membership.Admin
                 {
                     var newBranch = new Branch
                     {
-                        BranchNo = int.Parse(branchNoTextBox.Text),
+                        BranchNo = (branchNoTextBox.Text),
                         ManagerID = ((User)managerComboBox.SelectedItem).NationalID,
-                        PhoneNumber = int.Parse(phoneNumberTextBox.Text),
+                        PhoneNumber = (phoneNumberTextBox.Text),
                         Address = addressTextBox.Text,
                         BranchName = branchNameTextBox.Text
                     };

@@ -10,9 +10,6 @@
     <Compile Update="Admin\Members\Members.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Update="Admin\Reservations.cs">
-      <SubType>Form</SubType>
-    </Compile>
     <Compile Update="Admin\Subscribe\EditSubscription.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -35,9 +32,6 @@
       <SubType>Form</SubType>
     </Compile>
     <Compile Update="Admin\Branches\Branches.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Update="Admin\UserCrud.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Update="Form1.cs">

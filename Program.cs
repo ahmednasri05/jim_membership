@@ -16,7 +16,7 @@ namespace jim_membership
 
             ProgramSession.Instance.SetUserId(1);
 
-            Application.Run(new UserCrud());
+            Application.Run(new AdminStart());
 
 
             

@@ -161,7 +161,7 @@
             lblFreeDuration.Name = "lblFreeDuration";
             lblFreeDuration.Size = new Size(81, 15);
             lblFreeDuration.TabIndex = 12;
-            lblFreeDuration.Text = "Free Duration:";
+            lblFreeDuration.Text = "Freeze Duration:";
             // 
             // txtDescription
             // 

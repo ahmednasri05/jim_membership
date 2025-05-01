@@ -62,8 +62,8 @@ namespace jim_membership.Admin
             {
                 if (_isEditMode)
                 {
-                    _invite.MemberID = (int)memberIDComboBox.SelectedValue;
-                    _invite.guestID = int.Parse(nationalIDTextBox.Text);
+                    _invite.MemberID = memberIDComboBox.SelectedValue.ToString();
+                    _invite.guestID = (nationalIDTextBox.Text);
                     _invite.InvitationDate = invitationDatePicker.Value;
                     _invite.Update();
                 }
@@ -71,8 +71,8 @@ namespace jim_membership.Admin
                 {
                     var newInvite = new Invite
                     {
-                        MemberID = (int)memberIDComboBox.SelectedValue,
-                        guestID = int.Parse(nationalIDTextBox.Text),
+                        MemberID = memberIDComboBox.SelectedValue.ToString(),
+                        guestID = (nationalIDTextBox.Text),
                         InvitationDate = invitationDatePicker.Value
                     };
                     newInvite.Create();

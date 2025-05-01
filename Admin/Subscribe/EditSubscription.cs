@@ -51,7 +51,7 @@ namespace jim_membership.Admin
 
             try
             {
-                Subscription.SubscriptionID = int.Parse(txtSubscriptionID.Text);
+                Subscription.SubscriptionID = (txtSubscriptionID.Text);
                 Subscription.Name = txtName.Text;
                 Subscription.Amount = int.Parse(txtAmount.Text);
                 Subscription.NoOfSessions = int.Parse(txtNoOfSessions.Text);

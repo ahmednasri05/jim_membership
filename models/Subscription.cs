@@ -9,7 +9,7 @@ namespace jim_membership.models
 {
     public class Subscription
     {
-        public int SubscriptionID { get; set; }
+        public string SubscriptionID { get; set; }
         public string Name { get; set; }
         public int Amount { get; set; }
         public int NoOfSessions { get; set; }
@@ -29,12 +29,13 @@ namespace jim_membership.models
                 string sql = @"INSERT INTO Subscriptions (SubscriptionID, Name, Amount, NoOfSessions, 
                                                            INbody, NoOfPrivateSessions, FreezeDuration, Description)
                                VALUES (@SubscriptionID, @Name, @Amount, @NoOfSessions, 
-                                       @InBody, @NoOfPrivateSessions, @FreeDuration, @Description)";
+                                       @InBody, @NoOfPrivateSessions, @FreezeDuration, @Description)";
                 ProgramSession.Instance.dbConnection.Execute(sql, this);
             }
             catch (Exception ex)
             {
                 Console.WriteLine($"Error creating subscription: {ex.Message}");
+                throw;
             }
             finally
             {
@@ -43,7 +44,7 @@ namespace jim_membership.models
         }
 
         // Read by ID
-        public static Subscription GetById(int subscriptionId)
+        public static Subscription GetById(string subscriptionId)
         {
             try
             {
@@ -106,7 +107,7 @@ namespace jim_membership.models
         }
 
         // Delete
-        public static void Delete(int subscriptionId)
+        public static void Delete(string subscriptionId)
         {
             try
             {

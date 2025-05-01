@@ -11,12 +11,12 @@ namespace jim_membership.models
 {
     public class User
     {
-        public int NationalID { get; set; }
+        public string NationalID { get; set; }
         public string FName { get; set; }
         public string LName { get; set; }
         public string Username { get; set; }
         public string Password { get; set; }
-        public int PhoneNumber { get; set; }
+        public string PhoneNumber { get; set; }
         public string Address { get; set; }
         public byte Gender { get; set; }
         public int Age { get; set; }
@@ -38,10 +38,11 @@ namespace jim_membership.models
             catch (Exception ex)
             {
                 Console.WriteLine($"Unexpected error: {ex.Message}");
+                throw;
             }
         }
 
-        public static User GetById(int nationalId)
+        public static User GetById(string nationalId)
         {
             try
             {
@@ -104,7 +105,7 @@ namespace jim_membership.models
 
         }
 
-        public static void Delete(int nationalId)
+        public static void Delete(string nationalId)
         {
             ProgramSession.Instance.OpenConnection();
             string sql = "DELETE FROM Users WHERE nationalID = @NationalID";

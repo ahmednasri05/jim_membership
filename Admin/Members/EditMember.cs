@@ -31,13 +31,7 @@ namespace jim_membership.Admin
 
         private void BtnOK_Click(object sender, EventArgs e)
         {
-            if (!int.TryParse(txtNationalID.Text, out int nationalID))
-            {
-                MessageBox.Show("Please enter a valid National ID.", "Validation", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                this.DialogResult = DialogResult.None;
-                return;
-            }
-            User user = User.GetById(nationalID);
+            User user = User.GetById(txtNationalID.Text);
             // Check if user exists before adding member
             if (user == null)
             {
@@ -47,7 +41,7 @@ namespace jim_membership.Admin
             }
 
             // Assign values to Member object
-            Member.NationalID = nationalID;
+            Member.NationalID = txtNationalID.Text;
             Member.FirstJoinDate = dtpFirstJoinDate.Value;
             Member.InBodyUsed = int.TryParse(txtInBodyUsed.Text, out int inBody) ? inBody : 0;
             Member.FreezeDurationUsed = int.TryParse(txtFreezeDurationUsed.Text, out int freeze) ? freeze : 0;

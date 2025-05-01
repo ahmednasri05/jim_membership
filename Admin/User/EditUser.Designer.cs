@@ -107,15 +107,16 @@
             // 
             rbMale.Location = new Point(30, 230);
             rbMale.Name = "rbMale";
-            rbMale.Size = new Size(50, 20);
+            rbMale.Size = new Size(64, 20);
             rbMale.TabIndex = 7;
             rbMale.Text = "Male";
+            rbMale.CheckedChanged += rbMale_CheckedChanged;
             // 
             // rbFemale
             // 
             rbFemale.Location = new Point(100, 230);
             rbFemale.Name = "rbFemale";
-            rbFemale.Size = new Size(60, 20);
+            rbFemale.Size = new Size(76, 20);
             rbFemale.TabIndex = 8;
             rbFemale.Text = "Female";
             // 
