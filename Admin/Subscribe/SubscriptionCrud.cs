@@ -81,5 +81,40 @@ namespace jim_membership.Admin
         {
 
         }
+
+        private void SortByComboBox(object sender, EventArgs e)
+        {
+            if (sortbyComboBox.SelectedItem == null)
+                return;
+            string selected = sortbyComboBox.SelectedItem.ToString();
+            
+
+            if (selected == "Name")
+            {
+                LoadSubscriptions("Name");
+            }
+            else if (selected == "amount")
+            {
+                LoadSubscriptions("amount");
+            }
+            else if (selected == "noOfFreeSessions")
+            {
+                LoadSubscriptions("noOfPrivateSessions");
+            }
+
+        }
+        private void LoadSubscriptions(string value)
+        {
+            try
+            {
+                var subscriptions = Subscription.GetAllOrderBy(value);
+                SubscriptionsGridView.DataSource = subscriptions;
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show($"Error loading subscriptions: {ex.Message}", "Error",
+                    MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+        }
     }
 }

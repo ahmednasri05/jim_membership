@@ -82,6 +82,24 @@ namespace jim_membership.models
                 ProgramSession.Instance.CloseConnection();
             }
         }
+        public static List<Subscription> GetAllOrderBy(string order)
+        {
+            try
+            {
+                ProgramSession.Instance.OpenConnection();
+                string sql = $"SELECT * FROM Subscriptions ORDER BY {order} ASC";
+                return ProgramSession.Instance.dbConnection.Query<Subscription>(sql).ToList();
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine($"Error fetching all subscriptions: {ex.Message}");
+                return new List<Subscription>();
+            }
+            finally
+            {
+                ProgramSession.Instance.CloseConnection();
+            }
+        }
 
         // Update
         public void Update()
