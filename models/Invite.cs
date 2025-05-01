@@ -10,8 +10,10 @@ namespace jim_membership.models
     public class Invite
     {
         public int MemberID { get; set; }
-        public int NationalID { get; set; }
+        public int guestID { get; set; }
         public DateTime InvitationDate { get; set; }
+
+        private static readonly string _connectionString = "your_connection_string_here";
 
         // Create
         public void Create()
@@ -80,7 +82,7 @@ namespace jim_membership.models
             {
                 ProgramSession.Instance.OpenConnection();
                 string sql = @"UPDATE Invites 
-                               SET NationalID = @NationalID, InvitationDate = @InvitationDate
+                               SET NationalID = @guestID, InvitationDate = @InvitationDate
                                WHERE MemberID = @MemberID";
                 ProgramSession.Instance.dbConnection.Execute(sql, this);
             }
@@ -95,7 +97,7 @@ namespace jim_membership.models
         }
 
         // Delete
-        public static void Delete(int memberId)
+        public static void Delete(int memberId, int gestID)
         {
             try
             {
@@ -111,6 +113,7 @@ namespace jim_membership.models
             {
                 ProgramSession.Instance.CloseConnection();
             }
+
         }
     }
 }

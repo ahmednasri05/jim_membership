@@ -3,7 +3,7 @@ using System.Windows.Forms;
 using jim_membership.models;
 
 namespace jim_membership.Admin
-{
+{  
     public partial class EditUser : Form
     {
         public User User { get; private set; }

@@ -3,18 +3,20 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Data.SqlClient;
 using Dapper;
 
 namespace jim_membership.models
 {
-    public class Trainer : User
+    public class Trainer
     {
-        public int InstructorID { get; set; }
-        public int UserId { get; set; }
+        public int NationalID { get; set; }
         public int Salary { get; set; }
-        public DateTime Duration { get; set; }
-        public string Type { get; set; }
         public DateTime StartDate { get; set; }
+        public string ContractType { get; set; }
+        public DateTime EndDate { get; set; }
+
+        private static readonly string _connectionString = "your_connection_string_here";
 
         public void Create()
         {
@@ -35,7 +37,7 @@ namespace jim_membership.models
             }
         }
 
-        public static Trainer GetById(int instructorId)
+        public static Trainer GetById(int nationalID)
         {
             try
             {
@@ -95,7 +97,7 @@ namespace jim_membership.models
             }
         }
 
-        public static void Delete(int instructorId)
+        public static void Delete(int nationalID)
         {
             try
             {

@@ -9,8 +9,10 @@ namespace jim_membership.models
 {
     public class Certificate
     {
-        public int CertificateID { get; set; }
+        public int TrainerID { get; set; }
         public string CertificateName { get; set; }
+
+        private static readonly string _connectionString = "your_connection_string_here";
 
         // Create
         public void Create()
@@ -33,7 +35,7 @@ namespace jim_membership.models
         }
 
         // Read by ID
-        public static Certificate GetById(int certificateId)
+        public static Certificate GetById(int trainerID)
         {
             try
             {
@@ -113,3 +115,4 @@ namespace jim_membership.models
         }
     }
 }
+

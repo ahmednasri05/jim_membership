@@ -2,15 +2,15 @@
 {
     partial class AdminStart
     {
-        /// <summary>
-        /// Required designer variable.
-        /// </summary>
         private System.ComponentModel.IContainer components = null;
+        private TabControl tabControl;
+        private TabPage tabUsers;
+        private TabPage tabTrainers;
+        private TabPage tabMembers;
+        private TabPage tabBranches;
+        private TabPage tabGuests;
+        private TabPage tabSubscriptions;
 
-        /// <summary>
-        /// Clean up any resources being used.
-        /// </summary>
-        /// <param name="disposing">true if managed resources should be disposed; otherwise, false.</param>
         protected override void Dispose(bool disposing)
         {
             if (disposing && (components != null))
@@ -20,67 +20,105 @@
             base.Dispose(disposing);
         }
 
-        #region Windows Form Designer generated code
-
-        /// <summary>
-        /// Required method for Designer support - do not modify
-        /// the contents of this method with the code editor.
-        /// </summary>
         private void InitializeComponent()
         {
-            Users = new TabControl();
-            Userss = new TabPage();
-            Trainer = new TabPage();
-            Users.SuspendLayout();
+            tabControl = new TabControl();
+            tabUsers = new TabPage();
+            tabTrainers = new TabPage();
+            tabMembers = new TabPage();
+            tabBranches = new TabPage();
+            tabGuests = new TabPage();
+            tabSubscriptions = new TabPage();
+
+            tabControl.SuspendLayout();
             SuspendLayout();
             // 
-            // Users
+            // tabControl
             // 
-            Users.Controls.Add(Userss);
-            Users.Controls.Add(Trainer);
-            Users.Location = new Point(0, 0);
-            Users.Name = "Users";
-            Users.SelectedIndex = 0;
-            Users.Size = new Size(802, 451);
-            Users.TabIndex = 0;
-            Users.SelectedIndexChanged += tabtrainer_SelectedIndexChanged;
+            tabControl.Controls.Add(tabUsers);
+            tabControl.Controls.Add(tabTrainers);
+            tabControl.Controls.Add(tabMembers);
+            tabControl.Controls.Add(tabBranches);
+            tabControl.Controls.Add(tabGuests);
+            tabControl.Controls.Add(tabSubscriptions);
+            tabControl.Dock = DockStyle.Fill;
+            tabControl.Location = new Point(0, 0);
+            tabControl.Name = "tabControl";
+            tabControl.SelectedIndex = 0;
+            tabControl.Size = new Size(800, 450);
+            tabControl.TabIndex = 0;
+            tabControl.SelectedIndexChanged += TabControl_SelectedIndexChanged;
             // 
-            // Userss
+            // tabUsers
             // 
-            Userss.Location = new Point(4, 24);
-            Userss.Name = "Userss";
-            Userss.Padding = new Padding(3);
-            Userss.Size = new Size(794, 423);
-            Userss.TabIndex = 2;
-            Userss.Text = "Users";
-            Userss.UseVisualStyleBackColor = true;
+            tabUsers.Location = new Point(4, 24);
+            tabUsers.Name = "tabUsers";
+            tabUsers.Padding = new Padding(3);
+            tabUsers.Size = new Size(792, 422);
+            tabUsers.TabIndex = 0;
+            tabUsers.Text = "Users";
+            tabUsers.UseVisualStyleBackColor = true;
+            tabUsers.Click += tabUsers_Click;
             // 
-            // Trainer
+            // tabTrainers
             // 
-            Trainer.Location = new Point(4, 24);
-            Trainer.Name = "Trainer";
-            Trainer.Padding = new Padding(3);
-            Trainer.Size = new Size(794, 423);
-            Trainer.TabIndex = 3;
-            Trainer.Text = "Trainer";
-            Trainer.UseVisualStyleBackColor = true;
+            tabTrainers.Location = new Point(4, 24);
+            tabTrainers.Name = "tabTrainers";
+            tabTrainers.Padding = new Padding(3);
+            tabTrainers.Size = new Size(792, 422);
+            tabTrainers.TabIndex = 1;
+            tabTrainers.Text = "Trainers";
+            tabTrainers.UseVisualStyleBackColor = true;
+            // 
+            // tabMembers
+            // 
+            tabMembers.Location = new Point(4, 24);
+            tabMembers.Name = "tabMembers";
+            tabMembers.Padding = new Padding(3);
+            tabMembers.Size = new Size(792, 422);
+            tabMembers.TabIndex = 2;
+            tabMembers.Text = "Members";
+            tabMembers.UseVisualStyleBackColor = true;
+            // 
+            // tabBranches
+            // 
+            tabBranches.Location = new Point(4, 24);
+            tabBranches.Name = "tabBranches";
+            tabBranches.Padding = new Padding(3);
+            tabBranches.Size = new Size(792, 422);
+            tabBranches.TabIndex = 3;
+            tabBranches.Text = "Branches";
+            tabBranches.UseVisualStyleBackColor = true;
+            // 
+            // tabGuests
+            // 
+            tabGuests.Location = new Point(4, 24);
+            tabGuests.Name = "tabGuests";
+            tabGuests.Padding = new Padding(3);
+            tabGuests.Size = new Size(792, 422);
+            tabGuests.TabIndex = 3;
+            tabGuests.Text = "Guests";
+            tabGuests.UseVisualStyleBackColor = true;
+
+            tabSubscriptions.Location = new Point(4, 24);
+            tabSubscriptions.Name = "tabSubscriptions";
+            tabSubscriptions.Padding = new Padding(3);
+            tabSubscriptions.Size = new Size(792, 422);
+            tabSubscriptions.TabIndex = 3;
+            tabSubscriptions.Text = "Subscription Plans";
+            tabSubscriptions.UseVisualStyleBackColor = true;
+
             // 
             // AdminStart
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(800, 450);
-            Controls.Add(Users);
+            Controls.Add(tabControl);
             Name = "AdminStart";
-            Text = "AdminStart";
-            Users.ResumeLayout(false);
+            Text = "Admin Panel";
+            tabControl.ResumeLayout(false);
             ResumeLayout(false);
         }
-
-        #endregion
-
-        private TabControl Users;
-        private TabPage Userss;
-        private TabPage Trainer;
     }
 }

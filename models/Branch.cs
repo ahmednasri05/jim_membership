@@ -10,8 +10,12 @@ namespace jim_membership.models
     public class Branch
     {
         public int BranchNo { get; set; }
-        public string Location { get; set; }
-        public int AdminID { get; set; }
+        public int ManagerID { get; set; }
+        public int PhoneNumber { get; set; }
+        public string Address { get; set; }
+        public string BranchName { get; set; }
+
+        private static readonly string _connectionString = "your_connection_string_here";
 
         // Create
         public void Create()

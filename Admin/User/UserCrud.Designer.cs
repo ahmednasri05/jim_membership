@@ -24,6 +24,7 @@
             btnAddClient = new Button();
             btnEditClient = new Button();
             btnDeleteClient = new Button();
+            textBox1 = new TextBox();
             ((System.ComponentModel.ISupportInitialize)dgvUsers).BeginInit();
             SuspendLayout();
             // 
@@ -70,9 +71,20 @@
             btnDeleteClient.Text = "Delete";
             btnDeleteClient.UseVisualStyleBackColor = true;
             // 
+            // textBox1
+            // 
+            textBox1.Font = new Font("Segoe UI", 18F, FontStyle.Regular, GraphicsUnit.Point);
+            textBox1.ForeColor = SystemColors.MenuHighlight;
+            textBox1.Location = new Point(420, 5);
+            textBox1.Name = "textBox1";
+            textBox1.Size = new Size(76, 39);
+            textBox1.TabIndex = 4;
+            textBox1.Text = "Users";
+            // 
             // UserCrud
             // 
             ClientSize = new Size(924, 461);
+            Controls.Add(textBox1);
             Controls.Add(btnDeleteClient);
             Controls.Add(btnEditClient);
             Controls.Add(btnAddClient);
@@ -81,6 +93,8 @@
             Text = "User Management";
             ((System.ComponentModel.ISupportInitialize)dgvUsers).EndInit();
             ResumeLayout(false);
+            PerformLayout();
         }
+        private TextBox textBox1;
     }
 }

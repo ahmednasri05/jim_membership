@@ -9,10 +9,11 @@ namespace jim_membership.models
 {
     public class Reserve
     {
-        public int ReserveID { get; set; }
-        public int TraineeID { get; set; }
-        public int CourseID { get; set; }
-        public string PaymentStatus { get; set; }
+        public int memberID { get; set; }
+        public int transactionID { get; set; }
+        public int sessionNo { get; set; }
+
+        private static readonly string _connectionString = "your_connection_string_here";
 
         // Create
         public void Create()
@@ -34,8 +35,8 @@ namespace jim_membership.models
             }
         }
 
-        // Read by ID
-        public static Reserve GetById(int reserveId)
+        // Read all
+        public static List<Reserve> GetAll()
         {
             try
             {
@@ -54,8 +55,8 @@ namespace jim_membership.models
             }
         }
 
-        // Read all
-        public static List<Reserve> GetAll()
+        // Delete
+        public static void Delete(int memberId, int transactionId, int sessionNo)
         {
             try
             {
@@ -74,8 +75,7 @@ namespace jim_membership.models
             }
         }
 
-        // Update
-        public void Update()
+        public static bool ReserveSession(int memberId, int sessionNo)
         {
             try
             {

@@ -15,8 +15,10 @@ namespace jim_membership.models
         public int NoOfSessions { get; set; }
         public int InBody { get; set; }
         public int NoOfPrivateSessions { get; set; }
-        public DateTime FreeDuration { get; set; }
+        public int FreezeDuration { get; set; }
         public string Description { get; set; }
+
+        private static readonly string _connectionString = "your_connection_string_here";
 
         // Create
         public void Create()
@@ -25,7 +27,7 @@ namespace jim_membership.models
             {
                 ProgramSession.Instance.OpenConnection();
                 string sql = @"INSERT INTO Subscriptions (SubscriptionID, Name, Amount, NoOfSessions, 
-                                                           INbody, NoOfPrivateSessions, FreeDuration, Description)
+                                                           INbody, NoOfPrivateSessions, FreezeDuration, Description)
                                VALUES (@SubscriptionID, @Name, @Amount, @NoOfSessions, 
                                        @InBody, @NoOfPrivateSessions, @FreeDuration, @Description)";
                 ProgramSession.Instance.dbConnection.Execute(sql, this);
@@ -89,7 +91,7 @@ namespace jim_membership.models
                 string sql = @"UPDATE Subscriptions 
                                SET Name = @Name, Amount = @Amount, NoOfSessions = @NoOfSessions, 
                                    INbody = @InBody, NoOfPrivateSessions = @NoOfPrivateSessions,
-                                   FreeDuration = @FreeDuration, Description = @Description
+                                   FreezeDuration = @FreezeDuration, Description = @Description
                                WHERE SubscriptionID = @SubscriptionID";
                 ProgramSession.Instance.dbConnection.Execute(sql, this);
             }
