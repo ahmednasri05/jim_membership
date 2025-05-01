@@ -66,16 +66,9 @@ namespace jim_membership
 
         private void BtnReserve_Click(object sender, EventArgs e)
         {
-            if (int.TryParse(txtMemberID.Text, out int memberId) && int.TryParse(txtSessionNo.Text, out int sessionNo))
-            {
-                bool success = Reserve.ReserveSession(memberId, sessionNo);
+                bool success = Reserve.ReserveSession(txtMemberID.Text, txtSessionNo.Text);
                 MessageBox.Show(success ? "Reserved!" : "Reservation failed.");
                 BtnLoad_Click(sender, e);
-            }
-            else
-            {
-                MessageBox.Show("Please enter valid Member ID and Session No.");
-            }
         }
 
         private void BtnDelete_Click(object sender, EventArgs e)

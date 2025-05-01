@@ -9,9 +9,9 @@ namespace jim_membership.models
 {
     public class Subscribe
     {
-        public int MemberID { get; set; }
-        public int SubscriptionID { get; set; }
-        public int TransactionID { get; set; }
+        public string MemberID { get; set; }
+        public string SubscriptionID { get; set; }
+        public string TransactionID { get; set; }
         public int SessionUsed { get; set; }
         public int PrivateSessionUsed { get; set; }
         public DateTime StartDate { get; set; }

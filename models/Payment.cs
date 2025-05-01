@@ -9,7 +9,7 @@ namespace jim_membership.models
 {
     public class Payment
     {
-        public int TransactionID { get; set; }
+        public string TransactionID { get; set; }
         public DateTime Date { get; set; }
         public int Amount { get; set; }
 

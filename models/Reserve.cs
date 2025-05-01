@@ -8,9 +8,9 @@ using Dapper;
 namespace jim_membership.models
 {
     public class Reserve
-    {    public int memberID { get; set; }
-        public int transactionID { get; set; }
-        public int sessionNo { get; set; }
+    {    public string memberID { get; set; }
+        public string transactionID { get; set; }
+        public string sessionNo { get; set; }
 
         // Create
         public void Create()
@@ -71,7 +71,7 @@ namespace jim_membership.models
             }
         }
 
-        public static bool ReserveSession(int memberId, int sessionNo)
+        public static bool ReserveSession(string memberId, string sessionNo)
         {
             try
             {
@@ -87,9 +87,9 @@ namespace jim_membership.models
 
                 // Get the transactionID from the Payments table
                 string transactionSql = "SELECT TOP 1 transactionID FROM Payments WHERE memberID = @memberID ORDER BY Start_date DESC";
-                int transactionId = ProgramSession.Instance.dbConnection.QueryFirstOrDefault<int>(transactionSql, new { memberID = memberId });
+                string transactionId = ProgramSession.Instance.dbConnection.QueryFirstOrDefault<string>(transactionSql, new { memberID = memberId });
 
-                if (transactionId == 0)
+                if (transactionId == "0")
                 {
                     // No valid transaction found
                     return false;

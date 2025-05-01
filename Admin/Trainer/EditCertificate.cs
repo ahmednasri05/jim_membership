@@ -33,13 +33,7 @@ namespace jim_membership.Admin
 
         private void BtnOK_Click(object sender, EventArgs e)
         {
-            if (!int.TryParse(txtCertificateID.Text, out int id))
-            {
-                MessageBox.Show("Invalid Certificate ID", "Validation", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                this.DialogResult = DialogResult.None;
-                return;
-            }
-
+          
             if (string.IsNullOrWhiteSpace(txtCertificateName.Text))
             {
                 MessageBox.Show("Certificate name is required.", "Validation", MessageBoxButtons.OK, MessageBoxIcon.Warning);
@@ -47,7 +41,7 @@ namespace jim_membership.Admin
                 return;
             }
 
-            certificate.TrainerID = id;
+            certificate.TrainerID = txtCertificateID.Text;
             certificate.CertificateName = txtCertificateName.Text;
 
             try

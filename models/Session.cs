@@ -9,9 +9,9 @@ namespace jim_membership.models
 {
     public class Session
     {
-        public int SessionID { get; set; }
-        public int TrainerID { get; set; }
-        public int BranchNo { get; set; }
+        public string SessionID { get; set; }
+        public string TrainerID { get; set; }
+        public string BranchNo { get; set; }
         public string Type { get; set; }
         public int MaxNumber { get; set; }
         public DateTime Date { get; set; }

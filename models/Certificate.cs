@@ -9,7 +9,7 @@ namespace jim_membership.models
 {
     public class Certificate
     {
-        public int TrainerID { get; set; }
+        public string TrainerID { get; set; }
         public string CertificateName { get; set; }
 
         // Create
