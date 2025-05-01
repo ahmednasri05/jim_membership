@@ -23,8 +23,8 @@ namespace jim_membership.models
             try
             {
                 ProgramSession.Instance.OpenConnection();
-                string sql = @"INSERT INTO Trainers (instructorID, userid, Salary, Duration, Type, startDate)
-                               VALUES (@InstructorID, @UserId, @Salary, @Duration, @Type, @StartDate)";
+                string sql = @"INSERT INTO Trainers (nationalID, Salary, startDate, ContractType, endDate)
+                VALUES (@NationalID, @Salary, @StartDate, @ContractType, @EndDate)";
                 ProgramSession.Instance.dbConnection.Execute(sql, this);
             }
             catch (Exception ex)
@@ -42,8 +42,8 @@ namespace jim_membership.models
             try
             {
                 ProgramSession.Instance.OpenConnection();
-                string sql = "SELECT * FROM Trainers WHERE instructorID = @InstructorID";
-                return ProgramSession.Instance.dbConnection.QueryFirstOrDefault<Trainer>(sql, new { InstructorID = instructorId });
+                string sql = "SELECT * FROM Trainers WHERE nationalID = @NationalID";
+                return ProgramSession.Instance.dbConnection.QueryFirstOrDefault<Trainer>(sql, new { NationalID = nationalID });
             }
             catch (Exception ex)
             {
@@ -81,10 +81,10 @@ namespace jim_membership.models
             {
                 ProgramSession.Instance.OpenConnection();
                 string sql = @"UPDATE Trainers SET 
-                               userid = @UserId, Salary = @Salary, 
-                               Duration = @Duration, Type = @Type, 
-                               startDate = @StartDate
-                               WHERE instructorID = @InstructorID";
+                                Salary = @Salary, 
+                                startDate = @StartDate, ContractType = @ContractType, 
+                                endDate = @EndDate
+                               WHERE nationalID = @NationalID";
                 ProgramSession.Instance.dbConnection.Execute(sql, this);
             }
             catch (Exception ex)
@@ -97,12 +97,12 @@ namespace jim_membership.models
             }
         }
 
-        public static void Delete(int nationalID)
+        public static void Delete(int instructorId)
         {
             try
             {
                 ProgramSession.Instance.OpenConnection();
-                string sql = "DELETE FROM Trainers WHERE instructorID = @InstructorID";
+                string sql = "DELETE FROM Trainers WHERE nationalID = @NationalID";
                 ProgramSession.Instance.dbConnection.Execute(sql, new { InstructorID = instructorId });
             }
             catch (Exception ex)

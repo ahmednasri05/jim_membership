@@ -1,113 +1,97 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Data.SqlClient;
+using System.Linq;
 using System.Windows.Forms;
+using Dapper;
+using jim_membership.models;
 
-namespace jim_membership.models
+namespace jim_membership
 {
-    public partial class ReservationForm : Form
+    public partial class Reservations : Form
     {
-        private ComboBox comboBoxSessions;
-        private TextBox textBoxTraineeID;
-        private Button buttonSubmit;
+        private TextBox txtMemberID = new TextBox { Left = 20, Top = 20, Width = 200, PlaceholderText = "Member ID" };
+        private TextBox txtSessionNo = new TextBox { Left = 20, Top = 60, Width = 200, PlaceholderText = "Session No" };
+        private TextBox txtTransactionID = new TextBox { Left = 20, Top = 100, Width = 200, PlaceholderText = "Transaction ID (for delete)" };
 
-        public ReservationForm()
+        private Button btnLoad = new Button { Text = "Load Reservations", Left = 250, Top = 20, Width = 150 };
+        private Button btnReserve = new Button { Text = "Reserve Session", Left = 250, Top = 60, Width = 150 };
+        private Button btnDelete = new Button { Text = "Delete Reservation", Left = 250, Top = 100, Width = 150 };
+
+        private DataGridView dgvReserves = new DataGridView { Left = 20, Top = 150, Width = 740, Height = 380 };
+
+        public Reservations()
         {
-            InitializeComponent();
-            LoadAvailableSessions();
+            this.Text = "Gym Reservation System";
+            this.Size = new System.Drawing.Size(800, 600);
+
+            // Anchoring for responsiveness
+            txtMemberID.Anchor = AnchorStyles.Top | AnchorStyles.Left;
+            txtSessionNo.Anchor = AnchorStyles.Top | AnchorStyles.Left;
+            txtTransactionID.Anchor = AnchorStyles.Top | AnchorStyles.Left;
+
+            btnLoad.Anchor = AnchorStyles.Top | AnchorStyles.Left;
+            btnReserve.Anchor = AnchorStyles.Top | AnchorStyles.Left;
+            btnDelete.Anchor = AnchorStyles.Top | AnchorStyles.Left;
+
+            dgvReserves.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Left | AnchorStyles.Right;
+
+            // Add controls to form
+            this.Controls.Add(txtMemberID);
+            this.Controls.Add(txtSessionNo);
+            this.Controls.Add(txtTransactionID);
+            this.Controls.Add(btnLoad);
+            this.Controls.Add(btnReserve);
+            this.Controls.Add(btnDelete);
+            this.Controls.Add(dgvReserves);
+
+            // Event bindings
+            btnLoad.Click += BtnLoad_Click;
+            btnReserve.Click += BtnReserve_Click;
+            btnDelete.Click += BtnDelete_Click;
         }
 
-        private void InitializeComponent()
+        private void BtnLoad_Click(object sender, EventArgs e)
         {
-            comboBoxSessions = new ComboBox();
-            textBoxTraineeID = new TextBox();
-            buttonSubmit = new Button();
-            SuspendLayout();
-            // 
-            // comboBoxSessions
-            // 
-            comboBoxSessions.FormattingEnabled = true;
-            comboBoxSessions.Location = new Point(121, 137);
-            comboBoxSessions.Margin = new Padding(7, 8, 7, 8);
-            comboBoxSessions.Name = "comboBoxSessions";
-            comboBoxSessions.Size = new Size(480, 49);
-            comboBoxSessions.TabIndex = 0;
-            comboBoxSessions.SelectedIndexChanged += comboBoxSessions_SelectedIndexChanged;
-            // 
-            // textBoxTraineeID
-            // 
-            textBoxTraineeID.Location = new Point(121, 273);
-            textBoxTraineeID.Margin = new Padding(7, 8, 7, 8);
-            textBoxTraineeID.Name = "textBoxTraineeID";
-            textBoxTraineeID.Size = new Size(480, 47);
-            textBoxTraineeID.TabIndex = 1;
-            // 
-            // buttonSubmit
-            // 
-            buttonSubmit.Location = new Point(121, 410);
-            buttonSubmit.Margin = new Padding(7, 8, 7, 8);
-            buttonSubmit.Name = "buttonSubmit";
-            buttonSubmit.Size = new Size(486, 82);
-            buttonSubmit.TabIndex = 2;
-            buttonSubmit.Text = "Submit";
-            buttonSubmit.UseVisualStyleBackColor = true;
-            buttonSubmit.Click += buttonSubmit_Click;
-            // 
-            // ReservationForm
-            // 
-            AutoScaleDimensions = new SizeF(17F, 41F);
-            AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(1943, 1230);
-            Controls.Add(comboBoxSessions);
-            Controls.Add(textBoxTraineeID);
-            Controls.Add(buttonSubmit);
-            Margin = new Padding(7, 8, 7, 8);
-            Name = "ReservationForm";
-            Text = "Reservation Form";
-            Load += ReservationForm_Load;
-            ResumeLayout(false);
-            PerformLayout();
-        }
-
-        private void LoadAvailableSessions()
-        {
-            // Fetch available sessions
-            List<Session> sessions = Session.GetAll(); // Corrected the class name to 'Session'
-
-            // Bind sessions to the dropdown
-            comboBoxSessions.DataSource = sessions;
-            comboBoxSessions.DisplayMember = "Description"; // Display session description
-            comboBoxSessions.ValueMember = "SessionID"; // Use SessionID as the value
-        }
-
-        private void buttonSubmit_Click(object sender, EventArgs e)
-        {
-            if (int.TryParse(textBoxTraineeID.Text, out int traineeId) && comboBoxSessions.SelectedValue is int sessionId)
+            var reserves = Reserve.GetAll();
+            if (reserves != null && reserves.Count > 0)
             {
-                bool success = Reserve.ReserveSession(traineeId, sessionId);
-
-                if (success)
-                {
-                    MessageBox.Show("Reservation successful!", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                }
-                else
-                {
-                    MessageBox.Show("Failed to reserve the session. It might be full.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                }
+                dgvReserves.DataSource = reserves;
             }
             else
             {
-                MessageBox.Show("Please enter a valid Trainee ID and select a session.", "Validation Error", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                MessageBox.Show("No reservations found.");
             }
         }
 
-        private void comboBoxSessions_SelectedIndexChanged(object sender, EventArgs e)
+        private void BtnReserve_Click(object sender, EventArgs e)
         {
-
+            if (int.TryParse(txtMemberID.Text, out int memberId) && int.TryParse(txtSessionNo.Text, out int sessionNo))
+            {
+                bool success = Reserve.ReserveSession(memberId, sessionNo);
+                MessageBox.Show(success ? "Reserved!" : "Reservation failed.");
+                BtnLoad_Click(sender, e);
+            }
+            else
+            {
+                MessageBox.Show("Please enter valid Member ID and Session No.");
+            }
         }
 
-        private void ReservationForm_Load(object sender, EventArgs e)
+        private void BtnDelete_Click(object sender, EventArgs e)
         {
-
+            if (int.TryParse(txtMemberID.Text, out int memberId) &&
+                int.TryParse(txtTransactionID.Text, out int transactionId) &&
+                int.TryParse(txtSessionNo.Text, out int sessionNo))
+            {
+                Reserve.Delete(memberId, transactionId, sessionNo);
+                MessageBox.Show("Deleted!");
+                BtnLoad_Click(sender, e);
+            }
+            else
+            {
+                MessageBox.Show("Please enter valid Member ID, Transaction ID, and Session No.");
+            }
         }
     }
 }
