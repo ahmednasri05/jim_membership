@@ -22,6 +22,9 @@
     <Compile Update="Admin\Subscribe\SubscriptionCrud.cs">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Update="Admin\SubscriptionReport\SubscriptionsReportForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Update="Admin\Trainer\EditCertificate.cs">
       <SubType>Form</SubType>
     </Compile>

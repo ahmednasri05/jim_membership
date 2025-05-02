@@ -39,6 +39,13 @@ namespace jim_membership.Admin
                 this.DialogResult = DialogResult.None;
                 return;
             }
+            Trainer trainer = Trainer.GetById(txtNationalID.Text);
+            if(trainer != null)
+            {
+                MessageBox.Show("Member cannot be a trainer. Please select a different user.", "Invalid User", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                this.DialogResult = DialogResult.None;
+                return;
+            }
 
             // Assign values to Member object
             Member.NationalID = txtNationalID.Text;
