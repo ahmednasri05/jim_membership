@@ -13,10 +13,16 @@
     <Compile Update="Admin\Members\Members.cs">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Update="Admin\MyAccount\MyAccount.cs">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Update="Admin\Subscribe\EditSubscription.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Update="Admin\Subscribe\SubscriptionCrud.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Update="Admin\SubscriptionReport\SubscriptionsReportForm.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Update="Admin\Trainer\EditCertificate.cs">
@@ -52,10 +58,10 @@
     <Compile Update="Login.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Update="Signup.cs">
+    <Compile Update="Reservations\ReservationForm.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Update="Reservations\Reservations.cs">
+    <Compile Update="Signup.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Update="Signup.cs">

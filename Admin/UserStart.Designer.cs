@@ -20,6 +20,7 @@
             tabBranches = new TabPage();
             tabTrainers = new TabPage();
             tabControl = new TabControl();
+            tabPage1 = new TabPage();
             tabControl.SuspendLayout();
             SuspendLayout();
             // 
@@ -33,7 +34,6 @@
             tabSubscriptions.TabIndex = 3;
             tabSubscriptions.Text = "Subscription Plans";
             tabSubscriptions.UseVisualStyleBackColor = true;
-            tabSubscriptions.Click += tabSubscriptions_Click;
             // 
             // tabGuests
             // 
@@ -74,6 +74,7 @@
             tabControl.Controls.Add(tabBranches);
             tabControl.Controls.Add(tabGuests);
             tabControl.Controls.Add(tabSubscriptions);
+            tabControl.Controls.Add(tabPage1);
             tabControl.Dock = DockStyle.Fill;
             tabControl.Location = new Point(0, 0);
             tabControl.Margin = new Padding(5, 6, 5, 6);
@@ -82,6 +83,16 @@
             tabControl.Size = new Size(1371, 900);
             tabControl.TabIndex = 0;
             tabControl.SelectedIndexChanged += TabControl_SelectedIndexChanged;
+            // 
+            // tabPage1
+            // 
+            tabPage1.Location = new Point(4, 39);
+            tabPage1.Name = "My Account";
+            tabPage1.Padding = new Padding(3);
+            tabPage1.Size = new Size(1363, 857);
+            tabPage1.TabIndex = 4;
+            tabPage1.Text = "My Account";
+            tabPage1.UseVisualStyleBackColor = true;
             // 
             // UserStart
             // 
@@ -101,5 +112,6 @@
         private TabPage tabBranches;
         private TabPage tabTrainers;
         private TabControl tabControl;
+        private TabPage tabPage1;
     }
 }

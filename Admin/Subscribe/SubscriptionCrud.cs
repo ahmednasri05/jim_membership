@@ -16,6 +16,10 @@ namespace jim_membership.Admin
                 EditSubBtn.Visible = false;
                 DeleteSubBtn.Visible = false;
             }
+            else {
+                button1.Visible = false;
+                button2.Visible = false;
+            }
         }
 
         private void LoadSubscriptions()
@@ -124,11 +128,63 @@ namespace jim_membership.Admin
 
         private void button1_Click(object sender, EventArgs e)
         {
+            if (Subscribe.GetById(ProgramSession.Instance.UserId) != null)
+            {
+                MessageBox.Show("You are already subscribed to a plan", "Information",
+                    MessageBoxButtons.OK, MessageBoxIcon.Information);
+                return;
+            }
+            if (SubscriptionsGridView.SelectedRows.Count == 0 || SubscriptionsGridView.SelectedRows.Count > 1)
+            {
+                MessageBox.Show("Please select one subscription to subscribe to", "Information",
+                    MessageBoxButtons.OK, MessageBoxIcon.Information);
+                return;
+            }
+            var selected = (Subscription)SubscriptionsGridView.SelectedRows[0].DataBoundItem;
+            var payment = new Payment();
+            try {
+            payment.Amount = selected.Amount;
+            payment.Date = DateTime.Now;
+            payment.Create();
+            }
+            catch (Exception ex) {
+                MessageBox.Show($"Error creating payment: {ex.Message}", "Error",
+                    MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return;
+            }
+            try {
+            var subscription = new Subscribe();
+            subscription.MemberID = ProgramSession.Instance.UserId;
+            subscription.SubscriptionID = selected.SubscriptionID;
+            subscription.TransactionID = payment.TransactionID;
+            subscription.SessionUsed = 0;
+            subscription.PrivateSessionUsed = 0;
+            subscription.StartDate = DateTime.Now;
+            subscription.EndDate = DateTime.Now.AddDays(selected.NoOfSessions * 4);
+            subscription.Create();
+            }
+            catch (Exception ex) {
+                MessageBox.Show($"Error creating subscription: {ex.Message}", "Error",
+                    MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return;
+            }
+            MessageBox.Show("You have successfully subscribed to " + selected.Name, "Success",
+                MessageBoxButtons.OK, MessageBoxIcon.Information);
 
         }
 
         private void button2_Click(object sender, EventArgs e)
         {
+            var currentsub = Subscribe.GetById(ProgramSession.Instance.UserId);
+            if (currentsub == null)
+            {
+                MessageBox.Show("You are not subscribed to any plan", "Information",
+                    MessageBoxButtons.OK, MessageBoxIcon.Information);
+                return;
+            }
+            Subscribe.Delete(currentsub.MemberID);
+            MessageBox.Show("You have successfully unsubscribed from " + currentsub.SubscriptionID, "Success",
+                MessageBoxButtons.OK, MessageBoxIcon.Information);
 
         }
     }

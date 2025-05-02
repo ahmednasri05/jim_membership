@@ -9,7 +9,7 @@ namespace jim_membership.models
 {
     public class Payment
     {
-        public string TransactionID { get; set; }
+        public int TransactionID { get; set; }
         public DateTime Date { get; set; }
         public int Amount { get; set; }
 
@@ -19,13 +19,17 @@ namespace jim_membership.models
             try
             {
                 ProgramSession.Instance.OpenConnection();
-                string sql = @"INSERT INTO Payments (TransactionID, Date, Amount)
-                               VALUES (@TransactionID, @Date, @Amount)";
-                ProgramSession.Instance.dbConnection.Execute(sql, this);
+
+               string sql = @"INSERT INTO Payments ([Date], Amount)
+               OUTPUT INSERTED.transactionID
+               VALUES (@Date, @Amount)";
+
+         this.TransactionID = ProgramSession.Instance.dbConnection.QuerySingle<int>(sql, this);
             }
             catch (Exception ex)
             {
                 Console.WriteLine($"Error creating payment: {ex.Message}");
+                throw;
             }
             finally
             {
@@ -112,5 +116,24 @@ namespace jim_membership.models
                 ProgramSession.Instance.CloseConnection();
             }
         }
+
+    public static int GetLastTransactionID()
+    {
+    try
+    {
+        ProgramSession.Instance.OpenConnection();
+        string sql = "SELECT ISNULL(MAX(TransactionID), 0) FROM Payments";
+        return ProgramSession.Instance.dbConnection.QuerySingle<int>(sql);
+    }
+    catch (Exception ex)
+    {
+        Console.WriteLine($"Error fetching last transaction ID: {ex.Message}");
+        return 0; // Default to 0 if there's an error
+    }
+    finally
+    {
+        ProgramSession.Instance.CloseConnection();
+    }
+    }
     }
 }

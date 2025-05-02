@@ -15,8 +15,9 @@ namespace jim_membership.models
         public string Type { get; set; }
         public int maxNumber { get; set; }
         public DateTime date { get; set; }
+        public TimeSpan duration { get; set; }
         public TimeSpan Time { get; set; }
-        public int duration { get; set; }
+
         public string description { get; set; }
 
         // Create

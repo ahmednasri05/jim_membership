@@ -58,7 +58,7 @@ namespace jim_membership.Admin
             }
 
             try
-            {
+            {   
                 Trainer.NationalID = userComboBox.SelectedValue.ToString();
                 Trainer.Salary = int.TryParse(txtSalary.Text, out int salary) ? salary : 0;
                 Trainer.StartDate = dtpStartDate.Value;
@@ -70,7 +70,13 @@ namespace jim_membership.Admin
                     Trainer.Update();
                 }
                 else
-                {
+                {   Member member = Member.GetById(Trainer.NationalID);
+                    if(member != null)
+                    {
+                        MessageBox.Show("Trainer cannot be a member. Please select a different user.", "Invalid User", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                        this.DialogResult = DialogResult.None;
+                        return;
+                    }
                     Trainer.Create();
                 }
             }

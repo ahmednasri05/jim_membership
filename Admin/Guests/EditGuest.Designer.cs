@@ -72,6 +72,7 @@
             nationalIDTextBox.Name = "nationalIDTextBox";
             nationalIDTextBox.Size = new Size(200, 23);
             nationalIDTextBox.TabIndex = 3;
+            nationalIDTextBox.TextChanged += nationalIDTextBox_TextChanged;
             // 
             // invitationDateLabel
             // 

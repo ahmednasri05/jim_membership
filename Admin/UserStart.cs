@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Windows.Forms;
+using jim_membership.Admin.Account;
 
 namespace jim_membership.Admin
 {
@@ -12,6 +13,9 @@ namespace jim_membership.Admin
         private Branches branchCrud;
         private SubscriptionCrud subCrud;
 
+        private MyAccount myAccountCrud;
+        // filler comment
+
         public UserStart()
         {
             InitializeComponent();
@@ -19,7 +23,7 @@ namespace jim_membership.Admin
         }
         private void TabControl_SelectedIndexChanged(object sender, EventArgs e)
         {
- 
+
             if (tabControl.SelectedTab == tabTrainers)
             {
                 // Initialize Trainer CRUD
@@ -60,16 +64,18 @@ namespace jim_membership.Admin
                 tabSubscriptions.Controls.Add(subCrud);
                 subCrud.Show();
             }
+            else if (tabControl.SelectedTab == tabPage1)
+            {
+                // Initialize Trainer CRUD
+                myAccountCrud = new MyAccount();
+                myAccountCrud.TopLevel = false;
+                myAccountCrud.FormBorderStyle = FormBorderStyle.None;
+                myAccountCrud.Dock = DockStyle.Fill;
+                tabPage1.Controls.Add(myAccountCrud);
+                myAccountCrud.Show();
+            }
+
         }
 
-        private void tabUsers_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void tabSubscriptions_Click(object sender, EventArgs e)
-        {
-
-        }
     }
 }

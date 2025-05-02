@@ -11,7 +11,7 @@ namespace jim_membership.models
     {
         public string MemberID { get; set; }
         public string SubscriptionID { get; set; }
-        public string TransactionID { get; set; }
+        public int TransactionID { get; set; }
         public int SessionUsed { get; set; }
         public int PrivateSessionUsed { get; set; }
         public DateTime StartDate { get; set; }
@@ -24,7 +24,7 @@ namespace jim_membership.models
             {
                 ProgramSession.Instance.OpenConnection();
                 string sql = @"INSERT INTO Subscribes (MemberID, SubscriptionID, TransactionID, 
-                                                       Session_Used, private_session_used, 
+                                                       Sessions_Used, private_sessions_used, 
                                                        Start_date, End_date)
                                VALUES (@MemberID, @SubscriptionID, @TransactionID, 
                                        @SessionUsed, @PrivateSessionUsed, 
@@ -34,6 +34,7 @@ namespace jim_membership.models
             catch (Exception ex)
             {
                 Console.WriteLine($"Error creating subscription: {ex.Message}");
+                throw;
             }
             finally
             {
@@ -42,7 +43,7 @@ namespace jim_membership.models
         }
 
         // Read by ID
-        public static Subscribe GetById(int memberId)
+        public static Subscribe GetById(string memberId)
         {
             try
             {
@@ -90,8 +91,8 @@ namespace jim_membership.models
                 string sql = @"UPDATE Subscribes 
                                SET SubscriptionID = @SubscriptionID,
                                    TransactionID = @TransactionID,
-                                   Session_Used = @SessionUsed,
-                                   private_session_used = @PrivateSessionUsed,
+                                   Sessions_Used = @SessionUsed,
+                                   private_sessions_used = @PrivateSessionUsed,
                                    Start_date = @StartDate,
                                    End_date = @EndDate
                                WHERE MemberID = @MemberID";
@@ -108,7 +109,7 @@ namespace jim_membership.models
         }
 
         // Delete
-        public static void Delete(int memberId)
+        public static void Delete(string memberId)
         {
             try
             {
