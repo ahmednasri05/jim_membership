@@ -9,7 +9,6 @@ namespace jim_membership
         {
             ApplicationConfiguration.Initialize();
             Application.Run(new Login());
-  
         }
     }
 }

@@ -61,7 +61,9 @@ namespace jim_membership
 
                 newUser.Create();
                 MessageBox.Show("Registration successful!", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                this.Close();
+                this.Hide();
+                var loginForm = new Login();
+                loginForm.Show();
             }
             catch (Exception ex)
             {

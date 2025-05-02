@@ -88,9 +88,9 @@ namespace jim_membership
             btnCancel.Name = "btnCancel";
             btnCancel.Size = new Size(90, 40);
             btnCancel.TabIndex = 6;
-            btnCancel.Text = "Cancel";
+            btnCancel.Text = "Sign Up";
             btnCancel.UseVisualStyleBackColor = false;
-            btnCancel.Click += btnCancel_Click;
+            btnCancel.Click += btnSignUp;
             // 
             // Login
             // 

@@ -153,6 +153,22 @@ namespace jim_membership.Admin
                 return;
             }
             try {
+            if (Member.GetById(ProgramSession.Instance.UserId) == null)
+            {
+                var member = new Member();
+                member.NationalID = ProgramSession.Instance.UserId;
+                member.FirstJoinDate = DateTime.Now;
+                member.InBodyUsed = 0;
+                member.FreezeDurationUsed = 0;
+                member.ActiveSubscription = true;
+                member.Create();
+            }
+            else
+            {
+                var member = Member.GetById(ProgramSession.Instance.UserId);
+                member.ActiveSubscription = true;
+                member.Update();
+            }
             var subscription = new Subscribe();
             subscription.MemberID = ProgramSession.Instance.UserId;
             subscription.SubscriptionID = selected.SubscriptionID;

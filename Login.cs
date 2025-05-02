@@ -49,10 +49,11 @@ namespace jim_membership
             }
         }
 
-        private void btnCancel_Click(object sender, EventArgs e)
+        private void btnSignUp(object sender, EventArgs e)
         {
-            this.Close();
-            Application.Exit(); // Or return to previous form if applicable
+            this.Hide();
+            var signUpForm = new Signup();
+            signUpForm.Show();
         }
 
         private void labelTitle_Click(object sender, EventArgs e)
