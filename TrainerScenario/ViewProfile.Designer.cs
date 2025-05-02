@@ -31,7 +31,6 @@
             dgvCert = new DataGridView();
             btnCreateNew = new Button();
             btnDelete = new Button();
-            btnEdit = new Button();
             label1 = new Label();
             lbNationalID = new Label();
             lbName = new Label();
@@ -84,17 +83,6 @@
             btnDelete.Text = "Delete";
             btnDelete.UseVisualStyleBackColor = true;
             btnDelete.Click += btnDelete_Click;
-            // 
-            // btnEdit
-            // 
-            btnEdit.Anchor = AnchorStyles.Bottom | AnchorStyles.Left;
-            btnEdit.Location = new Point(130, 283);
-            btnEdit.Name = "btnEdit";
-            btnEdit.Size = new Size(112, 32);
-            btnEdit.TabIndex = 8;
-            btnEdit.Text = "Edit";
-            btnEdit.UseVisualStyleBackColor = true;
-            btnEdit.Click += btnEdit_Click;
             // 
             // label1
             // 
@@ -247,7 +235,6 @@
             Controls.Add(dgvCert);
             Controls.Add(btnCreateNew);
             Controls.Add(btnDelete);
-            Controls.Add(btnEdit);
             Name = "ViewProfile";
             Text = "ViewProfile";
             Load += ViewProfile_Load;

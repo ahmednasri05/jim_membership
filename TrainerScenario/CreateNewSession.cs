@@ -188,5 +188,10 @@ namespace jim_membership.TrainerScenario
         {
 
         }
+
+        private void lbSessionNumber_Click(object sender, EventArgs e)
+        {
+
+        }
     }
 }

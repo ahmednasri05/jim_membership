@@ -86,17 +86,55 @@ namespace jim_membership.TrainerScenario
 
         private void btnCreateNew_Click(object sender, EventArgs e)
         {
-
+            var form = new CreateCerteficate();
+            if (form.ShowDialog() == DialogResult.OK)
+            {
+                DisplayCertificates();
+            }
         }
 
         private void btnEdit_Click(object sender, EventArgs e)
         {
+            if (dgvCert.SelectedRows.Count == 0)
+            {
+                MessageBox.Show("Please select a session to edit", "Information",
+                    MessageBoxButtons.OK, MessageBoxIcon.Information);
+                return;
+            }
 
+            var selected = (models.CertificatesModel)dgvCert.SelectedRows[0].DataBoundItem;
+            var form = new EditCertificate(selected);
+            if (form.ShowDialog() == DialogResult.OK)
+            {
+                DisplayCertificates();
+            }
         }
 
         private void btnDelete_Click(object sender, EventArgs e)
         {
+            if (dgvCert.SelectedRows.Count == 0)
+            {
+                MessageBox.Show("Please select a session to delete", "Information",
+                    MessageBoxButtons.OK, MessageBoxIcon.Information);
+                return;
+            }
 
+            var selected = (models.CertificatesModel)dgvCert.SelectedRows[0].DataBoundItem;
+            var result = MessageBox.Show($"Are you sure you want to delete {selected.trainerID} - {selected.Certificate}?", "Delete Session",
+                MessageBoxButtons.YesNo, MessageBoxIcon.Warning);
+            if (result == DialogResult.Yes)
+            {
+                try
+                {
+                    models.CertificatesModel.Delete(selected.Certificate);
+                    DisplayCertificates();
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show("Error deleting session: " + ex.Message, "Error",
+                        MessageBoxButtons.OK, MessageBoxIcon.Error);
+                }
+            }
         }
 
         private void dgvCert_CellContentClick(object sender, DataGridViewCellEventArgs e)

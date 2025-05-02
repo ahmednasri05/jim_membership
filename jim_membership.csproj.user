@@ -73,6 +73,9 @@
     <Compile Update="TrainerScenario\CreateNewSession.cs">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Update="TrainerScenario\EditCertificate.cs">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Update="TrainerScenario\EditSession.cs">
       <SubType>Form</SubType>
     </Compile>

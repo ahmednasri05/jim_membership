@@ -1,5 +1,4 @@
-﻿using jim_membership.models;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -8,23 +7,23 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
-using static System.Windows.Forms.VisualStyles.VisualStyleElement;
 
 namespace jim_membership.TrainerScenario
 {
-    public partial class CreateCerteficate : Form
+    public partial class EditCertificate : Form
     {
-        public CreateCerteficate()
+        public EditCertificate(models.CertificatesModel selected)
         {
             InitializeComponent();
-            PopulateLabels();
+            PopulateLabels(selected);
         }
 
-        private void PopulateLabels()
+        private void PopulateLabels(models.CertificatesModel selected)
         {
             try
             {
                 lbTrainerIDInput.Text = ProgramSession.Instance.UserId;
+                txtDescription.Text = selected.Certificate;
             }
             catch (Exception ex)
             {
@@ -37,9 +36,10 @@ namespace jim_membership.TrainerScenario
 
         }
 
-        private void txtDescription_TextChanged(object sender, EventArgs e)
+        private void btnCancel_Click(object sender, EventArgs e)
         {
-
+            this.DialogResult = DialogResult.Cancel;
+            this.Close();
         }
 
         private void btnSave_Click(object sender, EventArgs e)
@@ -61,7 +61,7 @@ namespace jim_membership.TrainerScenario
                     Certificate = CertificateDes
                 };
 
-                Cert.Create();
+                Cert.Update();
                 MessageBox.Show("Session created successfully!", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
 
 
@@ -79,15 +79,8 @@ namespace jim_membership.TrainerScenario
             }
         }
 
-        private void btnCancel_Click(object sender, EventArgs e)
+        private void EditCertificate_Load(object sender, EventArgs e)
         {
-            this.DialogResult = DialogResult.Cancel;
-            this.Close();
-        }
-
-        private void CreateCerteficate_Load(object sender, EventArgs e)
-        {
-            PopulateLabels();
         }
     }
 }

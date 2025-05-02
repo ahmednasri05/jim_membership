@@ -1,6 +1,6 @@
 ﻿namespace jim_membership.TrainerScenario
 {
-    partial class CreateCerteficate
+    partial class EditCertificate
     {
         /// <summary>
         /// Required designer variable.
@@ -28,104 +28,93 @@
         /// </summary>
         private void InitializeComponent()
         {
-            lbTrainerInfo = new Label();
+            lbTrainerIDInput = new Label();
             txtDescription = new TextBox();
             btnCancel = new Button();
             btnSave = new Button();
             lbDescription = new Label();
             lbTrainerID = new Label();
-            lbTrainerIDInput = new Label();
             SuspendLayout();
             // 
-            // lbTrainerInfo
+            // lbTrainerIDInput
             // 
-            lbTrainerInfo.Location = new Point(410, 94);
-            lbTrainerInfo.Name = "lbTrainerInfo";
-            lbTrainerInfo.Size = new Size(110, 23);
-            lbTrainerInfo.TabIndex = 56;
+            lbTrainerIDInput.Anchor = AnchorStyles.Top | AnchorStyles.Right;
+            lbTrainerIDInput.Location = new Point(104, 18);
+            lbTrainerIDInput.Name = "lbTrainerIDInput";
+            lbTrainerIDInput.Size = new Size(172, 23);
+            lbTrainerIDInput.TabIndex = 63;
+            lbTrainerIDInput.Click += lbTrainerIDInput_Click;
             // 
             // txtDescription
             // 
             txtDescription.Anchor = AnchorStyles.Top | AnchorStyles.Right;
-            txtDescription.Location = new Point(159, 81);
+            txtDescription.Location = new Point(104, 66);
             txtDescription.Name = "txtDescription";
             txtDescription.Size = new Size(181, 23);
-            txtDescription.TabIndex = 54;
-            txtDescription.TextChanged += txtDescription_TextChanged;
+            txtDescription.TabIndex = 62;
             // 
             // btnCancel
             // 
             btnCancel.Anchor = AnchorStyles.Top | AnchorStyles.Right;
-            btnCancel.Location = new Point(221, 131);
+            btnCancel.Location = new Point(170, 119);
             btnCancel.Name = "btnCancel";
             btnCancel.Size = new Size(106, 38);
-            btnCancel.TabIndex = 49;
+            btnCancel.TabIndex = 61;
             btnCancel.Text = "Cancel";
             btnCancel.UseVisualStyleBackColor = true;
             btnCancel.Click += btnCancel_Click;
             // 
             // btnSave
             // 
-            btnSave.Location = new Point(12, 131);
+            btnSave.Location = new Point(16, 119);
             btnSave.Name = "btnSave";
             btnSave.Size = new Size(106, 38);
-            btnSave.TabIndex = 48;
+            btnSave.TabIndex = 60;
             btnSave.Text = "Save";
             btnSave.UseVisualStyleBackColor = true;
             btnSave.Click += btnSave_Click;
             // 
             // lbDescription
             // 
-            lbDescription.Location = new Point(12, 81);
+            lbDescription.Location = new Point(12, 69);
             lbDescription.Name = "lbDescription";
             lbDescription.Size = new Size(110, 23);
-            lbDescription.TabIndex = 47;
+            lbDescription.TabIndex = 59;
             lbDescription.Text = "Desciption";
             // 
             // lbTrainerID
             // 
-            lbTrainerID.Location = new Point(12, 30);
+            lbTrainerID.Location = new Point(12, 18);
             lbTrainerID.Name = "lbTrainerID";
             lbTrainerID.Size = new Size(110, 23);
-            lbTrainerID.TabIndex = 41;
+            lbTrainerID.TabIndex = 58;
             lbTrainerID.Text = "Trainer ID";
             // 
-            // lbTrainerIDInput
-            // 
-            lbTrainerIDInput.Anchor = AnchorStyles.Top | AnchorStyles.Right;
-            lbTrainerIDInput.Location = new Point(159, 30);
-            lbTrainerIDInput.Name = "lbTrainerIDInput";
-            lbTrainerIDInput.Size = new Size(172, 23);
-            lbTrainerIDInput.TabIndex = 57;
-            lbTrainerIDInput.Click += lbTrainerIDInput_Click;
-            // 
-            // CreateCerteficate
+            // EditCertificate
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(361, 196);
+            ClientSize = new Size(343, 176);
             Controls.Add(lbTrainerIDInput);
-            Controls.Add(lbTrainerInfo);
             Controls.Add(txtDescription);
             Controls.Add(btnCancel);
             Controls.Add(btnSave);
             Controls.Add(lbDescription);
             Controls.Add(lbTrainerID);
-            Name = "CreateCerteficate";
-            Text = "CreateCerteficate";
+            Name = "EditCertificate";
+            Text = "EditCertificate";
+            Load += EditCertificate_Load;
             ResumeLayout(false);
             PerformLayout();
         }
 
         #endregion
 
-        private Label lbTrainerInfo;
-        private TextBox textBox8;
+        private Label lbTrainerIDInput;
+        private TextBox txtDescription;
         private Button btnCancel;
         private Button btnSave;
         private Label lbDescription;
         private Label lbTrainerID;
-        private Label lbTrainerIDInput;
-        private TextBox txtDescription;
     }
 }

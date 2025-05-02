@@ -18,8 +18,8 @@ namespace jim_membership.models
             try
             {
                 ProgramSession.Instance.OpenConnection();
-                string sql = @"INSERT INTO Certificates (trainerID, CertificatesModel)
-                               VALUES (@trainerID, @CertificatesModel)";
+                string sql = @"INSERT INTO Certificates (trainerID, Certificate)
+                               VALUES (@trainerID, @Certificate)";
                 ProgramSession.Instance.dbConnection.Execute(sql, this);
             }
             catch (Exception ex)
@@ -98,8 +98,8 @@ namespace jim_membership.models
             {
                 ProgramSession.Instance.OpenConnection();
                 string sql = @"UPDATE Certificates 
-                               SET CertificatesModel = @CertificatesModel 
-                               WHERE trainerID = @trainerID";
+                               SET Certificate = @Certificate 
+                               WHERE Certificate = @trainerID";
                 ProgramSession.Instance.dbConnection.Execute(sql, this);
             }
             catch (Exception ex)
@@ -118,8 +118,26 @@ namespace jim_membership.models
             try
             {
                 ProgramSession.Instance.OpenConnection();
-                string sql = "DELETE FROM Certificates WHERE trainerID = @trainerID";
-                ProgramSession.Instance.dbConnection.Execute(sql, new { CertificateID = certificateId });
+                string sql = "DELETE FROM Certificates WHERE Certificate = @Certificate";
+                ProgramSession.Instance.dbConnection.Execute(sql, new { Certificate = certificateId });
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine($"Error deleting certificate: {ex.Message}");
+            }
+            finally
+            {
+                ProgramSession.Instance.CloseConnection();
+            }
+        }
+
+        public static void Delete(string certificateId)
+        {
+            try
+            {
+                ProgramSession.Instance.OpenConnection();
+                string sql = "DELETE FROM Certificates WHERE Certificate = @Certificate";
+                ProgramSession.Instance.dbConnection.Execute(sql, new { Certificate = certificateId });
             }
             catch (Exception ex)
             {

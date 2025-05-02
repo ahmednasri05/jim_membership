@@ -173,6 +173,7 @@
             lbSessionNumber.Name = "lbSessionNumber";
             lbSessionNumber.Size = new Size(199, 23);
             lbSessionNumber.TabIndex = 39;
+            lbSessionNumber.Click += lbSessionNumber_Click;
             // 
             // lbMaxNumber
             // 
