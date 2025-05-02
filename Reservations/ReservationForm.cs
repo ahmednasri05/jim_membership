@@ -147,10 +147,10 @@ namespace jim_membership
 
         private void BtnReserve_Click(object sender, EventArgs e)
         {
-            if (int.TryParse(txtMemberID.Text, out int memberId) &&
-                int.TryParse(txtSessionNo.Text, out int sessionNo))
+            if (int.TryParse(txtMemberID.Text, out _) &&
+                int.TryParse(txtSessionNo.Text, out _))
             {
-                bool success = Reserve.ReserveSession(memberId, sessionNo);
+                bool success = Reserve.ReserveSession(txtMemberID.Text, txtSessionNo.Text);
                 MessageBox.Show(success ? "Reserved!" : "Reservation failed.");
                 if (success)
                     BtnLoad_Click(sender, e);
@@ -163,11 +163,11 @@ namespace jim_membership
 
         private void BtnDelete_Click(object sender, EventArgs e)
         {
-            if (int.TryParse(txtMemberID.Text, out int memberId) &&
+            if (int.TryParse(txtMemberID.Text, out _) &&
                 int.TryParse(txtTransactionID.Text, out int transactionId) &&
-                int.TryParse(txtSessionNo.Text, out int sessionNo))
+                int.TryParse(txtSessionNo.Text, out _))
             {
-                Reserve.Delete(memberId, transactionId, sessionNo);
+                Reserve.Delete(txtMemberID.Text, transactionId, txtSessionNo.Text);
                 MessageBox.Show("Deleted!");
                 BtnLoad_Click(sender, e);
             }

@@ -19,7 +19,7 @@ namespace jim_membership.Admin
         }
         private void TabControl_SelectedIndexChanged(object sender, EventArgs e)
         {
- 
+
             if (tabControl.SelectedTab == tabTrainers)
             {
                 // Initialize Trainer CRUD
@@ -62,14 +62,5 @@ namespace jim_membership.Admin
             }
         }
 
-        private void tabUsers_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void tabSubscriptions_Click(object sender, EventArgs e)
-        {
-
-        }
     }
 }
