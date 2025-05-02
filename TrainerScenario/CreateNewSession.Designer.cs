@@ -165,6 +165,7 @@
             lbTrainerName.Name = "lbTrainerName";
             lbTrainerName.Size = new Size(199, 23);
             lbTrainerName.TabIndex = 38;
+            lbTrainerName.Click += lbTrainerName_Click;
             // 
             // lbSessionNumber
             // 
@@ -210,12 +211,13 @@
             numericUpDown2.Name = "numericUpDown2";
             numericUpDown2.Size = new Size(199, 23);
             numericUpDown2.TabIndex = 45;
+            numericUpDown2.ValueChanged += numericUpDown2_ValueChanged;
             // 
             // CreateNewSession
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(381, 443);
+            ClientSize = new Size(386, 443);
             Controls.Add(numericUpDown2);
             Controls.Add(numericUpDown1);
             Controls.Add(dateTimePicker1);

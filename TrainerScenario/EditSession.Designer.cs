@@ -28,11 +28,13 @@
         /// </summary>
         private void InitializeComponent()
         {
-            textBox8 = new TextBox();
-            textBox7 = new TextBox();
-            textBox6 = new TextBox();
-            textBox5 = new TextBox();
-            textBox4 = new TextBox();
+            nudDuration = new NumericUpDown();
+            nudMaxAtt = new NumericUpDown();
+            dtpDate = new DateTimePicker();
+            lbMaxNumber = new Label();
+            lbSessionNumber = new Label();
+            lbTrainerName = new Label();
+            txtTime = new TextBox();
             btnCancel = new Button();
             btnSave = new Button();
             lbDescription = new Label();
@@ -43,182 +45,184 @@
             lbBranchNo = new Label();
             label2 = new Label();
             lbSessionNo = new Label();
-            lbSessionNumberEdit = new Label();
-            lbTrainerInfo = new Label();
-            lbBranch = new Label();
-            lbMaxNumberInput = new TextBox();
-            lbMaxNumber = new Label();
+            lbBranchNumber = new Label();
+            txtType = new TextBox();
+            txtDescription = new TextBox();
+            ((System.ComponentModel.ISupportInitialize)nudDuration).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)nudMaxAtt).BeginInit();
             SuspendLayout();
             // 
-            // textBox8
+            // nudDuration
             // 
-            textBox8.Location = new Point(165, 258);
-            textBox8.Name = "textBox8";
-            textBox8.Size = new Size(119, 23);
-            textBox8.TabIndex = 36;
+            nudDuration.Location = new Point(170, 189);
+            nudDuration.Name = "nudDuration";
+            nudDuration.Size = new Size(199, 23);
+            nudDuration.TabIndex = 65;
             // 
-            // textBox7
+            // nudMaxAtt
             // 
-            textBox7.Location = new Point(165, 221);
-            textBox7.Name = "textBox7";
-            textBox7.Size = new Size(119, 23);
-            textBox7.TabIndex = 35;
+            nudMaxAtt.Location = new Point(170, 296);
+            nudMaxAtt.Name = "nudMaxAtt";
+            nudMaxAtt.Size = new Size(199, 23);
+            nudMaxAtt.TabIndex = 64;
             // 
-            // textBox6
+            // dtpDate
             // 
-            textBox6.Location = new Point(165, 188);
-            textBox6.Name = "textBox6";
-            textBox6.Size = new Size(119, 23);
-            textBox6.TabIndex = 34;
+            dtpDate.Location = new Point(170, 122);
+            dtpDate.Name = "dtpDate";
+            dtpDate.Size = new Size(199, 23);
+            dtpDate.TabIndex = 63;
             // 
-            // textBox5
+            // lbMaxNumber
             // 
-            textBox5.Location = new Point(165, 154);
-            textBox5.Name = "textBox5";
-            textBox5.Size = new Size(119, 23);
-            textBox5.TabIndex = 33;
+            lbMaxNumber.Location = new Point(30, 298);
+            lbMaxNumber.Name = "lbMaxNumber";
+            lbMaxNumber.Size = new Size(121, 23);
+            lbMaxNumber.TabIndex = 61;
+            lbMaxNumber.Text = "Maximum Attendees";
             // 
-            // textBox4
+            // lbSessionNumber
             // 
-            textBox4.Location = new Point(165, 121);
-            textBox4.Name = "textBox4";
-            textBox4.Size = new Size(119, 23);
-            textBox4.TabIndex = 32;
+            lbSessionNumber.Location = new Point(170, 24);
+            lbSessionNumber.Name = "lbSessionNumber";
+            lbSessionNumber.Size = new Size(199, 23);
+            lbSessionNumber.TabIndex = 60;
+            lbSessionNumber.Click += lbSessionNumber_Click;
+            // 
+            // lbTrainerName
+            // 
+            lbTrainerName.Location = new Point(170, 56);
+            lbTrainerName.Name = "lbTrainerName";
+            lbTrainerName.Size = new Size(199, 23);
+            lbTrainerName.TabIndex = 59;
+            // 
+            // txtTime
+            // 
+            txtTime.Location = new Point(170, 155);
+            txtTime.Name = "txtTime";
+            txtTime.Size = new Size(199, 23);
+            txtTime.TabIndex = 56;
             // 
             // btnCancel
             // 
-            btnCancel.Location = new Point(169, 358);
+            btnCancel.Location = new Point(170, 376);
             btnCancel.Name = "btnCancel";
             btnCancel.Size = new Size(106, 38);
-            btnCancel.TabIndex = 30;
+            btnCancel.TabIndex = 55;
             btnCancel.Text = "Cancel";
             btnCancel.UseVisualStyleBackColor = true;
+            btnCancel.Click += btnCancel_Click;
             // 
             // btnSave
             // 
-            btnSave.Location = new Point(25, 358);
+            btnSave.Location = new Point(30, 376);
             btnSave.Name = "btnSave";
             btnSave.Size = new Size(106, 38);
-            btnSave.TabIndex = 29;
+            btnSave.TabIndex = 54;
             btnSave.Text = "Save";
             btnSave.UseVisualStyleBackColor = true;
+            btnSave.Click += btnSave_Click;
             // 
             // lbDescription
             // 
-            lbDescription.Location = new Point(25, 258);
+            lbDescription.Location = new Point(30, 259);
             lbDescription.Name = "lbDescription";
             lbDescription.Size = new Size(110, 23);
-            lbDescription.TabIndex = 27;
+            lbDescription.TabIndex = 53;
             lbDescription.Text = "Desciption";
             // 
             // lbType
             // 
-            lbType.Location = new Point(25, 224);
+            lbType.Location = new Point(30, 225);
             lbType.Name = "lbType";
             lbType.Size = new Size(110, 23);
-            lbType.TabIndex = 26;
+            lbType.TabIndex = 52;
             lbType.Text = "Type";
             // 
             // lbDuration
             // 
-            lbDuration.Location = new Point(25, 188);
+            lbDuration.Location = new Point(30, 189);
             lbDuration.Name = "lbDuration";
             lbDuration.Size = new Size(110, 23);
-            lbDuration.TabIndex = 25;
+            lbDuration.TabIndex = 51;
             lbDuration.Text = "Duration (min)";
             // 
             // Time
             // 
-            Time.Location = new Point(25, 154);
+            Time.Location = new Point(30, 155);
             Time.Name = "Time";
             Time.Size = new Size(110, 23);
-            Time.TabIndex = 24;
-            Time.Text = "Time";
+            Time.TabIndex = 50;
+            Time.Text = "Time (24h)";
             // 
             // Date
             // 
-            Date.Location = new Point(25, 121);
+            Date.Location = new Point(30, 122);
             Date.Name = "Date";
             Date.Size = new Size(110, 23);
-            Date.TabIndex = 23;
+            Date.TabIndex = 49;
             Date.Text = "Date";
             // 
             // lbBranchNo
             // 
-            lbBranchNo.Location = new Point(25, 88);
+            lbBranchNo.Location = new Point(30, 89);
             lbBranchNo.Name = "lbBranchNo";
             lbBranchNo.Size = new Size(110, 23);
-            lbBranchNo.TabIndex = 22;
+            lbBranchNo.TabIndex = 48;
             lbBranchNo.Text = "Branch Number";
             // 
             // label2
             // 
-            label2.Location = new Point(25, 55);
+            label2.Location = new Point(30, 56);
             label2.Name = "label2";
             label2.Size = new Size(110, 23);
-            label2.TabIndex = 21;
+            label2.TabIndex = 47;
             label2.Text = "Trainer ID - Name";
             // 
             // lbSessionNo
             // 
-            lbSessionNo.Location = new Point(25, 23);
+            lbSessionNo.Location = new Point(30, 24);
             lbSessionNo.Name = "lbSessionNo";
             lbSessionNo.Size = new Size(110, 23);
-            lbSessionNo.TabIndex = 19;
+            lbSessionNo.TabIndex = 46;
             lbSessionNo.Text = "Session Number";
             // 
-            // lbSessionNumberEdit
+            // lbBranchNumber
             // 
-            lbSessionNumberEdit.Location = new Point(161, 23);
-            lbSessionNumberEdit.Name = "lbSessionNumberEdit";
-            lbSessionNumberEdit.Size = new Size(110, 23);
-            lbSessionNumberEdit.TabIndex = 37;
-            lbSessionNumberEdit.Click += label1_Click;
+            lbBranchNumber.Location = new Point(170, 89);
+            lbBranchNumber.Name = "lbBranchNumber";
+            lbBranchNumber.Size = new Size(199, 23);
+            lbBranchNumber.TabIndex = 66;
             // 
-            // lbTrainerInfo
+            // txtType
             // 
-            lbTrainerInfo.Location = new Point(161, 55);
-            lbTrainerInfo.Name = "lbTrainerInfo";
-            lbTrainerInfo.Size = new Size(110, 23);
-            lbTrainerInfo.TabIndex = 38;
+            txtType.Location = new Point(170, 222);
+            txtType.Name = "txtType";
+            txtType.Size = new Size(199, 23);
+            txtType.TabIndex = 67;
             // 
-            // lbBranch
+            // txtDescription
             // 
-            lbBranch.Location = new Point(165, 88);
-            lbBranch.Name = "lbBranch";
-            lbBranch.Size = new Size(110, 23);
-            lbBranch.TabIndex = 39;
-            // 
-            // lbMaxNumberInput
-            // 
-            lbMaxNumberInput.Location = new Point(165, 301);
-            lbMaxNumberInput.Name = "lbMaxNumberInput";
-            lbMaxNumberInput.Size = new Size(119, 23);
-            lbMaxNumberInput.TabIndex = 43;
-            // 
-            // lbMaxNumber
-            // 
-            lbMaxNumber.Location = new Point(25, 301);
-            lbMaxNumber.Name = "lbMaxNumber";
-            lbMaxNumber.Size = new Size(121, 23);
-            lbMaxNumber.TabIndex = 42;
-            lbMaxNumber.Text = "Maximum Attendees";
+            txtDescription.Location = new Point(170, 256);
+            txtDescription.Name = "txtDescription";
+            txtDescription.Size = new Size(199, 23);
+            txtDescription.TabIndex = 68;
             // 
             // EditSession
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(358, 419);
-            Controls.Add(lbMaxNumberInput);
+            ClientSize = new Size(390, 433);
+            Controls.Add(txtDescription);
+            Controls.Add(txtType);
+            Controls.Add(lbBranchNumber);
+            Controls.Add(nudDuration);
+            Controls.Add(nudMaxAtt);
+            Controls.Add(dtpDate);
             Controls.Add(lbMaxNumber);
-            Controls.Add(lbBranch);
-            Controls.Add(lbTrainerInfo);
-            Controls.Add(lbSessionNumberEdit);
-            Controls.Add(textBox8);
-            Controls.Add(textBox7);
-            Controls.Add(textBox6);
-            Controls.Add(textBox5);
-            Controls.Add(textBox4);
+            Controls.Add(lbSessionNumber);
+            Controls.Add(lbTrainerName);
+            Controls.Add(txtTime);
             Controls.Add(btnCancel);
             Controls.Add(btnSave);
             Controls.Add(lbDescription);
@@ -231,17 +235,21 @@
             Controls.Add(lbSessionNo);
             Name = "EditSession";
             Text = "EditSession";
+            ((System.ComponentModel.ISupportInitialize)nudDuration).EndInit();
+            ((System.ComponentModel.ISupportInitialize)nudMaxAtt).EndInit();
             ResumeLayout(false);
             PerformLayout();
         }
 
         #endregion
 
-        private TextBox textBox8;
-        private TextBox textBox7;
-        private TextBox textBox6;
-        private TextBox textBox5;
-        private TextBox textBox4;
+        private NumericUpDown nudDuration;
+        private NumericUpDown nudMaxAtt;
+        private DateTimePicker dtpDate;
+        private Label lbMaxNumber;
+        private Label lbSessionNumber;
+        private Label lbTrainerName;
+        private TextBox txtTime;
         private Button btnCancel;
         private Button btnSave;
         private Label lbDescription;
@@ -252,10 +260,8 @@
         private Label lbBranchNo;
         private Label label2;
         private Label lbSessionNo;
-        private Label lbSessionNumberEdit;
-        private Label lbTrainerInfo;
-        private Label lbBranch;
-        private TextBox lbMaxNumberInput;
-        private Label lbMaxNumber;
+        private Label lbBranchNumber;
+        private TextBox txtType;
+        private TextBox txtDescription;
     }
 }

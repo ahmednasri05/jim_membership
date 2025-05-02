@@ -178,5 +178,15 @@ namespace jim_membership.TrainerScenario
         {
             LoadBranches();
         }
+
+        private void numericUpDown2_ValueChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void lbTrainerName_Click(object sender, EventArgs e)
+        {
+
+        }
     }
 }

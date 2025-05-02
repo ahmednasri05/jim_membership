@@ -29,7 +29,7 @@ namespace jim_membership.TrainerScenario
             }
             else
             {
-
+                dataGridView1.DataSource = Session.GetAll();
             }
 
         }
@@ -87,7 +87,7 @@ namespace jim_membership.TrainerScenario
             }
 
             var selected = (Session)dataGridView1.SelectedRows[0].DataBoundItem;
-            var form = new EditSession();
+            var form = new EditSession(selected);
             if (form.ShowDialog() == DialogResult.OK)
             {
                 DisplaySessions();
