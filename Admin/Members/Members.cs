@@ -22,7 +22,7 @@ namespace jim_membership.Admin
         {
 
         }
-        private void LoadMembers()
+        public void LoadMembers()
         {
             try
             {

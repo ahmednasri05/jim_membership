@@ -22,7 +22,7 @@ namespace jim_membership.Admin
                 deleteGuest.Visible = false; // Hide the Delete button
             }
         }
-        private void LoadGuests()
+        public void LoadGuests()
         {
             if (ProgramSession.Instance.UserRole != "Admin")
             {
