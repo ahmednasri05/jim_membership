@@ -43,6 +43,7 @@ namespace jim_membership.Admin
         private void PopulateFields()
         {
             userComboBox.SelectedValue = Trainer.NationalID;
+            userComboBox.Enabled = false;
             txtSalary.Text = Trainer.Salary.ToString();
             dtpStartDate.Value = Trainer.StartDate;
             txtContractType.Text = Trainer.ContractType;
@@ -73,7 +74,7 @@ namespace jim_membership.Admin
                 {   Member member = Member.GetById(Trainer.NationalID);
                     if(member != null)
                     {
-                        MessageBox.Show("Trainer cannot be a member. Please select a different user.", "Invalid User", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                        MessageBox.Show("Member cannot be a Trainer. Please select a different user.", "Invalid User", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                         this.DialogResult = DialogResult.None;
                         return;
                     }

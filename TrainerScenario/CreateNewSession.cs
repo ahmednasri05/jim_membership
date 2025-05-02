@@ -146,7 +146,7 @@ namespace jim_membership.TrainerScenario
                     maxNumber = maxAttendees,
                     date = sessionDate,
                     Time = sessionTimeOfDay,
-                    duration = duration,
+                    //duration = duration,
                     description = description
                 };
 

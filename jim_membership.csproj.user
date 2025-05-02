@@ -16,9 +16,6 @@
     <Compile Update="Admin\Members\Members.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Update="Admin\MyAccount\MyAccount.cs">
-      <SubType>Form</SubType>
-    </Compile>
     <Compile Update="Admin\Subscribe\EditSubscription.cs">
       <SubType>Form</SubType>
     </Compile>
