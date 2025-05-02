@@ -1,18 +1,17 @@
 ﻿using System;
 using System.Data.SqlClient;
+using jim_membership.Admin;
 
 namespace jim_membership
 {
     public class ProgramSession
     {
-        // Singleton instance
         private static ProgramSession _instance;
-
-        // Public property to access the Singleton instance
         public static ProgramSession Instance => _instance ??= new ProgramSession();
 
-        // Properties
-        public int UserId { get; private set; }
+        public string UserId { get; private set; }
+
+        public string UserRole { get; private set; }
         public SqlConnection dbConnection { get; private set; }
 
         // Private constructor to prevent external instantiation
@@ -31,9 +30,26 @@ namespace jim_membership
         }
 
         // Method to set the UserId (optional, if needed)
-        public void SetUserId(int userId)
+        public void SetUserId(string userId)
         {
+         if (!string.IsNullOrEmpty(UserId))
+         {
+        throw new InvalidOperationException("User is already logged in.");
+         }
             UserId = userId;
+            if (userId == "1001") // Admin user ID
+            {
+            UserRole = "Admin";
+            var AdminStart = new AdminStart();
+            AdminStart.Show();
+            }
+            else
+            {
+                UserRole = "User"; // Default role for other users
+            var UserStart = new UserStart();
+            UserStart.Show();
+            }
+             
         }
 
         // Method to open the database connection
@@ -93,5 +109,7 @@ namespace jim_membership
                 Console.WriteLine($"Unexpected error during disposal: {ex.Message}");
             }
         }
+
+        
     }
 }
