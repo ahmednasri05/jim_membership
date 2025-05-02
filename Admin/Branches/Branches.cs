@@ -24,7 +24,7 @@ namespace jim_membership.Admin
                 AddBranch.Visible = false; // Hide the Add button
             }
         }
-        private void LoadBranches()
+        public void LoadBranches()
         {
             try
             {

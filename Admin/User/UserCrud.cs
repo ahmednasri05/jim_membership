@@ -21,7 +21,7 @@ namespace jim_membership.Admin
             Load += UserCrud_Load;
         }
 
-        private void LoadUsers()
+        public void LoadUsers()
         {
             try
             {
@@ -83,6 +83,7 @@ namespace jim_membership.Admin
                 {
                     User.Delete(selected.NationalID);
                     LoadUsers();
+                    
                 }
                 catch (Exception ex)
                 {
@@ -98,6 +99,11 @@ namespace jim_membership.Admin
         }
 
         private void dgvUsers_CellContentClick(object sender, DataGridViewCellEventArgs e)
+        {
+
+        }
+
+        private void btnDeleteClient_Click_1(object sender, EventArgs e)
         {
 
         }

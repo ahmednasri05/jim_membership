@@ -70,6 +70,7 @@
             btnDeleteClient.TabIndex = 3;
             btnDeleteClient.Text = "Delete";
             btnDeleteClient.UseVisualStyleBackColor = true;
+            btnDeleteClient.Click += btnDeleteClient_Click_1;
             // 
             // textBox1
             // 
@@ -95,6 +96,7 @@
             ResumeLayout(false);
             PerformLayout();
         }
+
         private TextBox textBox1;
     }
 }

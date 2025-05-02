@@ -22,7 +22,7 @@ namespace jim_membership.Admin
             }
         }
 
-        private void LoadSubscriptions()
+        public void LoadSubscriptions()
         {
             try
             {
@@ -106,7 +106,7 @@ namespace jim_membership.Admin
             {
                 LoadSubscriptions("amount");
             }
-            else if (selected == "noOfFreeSessions")
+            else if (selected == "noOfPrivateSessions")
             {
                 LoadSubscriptions("noOfPrivateSessions");
             }

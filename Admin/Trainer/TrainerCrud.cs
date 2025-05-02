@@ -18,7 +18,7 @@ namespace jim_membership.Admin
             }
         }
 
-        private void LoadTrainers()
+        public void LoadTrainers()
         {
             try
             {
