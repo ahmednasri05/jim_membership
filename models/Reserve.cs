@@ -57,6 +57,7 @@ namespace jim_membership.models
         {
             try
             {
+                // filler comment
                 ProgramSession.Instance.OpenConnection();
                 string sql = "DELETE FROM Reserves WHERE memberID = @memberID AND transactionID = @transactionID AND sessionNo = @sessionNo";
                 ProgramSession.Instance.dbConnection.Execute(sql, new { memberID = memberId, transactionID = transactionId, sessionNo = sessionNo });
