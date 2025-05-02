@@ -1,6 +1,8 @@
 ﻿using System;
 using System.Data.SqlClient;
 using jim_membership.Admin;
+using jim_membership.models;
+using jim_membership.TrainerScenario;
 namespace jim_membership
 {
     public class ProgramSession
@@ -40,6 +42,12 @@ namespace jim_membership
             UserRole = "Admin";
             var AdminStart = new AdminStart();
             AdminStart.Show();
+            } 
+            else if (Trainer.CheckIfTrainer(userId))
+            {
+                UserRole = "Trainer"; // Trainer role
+                var TrainerStart = new TrainerHomePage();
+                TrainerStart.Show();
             }
             else
             {

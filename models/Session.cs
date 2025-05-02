@@ -88,9 +88,8 @@ namespace jim_membership.models
             {
                 ProgramSession.Instance.OpenConnection();
                 string sql = @"UPDATE Sessions 
-                               SET TrainerID = @TrainerID, BranchNo = @BranchNo, Type = @Type, 
-                                   MaxNumber = @MaxNumber, Date = @Date, Duration = @Duration, Description = @Description
-                               WHERE SessionID = @SessionID";
+                               SET  Type = @Type, MaxNumber = @MaxNumber, Date = @Date, Duration = @Duration, Description = @Description, Time = @Time
+                               WHERE sessionNo = @sessionNo";
                 ProgramSession.Instance.dbConnection.Execute(sql, this);
             }
             catch (Exception ex)
@@ -137,8 +136,8 @@ namespace jim_membership.models
             try
             {
                 ProgramSession.Instance.OpenConnection();
-                string sql = "DELETE FROM Sessions WHERE SessionID = @SessionID";
-                ProgramSession.Instance.dbConnection.Execute(sql, new { SessionID = sessionId });
+                string sql = "DELETE FROM Sessions WHERE sessionNo = @sessionNo";
+                ProgramSession.Instance.dbConnection.Execute(sql, new { sessionNo = sessionId });
             }
             catch (Exception ex)
             {

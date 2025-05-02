@@ -17,7 +17,6 @@ namespace jim_membership.TrainerScenario
         {
             InitializeComponent();
             DisplaySessions();
-            // WireUpEvents();
         }
 
         private void checkBox1_CheckedChanged(object sender, EventArgs e)
@@ -60,13 +59,6 @@ namespace jim_membership.TrainerScenario
 
         }
 
-        private void WireUpEvents()
-        {
-            btnCreateNew.Click += btnCreateNew_Click;
-            btnEdit.Click += btnEdit_Click;
-            btnDelete.Click += btnDelete_Click;
-            btnProfile.Click += btnProfile_Click;
-        }
 
         private void btnCreateNew_Click(object sender, EventArgs e)
         {
@@ -124,6 +116,10 @@ namespace jim_membership.TrainerScenario
         private void btnProfile_Click(object sender, EventArgs e)
         {
             var form = new ViewProfile();
+            if (form.ShowDialog() == DialogResult.OK)
+            {
+                DisplaySessions();
+            }
         }
     }
 }

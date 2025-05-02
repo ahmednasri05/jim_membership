@@ -33,7 +33,7 @@ namespace jim_membership.models
         }
 
         // Read by ID
-        public static Certificate GetById(int trainerID)
+        public static Certificate GetById(string trainerID)
         {
             try
             {

@@ -16,7 +16,7 @@ namespace jim_membership.Admin
             btnOK.Click += BtnOK_Click;
         }
 
-        public EditCertificate(int trainerID) : this()
+        public EditCertificate(string trainerID) : this()
         {
             certificate = Certificate.GetById(trainerID);
             if (certificate == null)

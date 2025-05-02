@@ -1,4 +1,6 @@
-﻿using System;
+﻿using jim_membership.models;
+using Microsoft.VisualBasic;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -15,6 +17,29 @@ namespace jim_membership.TrainerScenario
         public ViewProfile()
         {
             InitializeComponent();
+            PopulateLabels();
+            DisplayCertificates();
+        }
+
+        private void PopulateLabels()
+        {
+            try
+            {
+                var tr = Trainer.GetById(ProgramSession.Instance.UserId);
+                var ur = User.GetById(ProgramSession.Instance.UserId);
+
+                lbNationalIDInput.Text = ProgramSession.Instance.UserId;
+                lbNameInput.Text = ur.FName + " " + ur.LName;
+                lbUsernameInput.Text = ur.Username;
+                lbNumberInput.Text = ur.PhoneNumber;
+                lbAddressInput.Text = ur.Address;
+                lbEmailInput.Text = ur.Email;
+
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show($"Error populating form labels: {ex.Message}", "Initialization Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
         }
 
         private void label2_Click(object sender, EventArgs e)
@@ -28,6 +53,47 @@ namespace jim_membership.TrainerScenario
         }
 
         private void label4_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void ViewProfile_Load(object sender, EventArgs e)
+        {
+            PopulateLabels();
+        }
+
+        private void lbNationalIDInput_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void DisplayCertificates()
+        {
+
+            try
+            {
+                var UserCerteficates = Certificate.GetById(ProgramSession.Instance.UserId);
+                dgvCert.DataSource = UserCerteficates;
+            }
+            catch (Exception e)
+            {
+                MessageBox.Show("Error loading sessions: " + e.Message, "Error",
+                    MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+
+        }
+
+        private void btnCreateNew_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void btnEdit_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void btnDelete_Click(object sender, EventArgs e)
         {
 
         }

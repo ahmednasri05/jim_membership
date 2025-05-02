@@ -95,6 +95,7 @@
             lbTrainerName.Name = "lbTrainerName";
             lbTrainerName.Size = new Size(199, 23);
             lbTrainerName.TabIndex = 59;
+            lbTrainerName.Click += lbTrainerName_Click;
             // 
             // txtTime
             // 
@@ -193,6 +194,7 @@
             lbBranchNumber.Name = "lbBranchNumber";
             lbBranchNumber.Size = new Size(199, 23);
             lbBranchNumber.TabIndex = 66;
+            lbBranchNumber.Click += lbBranchNumber_Click;
             // 
             // txtType
             // 

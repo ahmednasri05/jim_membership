@@ -44,7 +44,7 @@ namespace jim_membership.TrainerScenario
                 int nextSessionId = maxSessionId + 1;
 
                 lbSessionNumber.Text = $"{nextSessionId}";
-                lbTrainerName.Text = $"3030";
+                lbTrainerName.Text = $"{ProgramSession.Instance.UserId}";
             }
             catch (Exception ex)
             {
@@ -77,7 +77,7 @@ namespace jim_membership.TrainerScenario
 
             try
             {
-                string branchNumber = comboBox1.SelectedItem?.ToString();
+                string branchNumber = ((jim_membership.models.Branch)comboBox1.SelectedItem).BranchNo; //((jim_membership.models.Branch)comboBox1.SelectedItem).BranchNo
                 DateTime sessionDate = dateTimePicker1.Value.Date;
                 string timeInput = textBox5.Text;
                 int duration = (int)numericUpDown1.Value;
@@ -139,8 +139,8 @@ namespace jim_membership.TrainerScenario
                 // Create a new session object
                 var newSession = new models.Session
                 {
-                    sessionNo = Guid.NewGuid().ToString(),
-                    trainerID = "3030",
+                    sessionNo = (Session.GreatestSessionID() + 1).ToString(),
+                    trainerID = ProgramSession.Instance.UserId,
                     BranchNo = branchNumber,
                     Type = sessionType,
                     maxNumber = maxAttendees,

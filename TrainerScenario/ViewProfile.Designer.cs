@@ -28,7 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
-            dataGridView1 = new DataGridView();
+            dgvCert = new DataGridView();
             btnCreateNew = new Button();
             btnDelete = new Button();
             btnEdit = new Button();
@@ -45,18 +45,22 @@
             lbUsernameInput = new Label();
             lbNameInput = new Label();
             lbNationalIDInput = new Label();
-            ((System.ComponentModel.ISupportInitialize)dataGridView1).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)dgvCert).BeginInit();
             SuspendLayout();
             // 
-            // dataGridView1
+            // dgvCert
             // 
-            dataGridView1.Anchor = AnchorStyles.Bottom | AnchorStyles.Left | AnchorStyles.Right;
-            dataGridView1.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            dataGridView1.Location = new Point(7, 348);
-            dataGridView1.Name = "dataGridView1";
-            dataGridView1.RowTemplate.Height = 25;
-            dataGridView1.Size = new Size(420, 318);
-            dataGridView1.TabIndex = 12;
+            dgvCert.Anchor = AnchorStyles.Bottom | AnchorStyles.Left | AnchorStyles.Right;
+            dgvCert.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
+            dgvCert.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            dgvCert.Location = new Point(7, 348);
+            dgvCert.MultiSelect = false;
+            dgvCert.Name = "dgvCert";
+            dgvCert.RowHeadersVisible = false;
+            dgvCert.RowTemplate.Height = 25;
+            dgvCert.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
+            dgvCert.Size = new Size(420, 318);
+            dgvCert.TabIndex = 12;
             // 
             // btnCreateNew
             // 
@@ -67,6 +71,7 @@
             btnCreateNew.TabIndex = 11;
             btnCreateNew.Text = "New";
             btnCreateNew.UseVisualStyleBackColor = true;
+            btnCreateNew.Click += btnCreateNew_Click;
             // 
             // btnDelete
             // 
@@ -77,6 +82,7 @@
             btnDelete.TabIndex = 9;
             btnDelete.Text = "Delete";
             btnDelete.UseVisualStyleBackColor = true;
+            btnDelete.Click += btnDelete_Click;
             // 
             // btnEdit
             // 
@@ -87,6 +93,7 @@
             btnEdit.TabIndex = 8;
             btnEdit.Text = "Edit";
             btnEdit.UseVisualStyleBackColor = true;
+            btnEdit.Click += btnEdit_Click;
             // 
             // label1
             // 
@@ -216,6 +223,7 @@
             lbNationalIDInput.Size = new Size(165, 22);
             lbNationalIDInput.TabIndex = 20;
             lbNationalIDInput.TextAlign = ContentAlignment.MiddleLeft;
+            lbNationalIDInput.Click += lbNationalIDInput_Click;
             // 
             // ViewProfile
             // 
@@ -235,19 +243,20 @@
             Controls.Add(lbName);
             Controls.Add(lbNationalID);
             Controls.Add(label1);
-            Controls.Add(dataGridView1);
+            Controls.Add(dgvCert);
             Controls.Add(btnCreateNew);
             Controls.Add(btnDelete);
             Controls.Add(btnEdit);
             Name = "ViewProfile";
             Text = "ViewProfile";
-            ((System.ComponentModel.ISupportInitialize)dataGridView1).EndInit();
+            Load += ViewProfile_Load;
+            ((System.ComponentModel.ISupportInitialize)dgvCert).EndInit();
             ResumeLayout(false);
         }
 
         #endregion
 
-        private DataGridView dataGridView1;
+        private DataGridView dgvCert;
         private Button btnCreateNew;
         private Button btnDelete;
         private Button btnEdit;

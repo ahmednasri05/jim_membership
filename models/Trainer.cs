@@ -16,7 +16,13 @@ namespace jim_membership.models
         public string ContractType { get; set; }
         public DateTime EndDate { get; set; }
 
-        private static readonly string _connectionString = "your_connection_string_here";
+
+        public static bool CheckIfTrainer(string ID)
+        {
+            if (GetById(ID) != null) return true;
+            return false;
+        }
+
 
         public void Create()
         {
