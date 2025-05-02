@@ -37,7 +37,7 @@ namespace jim_membership.models
         }
 
         // Read by ID
-        public static Invite GetById(int memberId)
+        public static Invite GetById(string memberId)
         {
             try
             {

@@ -32,6 +32,12 @@ namespace jim_membership.Admin
 
         private void LoadMembers()
         {
+            if (ProgramSession.Instance.UserRole != "Admin")
+            {
+                memberIDLabel.Visible = false; // Hide the label for the member ID combo box
+                memberIDComboBox.Visible = false; // Hide the combo box for the member ID
+            }
+            else {
             try
             {
                 var members = Member.GetAll();
@@ -43,6 +49,7 @@ namespace jim_membership.Admin
             {
                 MessageBox.Show($"Error loading members: {ex.Message}", "Error",
                     MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
             }
         }
 
@@ -69,12 +76,20 @@ namespace jim_membership.Admin
                 }
                 else
                 {
-                    var newInvite = new Invite
-                    {
-                        MemberID = memberIDComboBox.SelectedValue.ToString(),
-                        guestID = (nationalIDTextBox.Text),
-                        InvitationDate = invitationDatePicker.Value
-                    };
+                        var newInvite = new Invite
+                        {
+                            guestID = (nationalIDTextBox.Text),
+                            InvitationDate = invitationDatePicker.Value
+                        };
+
+                        if (ProgramSession.Instance.UserRole != "Admin")
+                        {
+                            newInvite.MemberID = ProgramSession.Instance.UserId;
+                        }
+                        else
+                        {
+                            newInvite.MemberID = memberIDComboBox.SelectedValue.ToString();
+                        }
                     newInvite.Create();
                 }
 
@@ -90,7 +105,7 @@ namespace jim_membership.Admin
 
         private bool ValidateFields()
         {
-            if (memberIDComboBox.SelectedValue == null)
+            if (memberIDComboBox.SelectedValue == null && ProgramSession.Instance.UserRole == "Admin")
             {
                 MessageBox.Show("Please select a valid member", "Validation Error",
                     MessageBoxButtons.OK, MessageBoxIcon.Warning);

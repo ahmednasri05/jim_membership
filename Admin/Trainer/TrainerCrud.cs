@@ -10,6 +10,12 @@ namespace jim_membership.Admin
         {
             InitializeComponent();
             LoadTrainers();
+            if (ProgramSession.Instance.UserRole != "Admin")
+            {
+                AddTrainerBtn.Visible = false; // Hide the Edit button
+                EditTrainerBtn.Visible = false; // Hide the Delete button
+                DeleteTrainerBtn.Visible = false; // Hide the Add button
+            }
         }
 
         private void LoadTrainers()

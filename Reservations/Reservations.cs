@@ -66,6 +66,8 @@ namespace jim_membership
 
         private void BtnReserve_Click(object sender, EventArgs e)
         {
+          
+
                 bool success = Reserve.ReserveSession(txtMemberID.Text, txtSessionNo.Text);
                 MessageBox.Show(success ? "Reserved!" : "Reservation failed.");
                 BtnLoad_Click(sender, e);

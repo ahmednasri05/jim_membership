@@ -17,6 +17,12 @@ namespace jim_membership.Admin
         {
             InitializeComponent();
             LoadBranches();
+            if (ProgramSession.Instance.UserRole != "Admin")
+            {
+                edit.Visible = false; // Hide the Edit button
+                DeleteBTn.Visible = false; // Hide the Delete button
+                AddBranch.Visible = false; // Hide the Add button
+            }
         }
         private void LoadBranches()
         {

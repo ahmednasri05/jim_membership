@@ -107,5 +107,15 @@ namespace jim_membership.Admin
         {
 
         }
+
+        private void txtPrivateSessions_TextChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void txtSubscriptionID_TextChanged(object sender, EventArgs e)
+        {
+
+        }
     }
 }

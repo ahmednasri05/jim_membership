@@ -16,11 +16,30 @@ namespace jim_membership.Admin
         {
             InitializeComponent();
             LoadGuests();
+            if (ProgramSession.Instance.UserRole != "Admin")
+            {
+                editGuest.Visible = false; // Hide the Edit button
+                deleteGuest.Visible = false; // Hide the Delete button
+            }
         }
         private void LoadGuests()
         {
-            try
+            if (ProgramSession.Instance.UserRole != "Admin")
             {
+             try
+            {  
+                var guests = Invite.GetById(ProgramSession.Instance.UserId);
+                GuestsGridView.DataSource = guests;
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show($"Error loading users: {ex.Message}", "Error",
+                    MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+            }
+            else {
+            try
+            {  
                 var guests = Invite.GetAll();
                 GuestsGridView.DataSource = guests;
             }
@@ -28,6 +47,7 @@ namespace jim_membership.Admin
             {
                 MessageBox.Show($"Error loading users: {ex.Message}", "Error",
                     MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
             }
         }
         private void GuestsGridView_CellContentClick(object sender, DataGridViewCellEventArgs e)

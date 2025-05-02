@@ -28,7 +28,6 @@ namespace jim_membership
             dbConnection = new SqlConnection(connectionString);
         }
 
-        // Method to set the UserId (optional, if needed)
         public void SetUserId(string userId)
         {
          if (!string.IsNullOrEmpty(UserId))

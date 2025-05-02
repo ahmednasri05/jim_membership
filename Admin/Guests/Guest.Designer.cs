@@ -87,7 +87,13 @@
             AddGuest.Name = "AddGuest";
             AddGuest.Size = new Size(75, 23);
             AddGuest.TabIndex = 4;
+            if (ProgramSession.Instance.UserRole != "Admin")
+            {
+                AddGuest.Text = "Invite"; 
+            }
+            else {
             AddGuest.Text = "Add Guest";
+            }
             AddGuest.UseVisualStyleBackColor = true;
             AddGuest.Click += AddGuest_Click;
             // 

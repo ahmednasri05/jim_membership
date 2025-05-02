@@ -11,6 +11,11 @@ namespace jim_membership.Admin
         {
             InitializeComponent();
             LoadSubscriptions();
+            if (ProgramSession.Instance.UserRole != "Admin") {
+                AddSubBtn.Visible = false;
+                EditSubBtn.Visible = false;
+                DeleteSubBtn.Visible = false;
+            }
         }
 
         private void LoadSubscriptions()
@@ -87,7 +92,7 @@ namespace jim_membership.Admin
             if (sortbyComboBox.SelectedItem == null)
                 return;
             string selected = sortbyComboBox.SelectedItem.ToString();
-            
+
 
             if (selected == "Name")
             {
@@ -115,6 +120,16 @@ namespace jim_membership.Admin
                 MessageBox.Show($"Error loading subscriptions: {ex.Message}", "Error",
                     MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
+        }
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void button2_Click(object sender, EventArgs e)
+        {
+
         }
     }
 }

@@ -1,4 +1,5 @@
 ﻿using jim_membership.models;
+using jim_membership.Admin;
 namespace jim_membership
 {
 
@@ -27,13 +28,9 @@ namespace jim_membership
 
                 if (user != null && user.Password == txtPassword.Text)
                 {
-                    MessageBox.Show("Login successful!", "Success",
-                                  MessageBoxButtons.OK,
-                                  MessageBoxIcon.Information);
-                    // Open main form or dashboard
-                    //var mainForm = new MainForm();
-                    //mainForm.Show();
-                    //this.Hide();
+                    // MessageBox.Show("Login successful!", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                                ProgramSession.Instance.SetUserId(user.NationalID);
+                                this.Hide();
                 }
                 else
                 {
