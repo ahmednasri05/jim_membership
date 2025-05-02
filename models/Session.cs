@@ -15,7 +15,7 @@ namespace jim_membership.models
         public string Type { get; set; }
         public int maxNumber { get; set; }
         public DateTime date { get; set; }
-        public TimeSpan duration { get; set; }
+        public int duration { get; set; }
         public TimeSpan Time { get; set; }
 
         public string description { get; set; }
@@ -27,12 +27,13 @@ namespace jim_membership.models
             {
                 ProgramSession.Instance.OpenConnection();
                 string sql = @"INSERT INTO Sessions (sessionNo, TrainerID, BranchNo, Time, Type, MaxNumber, Date, Duration, Description)
-                               VALUES (@sessionNo, @TrainerID, @BranchNo, @Type, @MaxNumber, @Time , @Date, @duration, @Description)";
+               VALUES (@sessionNo, @TrainerID, @BranchNo, @Time, @Type, @MaxNumber, @Date, @Duration, @Description)";
                 ProgramSession.Instance.dbConnection.Execute(sql, this);
             }
             catch (Exception ex)
             {
                 Console.WriteLine($"Error creating session: {ex.Message}");
+                throw;
             }
             finally
             {
