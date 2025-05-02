@@ -10,6 +10,7 @@
         private TabPage tabBranches;
         private TabPage tabGuests;
         private TabPage tabSubscriptions;
+        private TabPage tabSubscriptionReport;
 
         protected override void Dispose(bool disposing)
         {
@@ -29,6 +30,7 @@
             tabBranches = new TabPage();
             tabGuests = new TabPage();
             tabSubscriptions = new TabPage();
+            tabSubscriptionReport = new TabPage();
 
             tabControl.SuspendLayout();
             SuspendLayout();
@@ -41,6 +43,7 @@
             tabControl.Controls.Add(tabBranches);
             tabControl.Controls.Add(tabGuests);
             tabControl.Controls.Add(tabSubscriptions);
+            tabControl.Controls.Add(tabSubscriptionReport);
             tabControl.Dock = DockStyle.Fill;
             tabControl.Location = new Point(0, 0);
             tabControl.Name = "tabControl";
@@ -107,6 +110,14 @@
             tabSubscriptions.TabIndex = 3;
             tabSubscriptions.Text = "Subscription Plans";
             tabSubscriptions.UseVisualStyleBackColor = true;
+
+            tabSubscriptionReport.Location = new Point(4, 24);
+            tabSubscriptionReport.Name = "tabSubscriptions";
+            tabSubscriptionReport.Padding = new Padding(3);
+            tabSubscriptionReport.Size = new Size(792, 422);
+            tabSubscriptionReport.TabIndex = 3;
+            tabSubscriptionReport.Text = "Subscription Report";
+            tabSubscriptionReport.UseVisualStyleBackColor = true;
 
             // 
             // AdminStart

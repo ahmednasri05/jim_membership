@@ -8,7 +8,7 @@ namespace jim_membership
         static void Main()
         {
             ApplicationConfiguration.Initialize();
-            Application.Run(new ReservationForm());
+            Application.Run(new Login());
   
         }
     }

@@ -11,6 +11,7 @@ namespace jim_membership.Admin
         private Guest guestCrud;
         private Branches branchCrud;
         private SubscriptionCrud subCrud;
+        private SubscriptionsReportForm subReport;
 
         public AdminStart()
         {
@@ -79,6 +80,16 @@ namespace jim_membership.Admin
                 subCrud.Dock = DockStyle.Fill;
                 tabSubscriptions.Controls.Add(subCrud);
                 subCrud.Show();
+            }
+            else if (tabControl.SelectedTab == tabSubscriptionReport)
+            {
+                // Initialize Trainer CRUD
+                subReport = new SubscriptionsReportForm();
+                subReport.TopLevel = false;
+                subReport.FormBorderStyle = FormBorderStyle.None;
+                subReport.Dock = DockStyle.Fill;
+                tabSubscriptionReport.Controls.Add(subReport);
+                subReport.Show();
             }
         }
 
