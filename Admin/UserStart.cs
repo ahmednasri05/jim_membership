@@ -60,6 +60,17 @@ namespace jim_membership.Admin
                 tabSubscriptions.Controls.Add(subCrud);
                 subCrud.Show();
             }
+            else if (tabControl.SelectedTab == tabPage1)
+            {
+                // Initialize Trainer CRUD
+                subCrud = new SubscriptionCrud();
+                subCrud.TopLevel = false;
+                subCrud.FormBorderStyle = FormBorderStyle.None;
+                subCrud.Dock = DockStyle.Fill;
+                tabSubscriptions.Controls.Add(subCrud);
+                subCrud.Show();
+            }
+
         }
 
     }

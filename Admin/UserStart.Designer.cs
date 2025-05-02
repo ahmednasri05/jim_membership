@@ -34,7 +34,6 @@
             tabSubscriptions.TabIndex = 3;
             tabSubscriptions.Text = "Subscription Plans";
             tabSubscriptions.UseVisualStyleBackColor = true;
-            tabSubscriptions.Click += tabSubscriptions_Click;
             // 
             // tabGuests
             // 

@@ -30,6 +30,7 @@
   </ItemGroup>
 
   <ItemGroup>
+    <Folder Include="Admin\MyAccount\" />
     <Folder Include="Resources\" />
   </ItemGroup>
 

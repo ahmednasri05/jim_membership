@@ -53,7 +53,7 @@ namespace jim_membership.models
         }
 
         // Delete
-        public static void Delete(int memberId, int transactionId, int sessionNo)
+        public static void Delete(string memberId, int transactionId, string sessionNo)
         {
             try
             {
