@@ -60,6 +60,7 @@ namespace jim_membership.TrainerScenario
         private void ViewProfile_Load(object sender, EventArgs e)
         {
             PopulateLabels();
+            DisplayCertificates();
         }
 
         private void lbNationalIDInput_Click(object sender, EventArgs e)
@@ -72,7 +73,7 @@ namespace jim_membership.TrainerScenario
 
             try
             {
-                var UserCerteficates = Certificate.GetById(ProgramSession.Instance.UserId);
+                var UserCerteficates = CertificatesModel.GetByTrainerID(ProgramSession.Instance.UserId);
                 dgvCert.DataSource = UserCerteficates;
             }
             catch (Exception e)
@@ -94,6 +95,16 @@ namespace jim_membership.TrainerScenario
         }
 
         private void btnDelete_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void dgvCert_CellContentClick(object sender, DataGridViewCellEventArgs e)
+        {
+
+        }
+
+        private void dgvCert_CellContentClick_1(object sender, DataGridViewCellEventArgs e)
         {
 
         }

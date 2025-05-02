@@ -7,27 +7,27 @@ namespace jim_membership.Admin
     public partial class EditCertificate : Form
     {
         private bool isEditMode = false;
-        private Certificate certificate;
+        private CertificatesModel certificate;
 
         public EditCertificate()
         {
             InitializeComponent();
-            certificate = new Certificate();
+            certificate = new CertificatesModel();
             btnOK.Click += BtnOK_Click;
         }
 
         public EditCertificate(string trainerID) : this()
         {
-            certificate = Certificate.GetById(trainerID);
+            certificate = CertificatesModel.GetById(trainerID);
             if (certificate == null)
             {
-                MessageBox.Show("Certificate not found.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show("CertificatesModel not found.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 this.DialogResult = DialogResult.Cancel;
                 this.Close();
             }
-            txtCertificateID.Text = certificate.TrainerID.ToString();
+            txtCertificateID.Text = certificate.trainerID.ToString();
             txtCertificateID.ReadOnly = true;
-            txtCertificateName.Text = certificate.CertificateName;
+            txtCertificateName.Text = certificate.Certificate;
             isEditMode = true;
         }
 
@@ -36,13 +36,13 @@ namespace jim_membership.Admin
           
             if (string.IsNullOrWhiteSpace(txtCertificateName.Text))
             {
-                MessageBox.Show("Certificate name is required.", "Validation", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                MessageBox.Show("CertificatesModel name is required.", "Validation", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 this.DialogResult = DialogResult.None;
                 return;
             }
 
-            certificate.TrainerID = txtCertificateID.Text;
-            certificate.CertificateName = txtCertificateName.Text;
+            certificate.trainerID = txtCertificateID.Text;
+            certificate.Certificate = txtCertificateName.Text;
 
             try
             {

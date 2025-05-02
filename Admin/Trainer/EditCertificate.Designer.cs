@@ -31,14 +31,14 @@ namespace jim_membership.Admin
             // 
             txtCertificateID.Location = new Point(30, 20);
             txtCertificateID.Name = "txtCertificateID";
-            txtCertificateID.PlaceholderText = "Certificate ID";
+            txtCertificateID.PlaceholderText = "CertificatesModel ID";
             txtCertificateID.Size = new Size(200, 23);
             // 
             // txtCertificateName
             // 
             txtCertificateName.Location = new Point(30, 60);
             txtCertificateName.Name = "txtCertificateName";
-            txtCertificateName.PlaceholderText = "Certificate Name";
+            txtCertificateName.PlaceholderText = "CertificatesModel Name";
             txtCertificateName.Size = new Size(200, 23);
             // 
             // btnOK
@@ -65,7 +65,7 @@ namespace jim_membership.Admin
             Controls.Add(btnOK);
             Controls.Add(btnCancel);
             Name = "EditCertificate";
-            Text = "Edit Certificate";
+            Text = "Edit CertificatesModel";
             Load += EditCertificate_Load;
             ResumeLayout(false);
             PerformLayout();

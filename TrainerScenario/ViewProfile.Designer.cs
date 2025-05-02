@@ -61,6 +61,7 @@
             dgvCert.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
             dgvCert.Size = new Size(420, 318);
             dgvCert.TabIndex = 12;
+            dgvCert.CellContentClick += dgvCert_CellContentClick_1;
             // 
             // btnCreateNew
             // 

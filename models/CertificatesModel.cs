@@ -7,10 +7,10 @@ using Dapper;
 
 namespace jim_membership.models
 {
-    public class Certificate
+    public class CertificatesModel
     {
-        public string TrainerID { get; set; }
-        public string CertificateName { get; set; }
+        public string trainerID { get; set; }
+        public string Certificate { get; set; }
 
         // Create
         public void Create()
@@ -18,8 +18,8 @@ namespace jim_membership.models
             try
             {
                 ProgramSession.Instance.OpenConnection();
-                string sql = @"INSERT INTO Certificates (trainerID, CertificateName)
-                               VALUES (@TrainerID, @CertificateName)";
+                string sql = @"INSERT INTO Certificates (trainerID, CertificatesModel)
+                               VALUES (@trainerID, @CertificatesModel)";
                 ProgramSession.Instance.dbConnection.Execute(sql, this);
             }
             catch (Exception ex)
@@ -33,13 +33,32 @@ namespace jim_membership.models
         }
 
         // Read by ID
-        public static Certificate GetById(string trainerID)
+        public static CertificatesModel GetById(string trainerID)
         {
             try
             {
                 ProgramSession.Instance.OpenConnection();
-                string sql = "SELECT * FROM Certificates WHERE TrainerID = @trainerID";
-                return ProgramSession.Instance.dbConnection.QueryFirstOrDefault<Certificate>(sql, new { TrainerID = trainerID });
+                string sql = "SELECT * FROM Certificates WHERE trainerID = @trainerID";
+                return ProgramSession.Instance.dbConnection.QueryFirstOrDefault<CertificatesModel>(sql, new { trainerID = trainerID });
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine($"Error fetching certificate by ID: {ex.Message}");
+                return null;
+            }
+            finally
+            {
+                ProgramSession.Instance.CloseConnection();
+            }
+        }
+
+        public static List<CertificatesModel> GetByTrainerID(string trainerID)
+        {
+            try
+            {
+                ProgramSession.Instance.OpenConnection();
+                string sql = "SELECT * FROM Certificates WHERE trainerID = @trainerID";
+                return ProgramSession.Instance.dbConnection.Query<CertificatesModel>(sql, new { trainerID = trainerID }).ToList();
             }
             catch (Exception ex)
             {
@@ -53,18 +72,18 @@ namespace jim_membership.models
         }
 
         // Read all
-        public static List<Certificate> GetAll()
+        public static List<CertificatesModel> GetAll()
         {
             try
             {
                 ProgramSession.Instance.OpenConnection();
                 string sql = "SELECT * FROM Certificates";
-                return ProgramSession.Instance.dbConnection.Query<Certificate>(sql).ToList();
+                return ProgramSession.Instance.dbConnection.Query<CertificatesModel>(sql).ToList();
             }
             catch (Exception ex)
             {
                 Console.WriteLine($"Error fetching all certificates: {ex.Message}");
-                return new List<Certificate>();
+                return new List<CertificatesModel>();
             }
             finally
             {
@@ -79,8 +98,8 @@ namespace jim_membership.models
             {
                 ProgramSession.Instance.OpenConnection();
                 string sql = @"UPDATE Certificates 
-                               SET CertificateName = @CertificateName 
-                               WHERE trainerID = @TrainerID";
+                               SET CertificatesModel = @CertificatesModel 
+                               WHERE trainerID = @trainerID";
                 ProgramSession.Instance.dbConnection.Execute(sql, this);
             }
             catch (Exception ex)
@@ -99,7 +118,7 @@ namespace jim_membership.models
             try
             {
                 ProgramSession.Instance.OpenConnection();
-                string sql = "DELETE FROM Certificates WHERE trainerID = @TrainerID";
+                string sql = "DELETE FROM Certificates WHERE trainerID = @trainerID";
                 ProgramSession.Instance.dbConnection.Execute(sql, new { CertificateID = certificateId });
             }
             catch (Exception ex)
