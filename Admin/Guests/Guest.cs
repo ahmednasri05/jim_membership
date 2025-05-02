@@ -91,7 +91,7 @@ namespace jim_membership.Admin
             }
 
             var selected = (Invite)GuestsGridView.SelectedRows[0].DataBoundItem;
-            Invite.Delete(selected.MemberID, selected.guestID);
+            Invite.Delete(selected.MemberID, selected.guestID); //bug here
             LoadGuests();
         }
     }

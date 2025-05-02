@@ -147,8 +147,7 @@ namespace jim_membership
 
         private void BtnReserve_Click(object sender, EventArgs e)
         {
-            if (int.TryParse(txtMemberID.Text, out _) &&
-                int.TryParse(txtSessionNo.Text, out _))
+            if (txtMemberID.Text == ProgramSession.Instance.UserId)
             {
                 bool success = Reserve.ReserveSession(txtMemberID.Text, txtSessionNo.Text);
                 MessageBox.Show(success ? "Reserved!" : "Reservation failed.");
@@ -157,15 +156,20 @@ namespace jim_membership
             }
             else
             {
-                MessageBox.Show("Please enter valid Member ID and Session ID.");
+                MessageBox.Show("You can only reserve your own sessions!");
             }
+
+
+
+            // MessageBox.Show("Please enter valid Member ID and Session ID.");
+
         }
 
         private void BtnDelete_Click(object sender, EventArgs e)
         {
-            if (int.TryParse(txtMemberID.Text, out _) &&
-                int.TryParse(txtTransactionID.Text, out int transactionId) &&
-                int.TryParse(txtSessionNo.Text, out _))
+            if (
+                int.TryParse(txtTransactionID.Text, out int transactionId) 
+                )
             {
                 Reserve.Delete(txtMemberID.Text, transactionId, txtSessionNo.Text);
                 MessageBox.Show("Deleted!");

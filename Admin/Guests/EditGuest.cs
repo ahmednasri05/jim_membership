@@ -76,7 +76,12 @@ namespace jim_membership.Admin
                     _invite.Update();
                 }
                 else
-                {    if(nationalIDTextBox.Text.ToString() == memberIDComboBox.SelectedValue.ToString()) // member cant invite himself
+                {    if(ProgramSession.Instance.UserRole == "Admin" && nationalIDTextBox.Text.ToString() == memberIDComboBox.SelectedValue.ToString()) // member cant invite himself
+                    {
+                        MessageBox.Show("you can,t invite yourself , please enter another nationalID", "Invalid Guest", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                        return;
+                    }
+                    else if(ProgramSession.Instance.UserRole != "Admin" && nationalIDTextBox.Text.ToString() == ProgramSession.Instance.UserId)
                     {
                         MessageBox.Show("you can,t invite yourself , please enter another nationalID", "Invalid Guest", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                         return;

@@ -80,7 +80,7 @@ namespace jim_membership.models
                 string checkSql = "SELECT private_sessions_used FROM Subscribes WHERE memberID = @memberID";
                 int privateSessionsUsed = ProgramSession.Instance.dbConnection.QueryFirstOrDefault<int>(checkSql, new { memberID = memberId });
 
-                if (privateSessionsUsed <= 1)
+                if (privateSessionsUsed < 1)
                 {
                     // Not enough private sessions available
                     Console.WriteLine("Not enough private sessions available");

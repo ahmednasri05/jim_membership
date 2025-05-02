@@ -49,6 +49,12 @@ namespace jim_membership
                 var TrainerStart = new TrainerHomePage();
                 TrainerStart.Show();
             }
+            else if (Member.CheckIfMember(userId))
+            {
+                UserRole = "Member"; // Member role
+                var Memberstart = new ReservationForm();
+                Memberstart.Show();
+            }
             else
             {
                 UserRole = "User"; // Default role for other users

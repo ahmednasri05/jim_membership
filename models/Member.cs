@@ -54,6 +54,11 @@ namespace jim_membership.models
                 ProgramSession.Instance.CloseConnection();
             }
         }
+        public static bool CheckIfMember(string ID)
+        {
+            if (GetById(ID) != null) return true;
+            return false;
+        }
 
         // Read all
         public static List<Member> GetAll()
