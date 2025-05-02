@@ -37,19 +37,20 @@ namespace jim_membership.Admin
                 memberIDLabel.Visible = false; // Hide the label for the member ID combo box
                 memberIDComboBox.Visible = false; // Hide the combo box for the member ID
             }
-            else {
-            try
+            else
             {
-                var members = Member.GetAll();
-                memberIDComboBox.DataSource = members;
-                memberIDComboBox.DisplayMember = "FullName";
-                memberIDComboBox.ValueMember = "NationalID";
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show($"Error loading members: {ex.Message}", "Error",
-                    MessageBoxButtons.OK, MessageBoxIcon.Error);
-            }
+                try
+                {
+                    var members = Member.GetAll();
+                    memberIDComboBox.DataSource = members;
+                    memberIDComboBox.DisplayMember = "FullName";
+                    memberIDComboBox.ValueMember = "NationalID";
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show($"Error loading members: {ex.Message}", "Error",
+                        MessageBoxButtons.OK, MessageBoxIcon.Error);
+                }
             }
         }
 
@@ -75,21 +76,25 @@ namespace jim_membership.Admin
                     _invite.Update();
                 }
                 else
-                {
-                        var newInvite = new Invite
-                        {
-                            guestID = (nationalIDTextBox.Text),
-                            InvitationDate = invitationDatePicker.Value
-                        };
+                {    if(nationalIDTextBox.Text.ToString() == memberIDComboBox.SelectedValue.ToString()) // member cant invite himself
+                    {
+                        MessageBox.Show("you can,t invite yourself , please enter another nationalID", "Invalid Guest", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                        return;
+                    }
+                    var newInvite = new Invite
+                    {
+                        guestID = (nationalIDTextBox.Text),
+                        InvitationDate = invitationDatePicker.Value
+                    };
 
-                        if (ProgramSession.Instance.UserRole != "Admin")
-                        {
-                            newInvite.MemberID = ProgramSession.Instance.UserId;
-                        }
-                        else
-                        {
-                            newInvite.MemberID = memberIDComboBox.SelectedValue.ToString();
-                        }
+                    if (ProgramSession.Instance.UserRole != "Admin")
+                    {
+                        newInvite.MemberID = ProgramSession.Instance.UserId;
+                    }
+                    else
+                    {
+                        newInvite.MemberID = memberIDComboBox.SelectedValue.ToString();
+                    }
                     newInvite.Create();
                 }
 
@@ -134,6 +139,11 @@ namespace jim_membership.Admin
         }
 
         private void memberIDComboBox_SelectedIndexChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void nationalIDTextBox_TextChanged(object sender, EventArgs e)
         {
 
         }
