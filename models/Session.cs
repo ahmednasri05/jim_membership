@@ -9,14 +9,16 @@ namespace jim_membership.models
 {
     public class Session
     {
-        public string SessionID { get; set; }
-        public string TrainerID { get; set; }
+        public string sessionNo { get; set; }
+        public string trainerID { get; set; }
         public string BranchNo { get; set; }
         public string Type { get; set; }
-        public int MaxNumber { get; set; }
-        public DateTime Date { get; set; }
-        public TimeSpan Duration { get; set; }
-        public string Description { get; set; }
+        public int maxNumber { get; set; }
+        public DateTime date { get; set; }
+        public TimeSpan duration { get; set; }
+        public TimeSpan Time { get; set; }
+
+        public string description { get; set; }
 
         // Create
         public void Create()
