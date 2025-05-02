@@ -61,6 +61,25 @@ namespace jim_membership.models
             }
         }
 
+        public static List<Session> GetAllOfuser(string sessionId)
+        {
+            try
+            {
+                ProgramSession.Instance.OpenConnection();
+                string sql = "SELECT * FROM Sessions WHERE sessionNo = @sessionNo";
+                return ProgramSession.Instance.dbConnection.Query<Session>(sql, new { sessionNo = sessionId }).ToList();
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine($"Error fetching session by ID: {ex.Message}");
+                return null;
+            }
+            finally
+            {
+                ProgramSession.Instance.CloseConnection();
+            }
+        }
+
         // Read all
         public static List<Session> GetAll()
         {

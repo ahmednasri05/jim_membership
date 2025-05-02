@@ -28,7 +28,7 @@ namespace jim_membership.TrainerScenario
             }
             else
             {
-                dataGridView1.DataSource = Session.GetAll();
+                dataGridView1.DataSource = Session.GetAllOfuser(ProgramSession.Instance.UserId);
             }
 
         }
@@ -48,7 +48,7 @@ namespace jim_membership.TrainerScenario
 
             try
             {
-                var sessions = Session.GetAll();
+                var sessions = Session.GetAllOfuser(ProgramSession.Instance.UserId);
                 dataGridView1.DataSource = sessions;
             }
             catch (Exception e)
