@@ -15,7 +15,7 @@ namespace jim_membership.models
         public string Address { get; set; }
         public string BranchName { get; set; }
 
-        private static readonly string _connectionString = "your_connection_string_here";
+        public override string ToString() => $"{BranchNo} - {BranchName}";
 
         // Create
         public void Create()

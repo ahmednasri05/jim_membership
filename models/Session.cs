@@ -26,8 +26,8 @@ namespace jim_membership.models
             try
             {
                 ProgramSession.Instance.OpenConnection();
-                string sql = @"INSERT INTO Sessions (SessionID, TrainerID, BranchNo, Type, MaxNumber, Date, Duration, Description)
-                               VALUES (@SessionID, @TrainerID, @BranchNo, @Type, @MaxNumber, @Date, @Duration, @Description)";
+                string sql = @"INSERT INTO Sessions (sessionNo, TrainerID, BranchNo, Time, Type, MaxNumber, Date, Duration, Description)
+                               VALUES (@sessionNo, @TrainerID, @BranchNo, @Type, @MaxNumber, @Time , @Date, @duration, @Description)";
                 ProgramSession.Instance.dbConnection.Execute(sql, this);
             }
             catch (Exception ex)
@@ -102,8 +102,36 @@ namespace jim_membership.models
             }
         }
 
+        public static int GreatestSessionID()
+        {
+            int greatestId = 0;
+
+            try
+            {
+                ProgramSession.Instance.OpenConnection(); 
+
+                string sql = "SELECT MAX(TRY_CONVERT(INT, sessionNo)) AS MaxIntValue FROM Sessions";
+                int? result = ProgramSession.Instance.dbConnection.ExecuteScalar<int?>(sql);
+                greatestId = result ?? 0;
+
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine($"Error retrieving greatest session ID: {ex.Message}");
+
+                greatestId = 0;
+            }
+            finally
+            {
+                ProgramSession.Instance.CloseConnection();
+            }
+
+            return greatestId;
+        }
+
+
         // Delete
-        public static void Delete(int sessionId)
+        public static void Delete(string sessionId)
         {
             try
             {

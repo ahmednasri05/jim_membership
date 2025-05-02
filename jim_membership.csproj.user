@@ -67,5 +67,20 @@
     <Compile Update="Signup.cs">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Update="TrainerScenario\CreateCerteficate.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Update="TrainerScenario\CreateNewSession.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Update="TrainerScenario\EditSession.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Update="TrainerScenario\TrainerHomePage.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Update="TrainerScenario\ViewProfile.cs">
+      <SubType>Form</SubType>
+    </Compile>
   </ItemGroup>
 </Project>
