@@ -4,6 +4,9 @@
     <Compile Update="Admin\AdminStart.cs">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Update="Admin\Branches\EditBranch.cs">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Update="Admin\Members\EditMember.cs">
       <SubType>Form</SubType>
     </Compile>

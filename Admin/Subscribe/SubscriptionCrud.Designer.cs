@@ -24,6 +24,7 @@ namespace jim_membership.Admin
             AddSubBtn = new Button();
             EditSubBtn = new Button();
             DeleteSubBtn = new Button();
+            sortbyComboBox = new ComboBox();
             ((System.ComponentModel.ISupportInitialize)SubscriptionsGridView).BeginInit();
             SuspendLayout();
             // 
@@ -31,7 +32,7 @@ namespace jim_membership.Admin
             // 
             label1.Font = new Font("Segoe UI", 18F, FontStyle.Regular, GraphicsUnit.Point);
             label1.ForeColor = SystemColors.MenuHighlight;
-            label1.Location = new Point(320, 29);
+            label1.Location = new Point(317, 33);
             label1.Name = "label1";
             label1.Size = new Size(230, 40);
             label1.TabIndex = 4;
@@ -83,11 +84,24 @@ namespace jim_membership.Admin
             DeleteSubBtn.UseVisualStyleBackColor = true;
             DeleteSubBtn.Click += DeleteSubBtn_Click;
             // 
+            // sortbyComboBox
+            // 
+            sortbyComboBox.FormattingEnabled = true;
+            sortbyComboBox.Items.AddRange(new object[] { "Name", "amount", "noOfPrivateSessions" });
+            sortbyComboBox.Location = new Point(711, 140);
+            sortbyComboBox.Name = "sortbyComboBox";
+            sortbyComboBox.Size = new Size(121, 23);
+            sortbyComboBox.TabIndex = 5;
+            sortbyComboBox.Text = "sort by";
+            sortbyComboBox.SelectedIndexChanged += SortByComboBox;
+            sortbyComboBox.Click += SortByComboBox;
+            // 
             // SubscriptionCrud
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(871, 591);
+            Controls.Add(sortbyComboBox);
             Controls.Add(DeleteSubBtn);
             Controls.Add(EditSubBtn);
             Controls.Add(AddSubBtn);
@@ -107,5 +121,6 @@ namespace jim_membership.Admin
         private Button AddSubBtn;
         private Button EditSubBtn;
         private Button DeleteSubBtn;
+        private ComboBox sortbyComboBox;
     }
 }

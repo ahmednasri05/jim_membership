@@ -1,7 +1,6 @@
 ﻿using System;
 using System.Data.SqlClient;
 using jim_membership.Admin;
-
 namespace jim_membership
 {
     public class ProgramSession
