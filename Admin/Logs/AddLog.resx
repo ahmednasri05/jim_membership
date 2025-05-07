@@ -1,0 +1,23 @@
+<root>
+  <data name="FormTitle" xml:space="preserve">
+    <value>Add Log</value>
+  </data>
+  <data name="MemberLabel" xml:space="preserve">
+    <value>Member</value>
+  </data>
+  <data name="BranchLabel" xml:space="preserve">
+    <value>Branch</value>
+  </data>
+  <data name="CheckInLabel" xml:space="preserve">
+    <value>Check-In Time</value>
+  </data>
+  <data name="CheckOutLabel" xml:space="preserve">
+    <value>Check-Out Time</value>
+  </data>
+  <data name="SaveButton" xml:space="preserve">
+    <value>Save</value>
+  </data>
+  <data name="CancelButton" xml:space="preserve">
+    <value>Cancel</value>
+  </data>
+</root>

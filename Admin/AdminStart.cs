@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Windows.Forms;
+using jim_membership.Admin.Logs;
 
 namespace jim_membership.Admin
 {
@@ -12,6 +13,8 @@ namespace jim_membership.Admin
         private Branches branchCrud;
         private SubscriptionCrud subCrud;
         private SubscriptionsReportForm subReport;
+
+        private LogsCRUD LogsReport;
 
         public AdminStart()
         {
@@ -58,6 +61,13 @@ namespace jim_membership.Admin
             subReport.Dock = DockStyle.Fill;
             tabSubscriptionReport.Controls.Add(subReport);
             subReport.Show();
+            LogsReport = new LogsCRUD();
+            LogsReport.TopLevel = false;
+            LogsReport.FormBorderStyle = FormBorderStyle.None;
+            LogsReport.Dock = DockStyle.Fill;
+            tabPage1.Controls.Add(LogsReport);
+            LogsReport.Show();
+            
         }
         private void TabControl_SelectedIndexChanged(object sender, EventArgs e)
         {
@@ -99,6 +109,11 @@ namespace jim_membership.Admin
                 // Initialize Trainer CRUD
                 subCrud.LoadSubscriptions();
 
+            }
+             else if (tabControl.SelectedTab == tabPage1)
+            {
+                // Initialize Trainer CRUD
+                LogsReport.LoadLogs();
             }
             else if (tabControl.SelectedTab == tabSubscriptionReport)
             {
